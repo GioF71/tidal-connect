@@ -1,0 +1,22 @@
+---
+version: '3'
+
+services:
+  tidal-connect:
+    image: edgecrush3r/tidal-connect:latest
+    container_name: tidal-connect
+    tty: true
+    network_mode: host
+    restart: unless-stopped
+    devices:
+     - /dev/snd
+    environment:
+     - PLAYBACK_DEVICE=sysdefault
+     - FRIENDLY_NAME=${FRIENDLY_NAME:-tidal-connect}
+     - MODEL_NAME=${MODEL_NAME:-RaspberryPi}
+     - MQA_CODEC=${MQA_CODEC:-false}
+     - MQA_PASSTHROUGH=${MQA_PASSTHROUGH:-true}
+    volumes:
+      - ./.asound.conf:/etc/asound.conf:ro
+      - $HOME/.config/tidal-connect/entrypoint.sh:/entrypoint.sh
+      - /var/run/dbus:/var/run/dbus
