@@ -6,14 +6,16 @@ write_audio_config() {
       truncate -s 0 /etc/asound.conf
    fi
    echo "Creating sound configuration file (card_index=$card_index)..."
+   echo "defaults.pcm.card $card_index" >> /etc/asound.conf
+   #echo "defaults.ctl.card $card_index" >> /etc/asound.conf
    echo "pcm.!default {" >> /etc/asound.conf
    echo "  type hw" >> /etc/asound.conf
    echo "  card $card_index" >> /etc/asound.conf
    echo "}" >> /etc/asound.conf
-   echo "ctl.!default {" >> /etc/asound.conf
-   echo "  type hw" >> /etc/asound.conf
-   echo "  card $card_index" >> /etc/asound.conf
-   echo "}" >> /etc/asound.conf
+   #echo "ctl.!default {" >> /etc/asound.conf
+   #echo "  type hw" >> /etc/asound.conf
+   #echo "  card $card_index" >> /etc/asound.conf
+   #echo "}" >> /etc/asound.conf
    echo "Sound configuration file created."
 }
 
@@ -66,7 +68,7 @@ sleep $SLEEP_TIME_SEC
 echo "Starting TIDAL Connect ..."
 /app/ifi-tidal-release/bin/tidal_connect_application \
    --tc-certificate-path "/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat" \
-   --playback-device "spdif" \
+   --playback-device "sysdefault" \
    -f "${FRIENDLY_NAME}" \
    --codec-mpegh true \
    --codec-mqa ${MQA_CODEC} \
