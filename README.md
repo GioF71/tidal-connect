@@ -17,7 +17,7 @@ I created this repository because it was very inconvenient for me to figure out 
 And, in any case, I found that the resulting  configuration would be error-prone as the string reports both the device name and the device index. AFAIK the index can change across restarts, so outside of a known and controlled setup (which is probably represented by the Ifi devices) this situation can an will lead to errors or unwanted configurations.  
 Keep in mind that the audio device index can also be changed because one time the (usb) device is powered on during boot, and another time it isn't.  
 This is my experience, unless I am missing something obvious. If so, I will be glad to be corrected.  
-The work in this repository consists in slightly altering the container startup phase (the `entrypoint.sh` file), in such a way that a custom `/etc/asound.conf` is created with (hopefully) the correct device index, regardless of the order of the audio devices, which can vary across restarts. The underlying application then always uses the `sysdefault` audio device.  
+The work in this repository consists in slightly altering the container startup phase (the `entrypoint.sh` file), in such a way that a custom `/etc/asound.conf` is created with (hopefully) the correct device index, regardless of the order of the audio devices, which can vary across restarts. The underlying application then always uses the `default` audio device.  
 
 ## Requirements
 
