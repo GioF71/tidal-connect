@@ -8,7 +8,7 @@ All the hard work has been done by the people who own the repositories mentioned
 
 ## References
 
-This entirely relies on [this](https://github.com/TonyTromp/tidal-connect-docker) repository. A big thank you to the author for his great work.  
+This entirely relies on [this](https://github.com/TonyTromp/tidal-connect-docker) repository. A big thank you to the author for the great work.  
 It will also use [these](https://hub.docker.com/r/edgecrush3r/tidal-connect) docker images.  
 
 ## Why
