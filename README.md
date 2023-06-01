@@ -49,7 +49,7 @@ Configure for sound card named "DAC", using friendly name "Aune S6 USB DAC" and 
 bash configure.sh -n DAC -f "Aune S6 USB DAC" -m "Asus Tinkerboard"
 ```
 
-If no error is reported, you will find new (or updated) `.env` files.  
+If no error is reported, you will find a new (or updated) `.env` file.  
 If you find a spurious `.asound.conf` file there, it probably was generate with a previous version of the `configure.sh` script, and you can safely delete it.  
 So now you can run the `docker-compose.yaml` as usual:
 
