@@ -12,8 +12,8 @@ services:
     environment:
      - CARD_NAME=${CARD_NAME}
      - CARD_INDEX=${CARD_INDEX:--1}
-     - FRIENDLY_NAME=${FRIENDLY_NAME:-tidal-connect}
-     - MODEL_NAME=${MODEL_NAME:-RaspberryPi}
+     - FRIENDLY_NAME=${FRIENDLY_NAME:-TIDAL connect}
+     - MODEL_NAME=${MODEL_NAME:-Audio Streamer}
      - MQA_CODEC=${MQA_CODEC:-false}
      - MQA_PASSTHROUGH=${MQA_PASSTHROUGH:-false}
      - SLEEP_TIME_SEC=${SLEEP_TIME:-3}

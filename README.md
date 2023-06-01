@@ -30,10 +30,10 @@ From the repository directory, just run the `configure.sh` bash script, specifyi
 
 PARAM|DESCRIPTION
 :---|:---
--i|Sound card index. If not specified and also card name isn't, it defaults to `0`
 -n|Sound card name (e.g. DAC), used if card index is not specified
--f|Friendly name, defaults to `Tidal-Connect`
--m|Model name, defaults to `SBC`
+-i|Sound card index. Not recommended. If not specified and also card name isn't, it defaults to `-1`
+-f|Friendly name, defaults to `TIDAL connect`
+-m|Model name, defaults to `Audio Streamer`
 -c|MQA Codec, defaults to `false`
 -p|MQA Passthrough, defaults to `false`
 -t|Sleep time in seconds be, defaults to `3`
