@@ -35,7 +35,7 @@ PARAM|DESCRIPTION
 -f|Friendly name, defaults to `Tidal-Connect`
 -m|Model name, defaults to `SBC`
 -c|MQA Codec, defaults to `false`
--p|MQA Passthrough, defaults to `true`
+-p|MQA Passthrough, defaults to `false`
 -t|Sleep time in seconds be, defaults to `3`
 
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
@@ -61,6 +61,8 @@ docker-compose up -d
 
 Date|Comment
 :---|:---
+2023-06-02|Some effort to avoid resampling
+2023-06-02|MQA passthrough defaults to `false`
 2023-06-01|Using hardware mode
 2023-06-01|Resolve device name at container startup 
 2023-05-29|First working version

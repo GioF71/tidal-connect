@@ -15,7 +15,7 @@ services:
      - FRIENDLY_NAME=${FRIENDLY_NAME:-tidal-connect}
      - MODEL_NAME=${MODEL_NAME:-RaspberryPi}
      - MQA_CODEC=${MQA_CODEC:-false}
-     - MQA_PASSTHROUGH=${MQA_PASSTHROUGH:-true}
+     - MQA_PASSTHROUGH=${MQA_PASSTHROUGH:-false}
      - SLEEP_TIME_SEC=${SLEEP_TIME:-3}
     volumes:
       - ./bin/entrypoint.sh:/entrypoint.sh

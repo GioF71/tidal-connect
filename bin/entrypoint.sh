@@ -7,17 +7,10 @@ write_audio_config() {
    fi
    echo "Creating sound configuration file (card_index=$card_index)..."
    echo "defaults.pcm.card $card_index" >> /etc/asound.conf
-   echo "defaults.pcm.dmix.rate 44100" >> /etc/asound.conf
-   #echo "defaults.ctl.card $card_index" >> /etc/asound.conf
-   #echo "pcm.!default {" >> /etc/asound.conf
-   #echo "  type hw" >> /etc/asound.conf
-   #echo "  card $card_index" >> /etc/asound.conf
-   #echo "  rate 44100" >> /etc/asound.conf
-   #echo "}" >> /etc/asound.conf
-   #echo "ctl.!default {" >> /etc/asound.conf
-   #echo "  type hw" >> /etc/asound.conf
-   #echo "  card $card_index" >> /etc/asound.conf
-   #echo "}" >> /etc/asound.conf
+   echo "pcm.!default {" >> /etc/asound.conf
+   echo "  type plug" >> /etc/asound.conf
+   echo "  slave.pcm hw" >> /etc/asound.conf
+   echo "}" >> /etc/asound.conf
    echo "Sound configuration file created."
 }
 
@@ -44,8 +37,6 @@ if [[ "${card_index}" == "-1" && -n "${card_name}" ]]; then
       if [[ "${first_word}" == "card" ]]; then
          second_word=`echo $i | cut -d ":" -f 1`
          third_word=`echo $i | cut -d " " -f 3`
-         #echo "second_word=$second_word"
-         #echo "third_word=$third_word"
          card_number=`echo $second_word | cut -d " " -f 2`
          if [[ "${third_word}" == "${CARD_NAME}" ]]; then
             echo "Found audio device [${CARD_NAME}] as index [$card_number]"
@@ -70,7 +61,7 @@ sleep $SLEEP_TIME_SEC
 echo "Starting TIDAL Connect ..."
 /app/ifi-tidal-release/bin/tidal_connect_application \
    --tc-certificate-path "/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat" \
-   --playback-device "dmix" \
+   --playback-device "default" \
    -f "${FRIENDLY_NAME}" \
    --codec-mpegh true \
    --codec-mqa ${MQA_CODEC} \
