@@ -7,16 +7,17 @@ services:
     container_name: tidal-connect
     tty: true
     network_mode: host
-    restart: unless-stopped
     devices:
      - /dev/snd
     environment:
-     - PLAYBACK_DEVICE=sysdefault
+     - CARD_NAME=${CARD_NAME}
+     - CARD_INDEX=${CARD_INDEX:--1}
      - FRIENDLY_NAME=${FRIENDLY_NAME:-tidal-connect}
      - MODEL_NAME=${MODEL_NAME:-RaspberryPi}
      - MQA_CODEC=${MQA_CODEC:-false}
      - MQA_PASSTHROUGH=${MQA_PASSTHROUGH:-true}
+     - SLEEP_TIME_SEC=${SLEEP_TIME:-3}
     volumes:
-      - ./.asound.conf:/etc/asound.conf:ro
-      - $HOME/.config/tidal-connect/entrypoint.sh:/entrypoint.sh
+      - ./bin/entrypoint.sh:/entrypoint.sh
       - /var/run/dbus:/var/run/dbus
+    restart: unless-stopped
