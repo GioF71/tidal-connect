@@ -61,6 +61,7 @@ docker-compose up -d
 
 Date|Comment
 :---|:---
+2023-06-02|First unfolding seems to be working
 2023-06-02|Some effort to avoid resampling
 2023-06-02|MQA passthrough defaults to `false`
 2023-06-01|Using hardware mode
