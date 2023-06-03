@@ -4,7 +4,7 @@ A simple script used to configure a docker-compose stack for Tidal Connect.
 
 ## Disclaimer
 
-All the hard work has been done by the people who own the repositories mentioned [here](#References). I am just trying to provide a way to run their container more easily in certain environments (where the index of your audio device is not the same on every restart).  
+All the hard work has been done by the owner of the repository mentioned [here](#References). I am just trying to provide a way to run their container more easily in certain environments (where the index of your audio device is not the same on every restart).  
 
 ## References
 
