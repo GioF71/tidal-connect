@@ -59,7 +59,7 @@ docker-compose up -d
 
 ## DietPi
 
-On DietPi (which I am running on my Asus Tinkerboard), you might need to enabled avahi-daemon, if this is not enabled yet. This can be done by running this command:  
+On DietPi (which I am running on my Asus Tinkerboard), you might need to enable avahi-daemon, if this is not enabled yet. This can be done by running this command:  
 
 ```text
 sudo apt install avahi-daemon
