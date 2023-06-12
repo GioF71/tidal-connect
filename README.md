@@ -59,7 +59,14 @@ docker-compose up -d
 
 ## DietPi
 
-On DietPi (which I am running on my Asus Tinkerboard), you might need to enable avahi-daemon, if this is not enabled yet. This can be done by running this command:  
+On DietPi (which I am running on my Asus Tinkerboard), you might need to enable avahi-daemon, if this is not enabled yet.  
+You might find the following on the logs:
+
+```text
+[tisoc] [error] [avahiImpl.cpp:358] avahi_client_new() FAILED: Daemon not running
+```
+
+This can be fixed by installing the avahi-daemon. It is not installed by default on DietPi, so we can installing it with this command:  
 
 ```text
 sudo apt install avahi-daemon
