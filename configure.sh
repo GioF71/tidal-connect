@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# error codes
+# 1 cannot specify both index and name
+
 set -ex
 
 ENV_FILE=.env
@@ -17,6 +20,11 @@ do
         t) sleep_time_sec=${OPTARG};;
     esac
 done
+
+if [[ -n "${card_index}" && -n "${card_name}" ]]; then
+    echo "Cannot specify both index and name for audio card"
+    exit 1
+fi
 
 echo "card_index=[$card_index]"
 echo "card_name=[$card_name]"
@@ -53,4 +61,5 @@ if [[ -n "${card_name}" ]]; then
     echo "CARD_NAME=${card_name}" >> $ENV_FILE
 elif [[ -n "${card_index}" ]]; then
     echo "CARD_INDEX=${card_index}" >> $ENV_FILE
+    echo "CARD_NAME=NOT_SET" >> $ENV_FILE
 fi
