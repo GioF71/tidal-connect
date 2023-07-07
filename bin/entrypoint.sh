@@ -45,7 +45,10 @@ if [[ "${card_index}" == "-1" && -n "${card_name}" ]]; then
          fi
       fi
    done
-elif [[ -z "${card_index}" ]]; then
+elif [[ -n "${card_index}" ]]; then
+    echo "Set card_index=[$card_index]"
+    write_audio_config $card_index
+else
     echo "Set default card_index=[$DEFAULT_CARD_INDEX]"
     write_audio_config $DEFAULT_CARD_INDEX
 fi
