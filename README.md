@@ -57,6 +57,47 @@ So now you can run the `docker-compose.yaml` as usual:
 docker-compose up -d
 ```
 
+## Moode Audio
+
+It is possible to use this solution for easy installation of Tidal Connect on [Moode Audio](https://moodeaudio.org/).  
+It is required to have a ssh connection to the moode audio box.  
+
+### Docker
+
+Docker is also a prerequisite. We can install the necessary packages with the following commands:
+
+```text
+sudo apt update
+sudo apt install docker.io docker-compose
+sudo usermod -a -G docker pi
+```
+
+Logoff your current ssh session, then log back. In my case, I have a Hifiberry Dac+ Pro Hat, so when I use the command:
+
+```text
+cat /proc/asound/cards
+```
+
+I get:
+
+```text
+pi@moode-living:~/git/tidal-connect $ cat /proc/asound/cards
+ 0 [sndrpihifiberry]: HifiberryDacp - snd_rpi_hifiberry_dacplus
+                      snd_rpi_hifiberry_dacplus
+```
+
+Great, Moode has just disabled the onboard audio and set the hat to the default card. Let's configure Tidal Connect:
+
+```text
+./configure.sh -i 0 -f "Moode Living Aux1" -m "Raspberry Pi 3b"
+```
+
+Replace the second and third string to your liking. Once configured, start the service as usual:
+
+```text
+docker-compose up -d
+```
+
 ## DietPi
 
 On DietPi (which I am running on my Asus Tinkerboard), you might need to enable avahi-daemon, if this is not enabled yet.  
