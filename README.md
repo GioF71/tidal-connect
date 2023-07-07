@@ -86,14 +86,14 @@ pi@moode-living:~/git/tidal-connect $ cat /proc/asound/cards
                       snd_rpi_hifiberry_dacplus
 ```
 
-Great, Moode has just disabled the onboard audio and set the hat to the default card.  
+Great, Moode has just disabled the onboard audio and set the Hifiberry HAT as the default card.  
 So let's configure Tidal Connect:
 
 ```text
 ./configure.sh -i 0 -f "Moode Living Aux1" -m "Raspberry Pi 3b"
 ```
 
-Replace the second and third string to your liking. Once configured, start the service as usual:
+Replace the second and third strings to your liking. Once configured, start the service as usual:
 
 ```text
 docker-compose up -d
