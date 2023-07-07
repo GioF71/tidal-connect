@@ -86,7 +86,8 @@ pi@moode-living:~/git/tidal-connect $ cat /proc/asound/cards
                       snd_rpi_hifiberry_dacplus
 ```
 
-Great, Moode has just disabled the onboard audio and set the hat to the default card. Let's configure Tidal Connect:
+Great, Moode has just disabled the onboard audio and set the hat to the default card.  
+So let's configure Tidal Connect:
 
 ```text
 ./configure.sh -i 0 -f "Moode Living Aux1" -m "Raspberry Pi 3b"
