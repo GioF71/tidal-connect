@@ -72,7 +72,7 @@ sudo apt install docker.io docker-compose
 sudo usermod -a -G docker pi
 ```
 
-Logoff your current ssh session, then log back. In my case, I have a Hifiberry Dac+ Pro Hat, so when I use the command:
+Logoff your current ssh session, then log back in. On my Moode box, I have a Hifiberry Dac+ Pro Hat, so when I use the command:
 
 ```text
 cat /proc/asound/cards
