@@ -122,7 +122,7 @@ An already started tidal-connect container should start working immediately, at 
 Date|Comment
 :---|:---
 2023-07-18|Allow user-specified dns server(s), see issue [#13](https://github.com/GioF71/tidal-connect/issues/13)
-2023-07-07|Fixed asound.conf generation from card index, see issue ([#2](https://github.com/GioF71/tidal-connect/issues/2))
+2023-07-07|Fixed asound.conf generation from card index, see issue [#2](https://github.com/GioF71/tidal-connect/issues/2)
 2023-06-02|First unfolding seems to be working
 2023-06-02|Some effort to avoid resampling
 2023-06-02|MQA passthrough defaults to `false`
