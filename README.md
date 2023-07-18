@@ -37,6 +37,7 @@ PARAM|DESCRIPTION
 -c|MQA Codec, defaults to `false`
 -p|MQA Passthrough, defaults to `false`
 -t|Sleep time in seconds be, defaults to `3`
+-d|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)
 
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
 If you already used the `configure.sh` command and you are experiencing issues (because of the card has changed its index), you can run the command again. In the latest version, the card index is calculated during the container startup phase and hopefully there will not be any need to use `configure.sh` again unless you change the audio device you want to use.
@@ -120,6 +121,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2023-07-18|Allow user-specified dns server(s), see issue [#13](https://github.com/GioF71/tidal-connect/issues/13)
 2023-07-07|Fixed asound.conf generation from card index, see issue ([#2](https://github.com/GioF71/tidal-connect/issues/2))
 2023-06-02|First unfolding seems to be working
 2023-06-02|Some effort to avoid resampling
