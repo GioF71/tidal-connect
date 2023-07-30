@@ -73,6 +73,7 @@ MQA_PASSTHROUGH|Can't comment a lot on this, defaults to `false`.
 SLEEP_TIME_SEC|Sleep time before starting the real app, after starting tmux. Defaults to `3`.
 RESTART_ON_FAIL|Enables auto restart (see issue [#16](https://github.com/GioF71/tidal-connect/issues/16)), defaults to `1` (which means restart is enabled).
 RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL), defaults to 30.
+DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers).
 
 ## Moode Audio
 
