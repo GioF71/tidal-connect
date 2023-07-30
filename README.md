@@ -64,15 +64,15 @@ The container can be entirely configured using the environment variables listed 
 
 VARIABLE|DESCRIPTION
 :---|:---
-CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC`, defaults to an empty string
-CARD_INDEX|Alsa index of the audio card, defaults to `-1`
-FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`
-MODEL_NAME|Model name of the device. Defaults to `Audio Streamer`
-MQA_CODEC|Can't comment a lot on this, defaults to `false`
-MQA_PASSTHROUGH|Can't comment a lot on this, defaults to `false`
-SLEEP_TIME_SEC|Sleep time before starting the real app, after starting tmux. Defaults to `3`
-RESTART_ON_FAIL|Enables auto restart (see issue [#16](https://github.com/GioF71/tidal-connect/issues/16)), defaults to `1`
-RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL), defaults to 30
+CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC` while e.g. it is `D10` for a Topping D10. Defaults to an empty string.
+CARD_INDEX|Alsa index of the audio card, defaults to `-1`.
+FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`.
+MODEL_NAME|Model name of the device. Defaults to `Audio Streamer`.
+MQA_CODEC|Can't comment a lot on this, defaults to `false`.
+MQA_PASSTHROUGH|Can't comment a lot on this, defaults to `false`.
+SLEEP_TIME_SEC|Sleep time before starting the real app, after starting tmux. Defaults to `3`.
+RESTART_ON_FAIL|Enables auto restart (see issue [#16](https://github.com/GioF71/tidal-connect/issues/16)), defaults to `1` (which means restart is enabled).
+RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL), defaults to 30.
 
 ## Moode Audio
 
