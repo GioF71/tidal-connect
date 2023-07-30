@@ -58,6 +58,22 @@ So now you can run the `docker-compose.yaml` as usual:
 docker-compose up -d
 ```
 
+## Environment Variables
+
+The container can be entirely configured using the environment variables listed on the following table:
+
+VARIABLE|DESCRIPTION
+:---|:---
+CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC`, defaults to an empty string
+CARD_INDEX|Alsa index of the audio card, defaults to `-1`
+FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`
+MODEL_NAME|Model name of the device. Defaults to `Audio Streamer`
+MQA_CODEC|Can't comment a lot on this, defaults to `false`
+MQA_PASSTHROUGH|Can't comment a lot on this, defaults to `false`
+SLEEP_TIME_SEC|Sleep time before starting the real app, after starting tmux. Defaults to `3`
+RESTART_ON_FAIL|Enables auto restart (see issue [#16](https://github.com/GioF71/tidal-connect/issues/16)), defaults to `1`
+RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL), defaults to 30
+
 ## Moode Audio
 
 It is possible to use this solution for easy installation of Tidal Connect on [Moode Audio](https://moodeaudio.org/).  

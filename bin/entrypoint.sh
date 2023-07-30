@@ -61,18 +61,29 @@ echo "Starting Speaker Application in Background (TMUX)"
 echo "Sleeping for a while ($SLEEP_TIME_SEC seconds)..."
 sleep $SLEEP_TIME_SEC
 
-echo "Starting TIDAL Connect ..."
-/app/ifi-tidal-release/bin/tidal_connect_application \
-   --tc-certificate-path "/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat" \
-   --playback-device "default" \
-   -f "${FRIENDLY_NAME}" \
-   --codec-mpegh true \
-   --codec-mqa ${MQA_CODEC} \
-   --model-name "${MODEL_NAME}" \
-   --disable-app-security false \
-   --disable-web-security false \
-   --enable-mqa-passthrough ${MQA_PASSTHROUGH} \
-   --log-level 3 \
-   --enable-websocket-log "0"
+while true
+do
+   echo "Starting TIDAL Connect ..."
+   /app/ifi-tidal-release/bin/tidal_connect_application \
+      --tc-certificate-path "/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat" \
+      --playback-device "default" \
+      -f "${FRIENDLY_NAME}" \
+      --codec-mpegh true \
+      --codec-mqa ${MQA_CODEC} \
+      --model-name "${MODEL_NAME}" \
+      --disable-app-security false \
+      --disable-web-security false \
+      --enable-mqa-passthrough ${MQA_PASSTHROUGH} \
+      --log-level 3 \
+      --enable-websocket-log "0"
 
-echo "TIDAL Connect Container Stopped."
+   echo "TIDAL Connect Container Stopped."
+
+   if [ $RESTART_ON_FAIL -eq 1 ]; then
+      echo "Sleeping $RESTART_WAIT_SEC seconds before restarting ..."
+      sleep $RESTART_WAIT_SEC
+   else
+      echo "RESTART_ON_FAIL=$RESTART_ON_FAIL, exiting."
+      break
+   fi
+done
