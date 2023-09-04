@@ -30,8 +30,8 @@ From the repository directory, just run the `configure.sh` bash script, specifyi
 
 PARAM|DESCRIPTION
 :---|:---
--n|Sound card name (e.g. DAC), used if card index is not specified
--i|Sound card index. Not recommended. If not specified and also card name isn't, it defaults to `-1`
+-n|Sound card name (e.g. DAC), if not specified and also card index isn't, `sysdefault` is used.
+-i|Sound card index, not recommended: if not specified and also card name isn't, `sysdefault` is used.
 -f|Friendly name, defaults to `TIDAL connect`
 -m|Model name, defaults to `Audio Streamer`
 -c|MQA Codec, defaults to `false`
@@ -64,8 +64,8 @@ The container can be entirely configured using the environment variables listed 
 
 VARIABLE|DESCRIPTION
 :---|:---
-CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC` while e.g. it is `D10` for a Topping D10. Defaults to an empty string.
-CARD_INDEX|Alsa index of the audio card, defaults to `-1`.
+CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC` while e.g. it is `D10` for a Topping D10
+CARD_INDEX|Alsa index of the audio card
 FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`.
 MODEL_NAME|Model name of the device. Defaults to `Audio Streamer`.
 MQA_CODEC|Can't comment a lot on this, defaults to `false`.
@@ -74,6 +74,9 @@ SLEEP_TIME_SEC|Sleep time before starting the real app, after starting tmux. Def
 RESTART_ON_FAIL|Enables auto restart (see issue [#16](https://github.com/GioF71/tidal-connect/issues/16)), defaults to `1` (which means restart is enabled).
 RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL), defaults to 30.
 DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers).
+
+Please not that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
+Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the system default audio device) will be used.  
 
 ## Moode Audio
 
@@ -138,6 +141,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2023-09-04|Allow default audio card selection, see issue [#22](https://github.com/GioF71/tidal-connect/issues/22)
 2023-07-18|Allow user-specified dns server(s), see issue [#13](https://github.com/GioF71/tidal-connect/issues/13)
 2023-07-07|Fixed asound.conf generation from card index, see issue [#2](https://github.com/GioF71/tidal-connect/issues/2)
 2023-06-02|First unfolding seems to be working

@@ -14,6 +14,27 @@ write_audio_config() {
    echo "Sound configuration file created."
 }
 
+DEFAULT_FRIENDLY_NAME="Tidal connect"
+DEFAULT_MODE_NAME="Audio Streamer"
+DEFAULT_MQA_CODEC="false"
+DEFAULT_MQA_PASSTHROUGH="false"
+
+if [[ -z "${FRIENDLY_NAME}" ]]; then
+   FRIENDLY_NAME="${DEFAULT_FRIENDLY_NAME}"
+fi
+
+if [[ -z "${MODEL_NAME}" ]]; then
+   MODEL_NAME="${DEFAULT_MODE_NAME}"
+fi
+
+if [[ -z "${MQA_CODEC}" ]]; then
+   MQA_CODEC="${DEFAULT_MQA_CODEC}"
+fi
+
+if [[ -z "${MQA_PASSTHROUGH}" ]]; then
+   MQA_PASSTHROUGH="${DEFAULT_MQA_PASSTHROUGH}"
+fi
+
 echo "FRIENDLY_NAME=$FRIENDLY_NAME"
 echo "MODEL_NAME=$MODEL_NAME"
 echo "MQA_CODEC=$MQA_CODEC"
@@ -29,7 +50,10 @@ if test -f /etc/asound.conf; then
    cat /etc/asound.conf
 fi
 
-if [[ "${card_index}" == "-1" && -n "${card_name}" ]]; then
+PLAYBACK_DEVICE=default
+if [[ -z "${card_index}" || "${card_index}" == "-1" ]] && [[ -n "${card_name}" ]]; then
+   # card name is set
+   echo "Specified CARD_NAME=[$card_name]"
    aplay -l | sed 1d | \
    while read i
    do
@@ -45,15 +69,30 @@ if [[ "${card_index}" == "-1" && -n "${card_name}" ]]; then
          fi
       fi
    done
-elif [[ -n "${card_index}" ]]; then
-    echo "Set card_index=[$card_index]"
-    write_audio_config $card_index
+elif [[ -n "${card_index}" && ! "${card_index}" == "-1" ]]; then
+   # card index is set
+   echo "Specified CARD_INDEX=[$card_index]"
+   echo "Set card_index=[$card_index]"
+   write_audio_config $card_index
 else
-    echo "Set default card_index=[$DEFAULT_CARD_INDEX]"
-    write_audio_config $DEFAULT_CARD_INDEX
+   # leave default, so I delete asound.conf if found, as it is not needed
+   echo "Using default audio ..."
+   if [[ -f /etc/asound.conf ]]; then
+      echo "Removing asound.conf ..."
+      rm /etc/asound.conf
+   fi
+   echo "using sysdefault ..."
+   PLAYBACK_DEVICE=sysdefault
+   echo ". done."
 fi
 
-cat /etc/asound.conf
+if [[ -f /etc/asound.conf ]]; then
+   cat /etc/asound.conf
+else
+   echo "asound.conf not found, using default audio"
+fi
+
+echo "PLAYBACK_DEVICE=[${PLAYBACK_DEVICE}]"
 
 echo "Starting Speaker Application in Background (TMUX)"
 /usr/bin/tmux new-session -d -s speaker_controller_application '/app/ifi-tidal-release/bin/speaker_controller_application'
@@ -66,7 +105,7 @@ do
    echo "Starting TIDAL Connect ..."
    /app/ifi-tidal-release/bin/tidal_connect_application \
       --tc-certificate-path "/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat" \
-      --playback-device "default" \
+      --playback-device ${PLAYBACK_DEVICE} \
       -f "${FRIENDLY_NAME}" \
       --codec-mpegh true \
       --codec-mqa ${MQA_CODEC} \
