@@ -10,8 +10,8 @@ services:
     devices:
      - /dev/snd
     environment:
-     - CARD_NAME=${CARD_NAME}
-     - CARD_INDEX=${CARD_INDEX:--1}
+     - CARD_NAME=${CARD_NAME:-}
+     - CARD_INDEX=${CARD_INDEX:-}
      - FRIENDLY_NAME=${FRIENDLY_NAME:-TIDAL connect}
      - MODEL_NAME=${MODEL_NAME:-Audio Streamer}
      - MQA_CODEC=${MQA_CODEC:-false}
