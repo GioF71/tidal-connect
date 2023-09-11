@@ -83,7 +83,7 @@ Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the syst
 It is possible to use this solution for easy installation of Tidal Connect on [Moode Audio](https://moodeaudio.org/).  
 It is required to have a ssh connection to the moode audio box.  
 
-### Docker
+### Install Docker
 
 Docker is also a prerequisite. We can install the necessary packages with the following commands:
 
@@ -93,7 +93,15 @@ sudo apt install docker.io docker-compose
 sudo usermod -a -G docker pi
 ```
 
-Logoff your current ssh session, then log back in. On my Moode box, I have a Hifiberry Dac+ Pro Hat, so when I use the command:
+#### Configure Audio
+
+Logoff your current ssh session, then log back in.  
+We need to configure the audio output you want to use for Tidal Connect.  
+If your device only has one output, or if that output is also configured as the default output, no configuration might be needed other than the Friendly and Model name.  
+
+##### Only one output
+
+On one of my Moode boxes, I have a Hifiberry Dac+ Pro Hat, so when I use the command:
 
 ```text
 cat /proc/asound/cards
@@ -111,7 +119,42 @@ Great, Moode has just disabled the onboard audio and set the Hifiberry HAT as th
 So let's configure Tidal Connect:
 
 ```text
-./configure.sh -i 0 -f "Moode Living Aux1" -m "Raspberry Pi 3b"
+./configure.sh -f "Moode Living Aux1" -m "Raspberry Pi 3b"
+```
+
+We are not specifying anything (not the card index and neither the name) because there is only one output available.  
+Replace the first and second strings to your liking. Once configured, start the service as usual:
+
+```text
+docker-compose up -d
+```
+
+##### Multiple outputs
+
+On another one of my Moode boxes, I have usb dac connected, so when I use the command:
+
+```text
+cat /proc/asound/cards
+```
+
+I get:
+
+```text
+moode@moode:~ $ cat /proc/asound/cards
+ 0 [b1             ]: bcm2835_hdmi - bcm2835 HDMI 1
+                      bcm2835 HDMI 1
+ 1 [Headphones     ]: bcm2835_headpho - bcm2835 Headphones
+                      bcm2835 Headphones
+ 2 [X20            ]: USB-Audio - XMOS USB Audio 2.0
+                      XMOS XMOS USB Audio 2.0 at usb-0000:01:00.0-1.2, high speed
+```
+
+So in this setup, Moode has not disabled the onboard audio. Even if you have configured Moode so that is will use the USB DAC, this might not be enough for Tidal Connect to automatically select that card.  
+The safest way (at least IMO) is to use the string that identifies the dac as card name:
+So let's configure Tidal Connect:
+
+```text
+./configure.sh -n "X20" -f "Moode Desktop" -m "Raspberry Pi 4b"
 ```
 
 Replace the second and third strings to your liking. Once configured, start the service as usual:
@@ -119,6 +162,10 @@ Replace the second and third strings to your liking. Once configured, start the 
 ```text
 docker-compose up -d
 ```
+
+#### Caveat
+
+Remember that, should you change something to your Moode setup, maybe replacing the audio-hat with an USB DAC, you will most likely have to reconfigure Tidal Connect accordingly.  
 
 ## DietPi
 
