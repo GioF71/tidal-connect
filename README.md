@@ -93,13 +93,13 @@ sudo apt install docker.io docker-compose
 sudo usermod -a -G docker pi
 ```
 
-#### Configure Audio
+### Configure Audio
 
 Logoff your current ssh session, then log back in.  
 We need to configure the audio output you want to use for Tidal Connect.  
 If your device only has one output, or if that output is also configured as the default output, no configuration might be needed other than the Friendly and Model name.  
 
-##### Only one output
+#### Only one output
 
 On one of my Moode boxes, I have a Hifiberry Dac+ Pro Hat, so when I use the command:
 
@@ -129,7 +129,7 @@ Replace the first and second strings to your liking. Once configured, start the 
 docker-compose up -d
 ```
 
-##### Multiple outputs
+#### Multiple outputs
 
 On another one of my Moode boxes, I have usb dac connected, so when I use the command:
 
@@ -163,7 +163,7 @@ Replace the second and third strings to your liking. Once configured, start the 
 docker-compose up -d
 ```
 
-#### Caveat
+### Caveat
 
 Remember that, should you change something to your Moode setup, maybe replacing the audio-hat with an USB DAC, you will most likely have to reconfigure Tidal Connect accordingly.  
 
