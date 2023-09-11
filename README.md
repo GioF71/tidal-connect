@@ -90,7 +90,7 @@ Docker is also a prerequisite. We can install the necessary packages with the fo
 ```text
 sudo apt update
 sudo apt install docker.io docker-compose
-sudo usermod -a -G docker pi
+sudo usermod -a -G docker $USER
 ```
 
 ### Configure Audio
