@@ -22,7 +22,7 @@ The work in this repository consists in slightly altering the container startup 
 ## Requirements
 
 You will need a single-board computer (or anyway, a computer) with an armhf architecture (arm64 should work as well), running `docker` and `docker-compose`.  
-A Raspberry Pi 3/4 will work. If you plan to use a usb dac and hi-res audio, consider at least using a Pi 3b+ or, even better, the Pi 4b.   
+A Raspberry Pi 3/4 will work. If you plan to use a usb dac and hi-res audio, consider at least using a Pi 3b+ or, even better, a Pi 4b.   
 I am also running this on as Asus Tinkerboard. With this hardware, my suggestion is to not allow it to scale down the cpu frequency too much, or you might experience every kind of crackling noises along with what will remain of your music. In my experience, I am having good result if I set the minimum frequency at least about 600MHz, but, of course, YMMV.  
 
 ## Usage
