@@ -78,14 +78,14 @@ DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google
 Please not that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
 Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the system default audio device) will be used.  
 
-## Moode Audio
+## Installation on Moode Audio or Volumio
 
-It is possible to use this solution for easy installation of Tidal Connect on [Moode Audio](https://moodeaudio.org/).  
-It is required to have a ssh connection to the moode audio box.  
+It is possible to use this solution for easy installation of Tidal Connect on [Moode Audio](https://moodeaudio.org/) and [Volumio](https://volumio.com/).  
+It is required to have a ssh connection to the moode audio box. In order to enable ssh on Volumio, refer to [this](https://developers.volumio.com/SSH%20Connection) page.  
 
 ### Install Docker
 
-Docker is also a prerequisite. We can install the necessary packages with the following commands:
+Docker is a prerequisite. On both platforms, we can install the necessary packages using the following commands:
 
 ```text
 sudo apt update
@@ -93,15 +93,17 @@ sudo apt install docker.io docker-compose
 sudo usermod -a -G docker $USER
 ```
 
+The last command adds the current user to the docker group. This is not mandatory; if you choose to skip this step, you might need to execute docker-compose commands by prepending `sudo`.  
+
 ### Configure Audio
 
 If you have just installed docker with the previous commands, it is probably a good idea to logoff your current ssh session, then log back in. Otherwise, just open a ssh connection to your box.  
 We need to configure the audio output you want to use for Tidal Connect.  
 If your device only has one output, or if that output is also configured as the default output, no configuration might be needed other than the Friendly and Model name.  
 
-#### Only one output
+#### Single audio device
 
-On one of my Moode boxes, I have a Hifiberry Dac+ Pro Hat, so when I use the command:
+On one of my boxes, I have a Hifiberry Dac+ Pro Hat, so when I use the command:
 
 ```text
 cat /proc/asound/cards
@@ -115,11 +117,11 @@ pi@moode-living:~/git/tidal-connect $ cat /proc/asound/cards
                       snd_rpi_hifiberry_dacplus
 ```
 
-Great, Moode has just disabled the onboard audio and set the Hifiberry HAT as the default card.  
+Great, the operating system has just disabled the onboard audio and set the Hifiberry HAT as the default card.  
 So let's configure Tidal Connect:
 
 ```text
-./configure.sh -f "Moode Living Aux1" -m "Raspberry Pi 3b"
+./configure.sh -f "Living Aux1" -m "Raspberry Pi"
 ```
 
 We are not specifying anything (not the card index and neither the name) because there is only one output available.  
@@ -129,9 +131,9 @@ Replace the first and second strings to your liking. Once configured, start the 
 docker-compose up -d
 ```
 
-#### Multiple outputs
+#### Multiple audio devices
 
-On another one of my Moode boxes, I have usb dac connected, so when I use the command:
+On another one of my boxes, I have an usb dac connected, so when I use the command:
 
 ```text
 cat /proc/asound/cards
@@ -149,12 +151,12 @@ moode@moode:~ $ cat /proc/asound/cards
                       XMOS XMOS USB Audio 2.0 at usb-0000:01:00.0-1.2, high speed
 ```
 
-So in this setup, Moode has not disabled the onboard audio. Even if you have configured Moode so that is will use the USB DAC, this might not be enough for Tidal Connect to automatically select that card.  
+So in this setup, the operating system has not disabled the onboard audio. Even if you have configured Moode so that is will use the USB DAC, this might not be enough for Tidal Connect to automatically select that card.  
 The safest way (at least IMO) is to use the string that identifies the dac as card name:
 So let's configure Tidal Connect:
 
 ```text
-./configure.sh -n "X20" -f "Moode Desktop" -m "Raspberry Pi 4b"
+./configure.sh -n "X20" -f "Desktop" -m "Raspberry Pi"
 ```
 
 Replace the second and third strings to your liking. Once configured, start the service as usual:
@@ -165,7 +167,13 @@ docker-compose up -d
 
 ### Caveat
 
+#### Hardware changes
+
 Remember that, should you change something to your Moode setup, maybe replacing the audio-hat with an USB DAC, you will most likely have to reconfigure Tidal Connect accordingly.  
+
+#### Volumio integration
+
+Please not that this solution will not be completely equivalent to the built-in premium feature of Volumio. That solution (probably) allows the attached (touch) display to show the currently playing song, while this solution for sure does not allow any that or other related features.
 
 ## DietPi
 
@@ -188,6 +196,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2023-09-12|Clarify how to install on Volumio, see issue [#29](https://github.com/GioF71/tidal-connect/issues/29)
 2023-09-04|Allow default audio card selection, see issue [#22](https://github.com/GioF71/tidal-connect/issues/22)
 2023-07-18|Allow user-specified dns server(s), see issue [#13](https://github.com/GioF71/tidal-connect/issues/13)
 2023-07-07|Fixed asound.conf generation from card index, see issue [#2](https://github.com/GioF71/tidal-connect/issues/2)
