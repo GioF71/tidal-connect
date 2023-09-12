@@ -95,7 +95,7 @@ sudo usermod -a -G docker $USER
 
 ### Configure Audio
 
-Logoff your current ssh session, then log back in.  
+If you have just installed docker with the previous commands, it is probably a good idea to logoff your current ssh session, then log back in. Otherwise, just open a ssh connection to your box.  
 We need to configure the audio output you want to use for Tidal Connect.  
 If your device only has one output, or if that output is also configured as the default output, no configuration might be needed other than the Friendly and Model name.  
 
