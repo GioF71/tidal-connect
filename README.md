@@ -125,7 +125,7 @@ Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the syst
 
 It is possible to use this solution for easy installation of Tidal Connect on [Moode Audio](https://moodeaudio.org/) and [Volumio](https://volumio.com/).  
 It is required to have a ssh connection to the Moode/Volumio audio box. In order to enable ssh on Volumio, refer to [this](https://developers.volumio.com/SSH%20Connection) page.  
-Docker installation is also required, see [Docker Installation](#install-docker) earlier in this page.  
+Those two platforms do not ship docker out of the box (unsurprisingly), so docker installation is required. See [Docker Installation](#install-docker) earlier in this page.  
 
 ### Configure Audio
 
