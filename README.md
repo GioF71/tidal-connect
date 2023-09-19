@@ -27,9 +27,21 @@ I am also running this on as Asus Tinkerboard. With this hardware, my suggestion
 
 ## Usage
 
+### Install Docker
+
+Docker is a prerequisite. On debian/ubuntu and derived distributions (this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio), we can install the necessary packages using the following commands:
+
+```text
+sudo apt update
+sudo apt install docker.io docker-compose
+sudo usermod -a -G docker $USER
+```
+
+The last command adds the current user to the docker group. This is not mandatory; if you choose to skip this step, you might need to execute docker-compose commands by prepending `sudo`.  
+
 ### Clone the repository
 
-You need to clone the repository. Make sure that `git` is installed using the following command on debian/ubuntu and derived distributions (this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio):
+You need to clone the repository. Make sure that `git` is installed using the following command on debian/ubuntu and derived distributions (again, this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio):
 
 ```
 sudo apt update
@@ -113,18 +125,7 @@ Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the syst
 
 It is possible to use this solution for easy installation of Tidal Connect on [Moode Audio](https://moodeaudio.org/) and [Volumio](https://volumio.com/).  
 It is required to have a ssh connection to the Moode/Volumio audio box. In order to enable ssh on Volumio, refer to [this](https://developers.volumio.com/SSH%20Connection) page.  
-
-### Install Docker
-
-Docker is a prerequisite. On both platforms, we can install the necessary packages using the following commands:
-
-```text
-sudo apt update
-sudo apt install docker.io docker-compose
-sudo usermod -a -G docker $USER
-```
-
-The last command adds the current user to the docker group. This is not mandatory; if you choose to skip this step, you might need to execute docker-compose commands by prepending `sudo`.  
+Docker installation is also required, see [Docker Installation](#install-docker) earlier in this page.  
 
 ### Configure Audio
 
