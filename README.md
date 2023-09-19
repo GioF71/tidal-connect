@@ -70,7 +70,7 @@ PARAM|DESCRIPTION
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
 If you already used the `configure.sh` command and you are experiencing issues (because of the card has changed its index), you can run the command again. In the latest version, the card index is calculated during the container startup phase and hopefully there will not be any need to use `configure.sh` again unless you change the audio device you want to use.
 
-## Example
+#### Example
 
 Configure for sound card named "DAC", using friendly name "Aune S6 USB DAC" and model name "Asus Tinkerboard":
 
