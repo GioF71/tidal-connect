@@ -29,9 +29,10 @@ I am also running this on as Asus Tinkerboard. With this hardware, my suggestion
 
 ### Clone the repository
 
-You need to clone the repository. Make sure that git is installed using the following command on debian/ubuntu and derived distributions (this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio):
+You need to clone the repository. Make sure that `git` is installed using the following command on debian/ubuntu and derived distributions (this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio):
 
 ```
+sudo apt update
 sudo apt install -y git
 ```
 
@@ -45,7 +46,7 @@ git clone https://github.com/GioF71/tidal-connect.git
 ### Update the repository
 
 If you just downloaded the repository, you can skip this step.  
-If you previously cloned the repository, it might have been updated. Move to the directory and pull the changes:
+If you previously cloned the repository, it might have been updated in the meantime. Move to the directory and pull the changes:
 
 ```
 cd $HOME/tidal-connect
