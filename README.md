@@ -153,6 +153,7 @@ Great, the operating system has just disabled the onboard audio and set the Hifi
 So let's configure Tidal Connect:
 
 ```text
+cd $HOME/tidal-connect
 ./configure.sh -f "Living Aux1" -m "Raspberry Pi"
 ```
 
@@ -160,6 +161,7 @@ We are not specifying anything (not the card index and neither the name) because
 Replace the first and second strings to your liking. Once configured, start the service as usual:
 
 ```text
+cd $HOME/tidal-connect
 docker-compose up -d
 ```
 
@@ -188,12 +190,14 @@ The safest way (at least IMO) is to use the string that identifies the dac as ca
 So let's configure Tidal Connect:
 
 ```text
+cd $HOME/tidal-connect
 ./configure.sh -n "X20" -f "Desktop" -m "Raspberry Pi"
 ```
 
 Replace the second and third strings to your liking. Once configured, start the service as usual:
 
 ```text
+cd $HOME/tidal-connect
 docker-compose up -d
 ```
 
