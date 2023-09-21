@@ -29,7 +29,7 @@ I am also running this on as Asus Tinkerboard. With this hardware, my suggestion
 
 ### Install Docker
 
-Docker is a prerequisite. On debian/ubuntu and derived distributions (this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio), we can install the necessary packages using the following commands:
+Docker is a prerequisite. On debian and derived distributions (this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio), we can install the necessary packages using the following commands:
 
 ```text
 sudo apt update
@@ -41,7 +41,7 @@ The last command adds the current user to the docker group. This is not mandator
 
 ### Clone the repository
 
-You need to clone the repository. Make sure that `git` is installed using the following command on debian/ubuntu and derived distributions (again, this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio):
+You need to clone the repository. Make sure that `git` is installed using the following command on debian and derived distributions (again, this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio):
 
 ```
 sudo apt update
