@@ -213,10 +213,10 @@ Please not that this solution will not be completely equivalent to the built-in 
 
 #### Mandatory IPV6 support
 
-Tidal connect won't work if your system does not support ipv6. See [this](https://github.com/GioF71/tidal-connect/issues/21).  
+Tidal connect won't work if your system does not support ipv6. See [this](https://github.com/GioF71/tidal-connect/issues/21) issue.  
 Afaik, there is no solution or workaround available other then, somehow, enabling ipv6.
 
-## DietPi
+#### DietPi
 
 On DietPi (which I am running on my Asus Tinkerboard), you might need to enable avahi-daemon, if this is not enabled yet.  
 You might find the following on the logs:
