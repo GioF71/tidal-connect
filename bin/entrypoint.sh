@@ -14,6 +14,38 @@ write_audio_config() {
    echo "Sound configuration file created."
 }
 
+if [[ "${UPGRADE_LIBRARIES^^}" == "YES" ]]; then
+   UPGRADE_FILE_NAME=/etc/upgrade-status.txt
+   upgrade_status=NOT_UPGRADED
+   if [ -f "$UPGRADE_FILE_NAME" ]; then
+      upgrade_status=`cat $UPGRADE_FILE_NAME`
+   fi
+   echo "upgrade_status=[$upgrade_status]"
+   if [[ ! "${upgrade_status}" == "yes" ]]; then
+      echo "Upgrading libraries"
+      apt-get update
+      cat /etc/apt/sources.list
+      echo 'deb http://archive.raspberrypi.org/debian/ stretch main' > /etc/apt/sources.list
+      echo 'deb http://legacy.raspbian.org/raspbian stretch main contrib non-free rpi firmware' >> /etc/apt/sources.list
+      echo 'deb-src http://legacy.raspbian.org/raspbian stretch main contrib non-free rpi firmware' >> /etc/apt/sources.list
+      # Add [trusted=yes] to disable the GPG check temporarily for snapshot repositories
+      sed -i 's/^deb /deb [trusted=yes] /' /etc/apt/sources.list
+      sed -i 's/^deb-src /deb-src [trusted=yes] /' /etc/apt/sources.list
+      apt-get -o Acquire::Check-Valid-Until=false update -y -q
+      apt-get upgrade -y -q --allow-unauthenticated
+      apt install --fix-missing --fix-broken -y -q multiarch-support git  libavformat57 libportaudio2* libflac++6v5* libavahi-common3 libavahi-client3 alsa-utils curl portaudio19-dev neovim zsh
+      curl -k -O -L https://snapshot.debian.org/archive/debian-security/20190925T215334Z/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb 
+      apt install -y ./libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb
+      rm ./libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb 
+      curl -k -O -L https://snapshot.debian.org/archive/debian-security/20190913T112238Z/pool/updates/main/c/curl/libcurl3_7.38.0-4%2Bdeb8u16_armhf.deb
+      apt install -y ./libcurl3_7.38.0-4%2Bdeb8u16_armhf.deb --allow-downgrades
+      rm ./libcurl3_7.38.0-4%2Bdeb8u16_armhf.deb
+      echo "yes" > $UPGRADE_FILE_NAME
+   else
+      echo "No upgrades to do."
+   fi
+fi
+
 DEFAULT_FRIENDLY_NAME="Tidal connect"
 DEFAULT_MODE_NAME="Audio Streamer"
 DEFAULT_MQA_CODEC="false"

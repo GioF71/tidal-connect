@@ -19,6 +19,7 @@ services:
      - SLEEP_TIME_SEC=${SLEEP_TIME:-3}
      - RESTART_ON_FAIL=${RESTART_ON_FAIL:-1}
      - RESTART_WAIT_SEC=${RESTART_WAIT_SEC:-30}
+     - UPGRADE_LIBRARIES=${UPGRADE_LIBRARIES:-NO}
     volumes:
       - ./bin/entrypoint.sh:/entrypoint.sh
       - /var/run/dbus:/var/run/dbus

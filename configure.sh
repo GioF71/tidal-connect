@@ -8,7 +8,7 @@ set -e
 ENV_FILE=.env
 chmod 755 bin/entrypoint.sh
 
-while getopts n:i:f:m:c:p:t:d: flag
+while getopts n:i:f:m:c:p:t:d:u: flag
 do
     case "${flag}" in
         n) card_name=${OPTARG};;
@@ -19,6 +19,7 @@ do
         p) mqa_passthrough=${OPTARG};;
         t) sleep_time_sec=${OPTARG};;
         d) dns_server_list=${OPTARG};;
+        u) upgrade_packages=${OPTARG};;
 
     esac
 done
@@ -79,6 +80,24 @@ if [[ -n ${dns_server_list} ]]; then
     echo "DNS_SERVER_LIST=${dns_server_list}" >> $ENV_FILE
 else
     echo "DNS_SERVER_LIST not specified"
+fi
+
+if [[ -n ${upgrade_packages} ]]; then
+    echo "Requiring to set UPGRADE_PACKAGES to [$upgrade_packages]"
+    do_upgrade_packages=""
+    if [[ "${upgrade_packages^^}" == "Y" || "${upgrade_packages^^}" == "YES" ]]; then
+        upgrade_packages=YES
+        echo "Setting UPGRADE_PACKAGES to [$upgrade_packages]"
+        echo "UPGRADE_PACKAGES=${upgrade_packages}" >> $ENV_FILE
+    elif [[ "${upgrade_packages^^}" == "N" || "${upgrade_packages^^}" == "NO" ]]; then
+        upgrade_packages=NO
+        echo "Setting UPGRADE_PACKAGES to [$upgrade_packages]"
+        echo "UPGRADE_PACKAGES=${upgrade_packages}" >> $ENV_FILE
+    else
+        echo "Invalid value for UPGRADE_PACKAGES [$upgrade_packages], use \"Y\", \"YES\", \"NO\", \"N\" (case insensitive)"
+    fi
+else
+    echo "UPGRADE_PACKAGES not specified"
 fi
 
 if [[ -n "${card_name}" ]]; then

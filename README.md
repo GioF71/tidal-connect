@@ -79,6 +79,7 @@ PARAM|DESCRIPTION
 -p|MQA Passthrough, defaults to `false`
 -t|Sleep time in seconds be, defaults to `3`
 -d|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)
+-u|Upgrade packages (should solve ipv6 issue), set to 'YES' or 'NO', see [#21](https://github.com/GioF71/tidal-connect/issues/21) for details
 
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
 If you already used the `configure.sh` command and you are experiencing issues (because of the card has changed its index), you can run the command again. In the latest version, the card index is calculated during the container startup phase and hopefully there will not be any need to use `configure.sh` again unless you change the audio device you want to use.
@@ -117,6 +118,7 @@ SLEEP_TIME_SEC|Sleep time before starting the real app, after starting tmux. Def
 RESTART_ON_FAIL|Enables auto restart (see issue [#16](https://github.com/GioF71/tidal-connect/issues/16)), defaults to `1` (which means restart is enabled).
 RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL), defaults to 30.
 DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers).
+UPGRADE_PACKAGES|Upgrade certain packages on first container startup, set to 'YES' to enable; see [#21](https://github.com/GioF71/tidal-connect/issues/21) for details
 
 Please not that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
 Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the system default audio device) will be used.  
