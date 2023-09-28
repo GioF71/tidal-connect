@@ -83,21 +83,21 @@ else
 fi
 
 if [[ -n ${upgrade_packages} ]]; then
-    echo "Requiring to set UPGRADE_PACKAGES to [$upgrade_packages]"
+    echo "Requiring to set UPGRADE_LIBRARIES to [$upgrade_packages]"
     do_upgrade_packages=""
     if [[ "${upgrade_packages^^}" == "Y" || "${upgrade_packages^^}" == "YES" ]]; then
         upgrade_packages=YES
-        echo "Setting UPGRADE_PACKAGES to [$upgrade_packages]"
-        echo "UPGRADE_PACKAGES=${upgrade_packages}" >> $ENV_FILE
+        echo "Setting UPGRADE_LIBRARIES to [$upgrade_packages]"
+        echo "UPGRADE_LIBRARIES=${upgrade_packages}" >> $ENV_FILE
     elif [[ "${upgrade_packages^^}" == "N" || "${upgrade_packages^^}" == "NO" ]]; then
         upgrade_packages=NO
-        echo "Setting UPGRADE_PACKAGES to [$upgrade_packages]"
-        echo "UPGRADE_PACKAGES=${upgrade_packages}" >> $ENV_FILE
+        echo "Setting UPGRADE_LIBRARIES to [$upgrade_packages]"
+        echo "UPGRADE_LIBRARIES=${upgrade_packages}" >> $ENV_FILE
     else
-        echo "Invalid value for UPGRADE_PACKAGES [$upgrade_packages], use \"Y\", \"YES\", \"NO\", \"N\" (case insensitive)"
+        echo "Invalid value for UPGRADE_LIBRARIES [$upgrade_packages], use \"Y\", \"YES\", \"NO\", \"N\" (case insensitive)"
     fi
 else
-    echo "UPGRADE_PACKAGES not specified"
+    echo "UPGRADE_LIBRARIES not specified"
 fi
 
 if [[ -n "${card_name}" ]]; then
