@@ -32,8 +32,8 @@ I am also running this on as Asus Tinkerboard. With this hardware, my suggestion
 Docker is a prerequisite. On debian and derived distributions (this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio), we can install the necessary packages using the following commands:
 
 ```text
-sudo apt update
-sudo apt install docker.io docker-compose
+sudo apt-get update
+sudo apt-get install docker.io docker-compose
 sudo usermod -a -G docker $USER
 ```
 
@@ -44,8 +44,8 @@ The last command adds the current user to the docker group. This is not mandator
 You need to clone the repository. Make sure that `git` is installed using the following command on debian and derived distributions (again, this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio):
 
 ```
-sudo apt update
-sudo apt install -y git
+sudo apt-get update
+sudo apt-get install -y git
 ```
 
 Move to the your home directory and clone the repository using the commands:
@@ -228,7 +228,7 @@ You might find the following on the logs:
 This can be fixed by installing the avahi-daemon. It is not installed by default on DietPi, so we can installing it with this command:  
 
 ```text
-sudo apt install avahi-daemon
+sudo apt-get install avahi-daemon
 ```
 
 An already started tidal-connect container should start working immediately, at least that is what happened with my setup.
