@@ -29,7 +29,7 @@
 
 FROM edgecrush3r/tidal-connect AS UPSTREAM
 
-FROM debian:buster
+FROM debian:buster-slim
 
 RUN apt-get update -y 
 #RUN apt-get upgrade -y
@@ -41,6 +41,7 @@ RUN apt-get install -y libavahi-common3
 RUN apt-get install -y libavahi-client3
 RUN apt-get install -y alsa-utils
 RUN apt-get install -y curl
+RUN apt-get install -y tmux
 #RUN apt-get install -y multiarch-support
 
 #libcurl3 -y 
@@ -54,7 +55,6 @@ RUN rm ./libssl1.0.0_1.0.1t-1+deb8u12_armhf.deb
 RUN curl -k -O -L http://security.debian.org/debian-security/pool/updates/main/c/curl/libcurl3_7.38.0-4+deb8u16_armhf.deb
 RUN apt install -y ./libcurl3_7.38.0-4+deb8u16_armhf.deb --allow-downgrades
 RUN rm ./libcurl3_7.38.0-4+deb8u16_armhf.deb
-RUN apt install -y -q tmux
 
 COPY --from=UPSTREAM /app/ifi-tidal-release /app/ifi-tidal-release
 COPY --from=UPSTREAM /entrypoint.sh /
