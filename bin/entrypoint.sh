@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 write_audio_config() {
    card_index=$1
    if test -f /etc/asound.conf; then
@@ -23,19 +25,33 @@ if [[ "${UPGRADE_LIBRARIES^^}" == "YES" ]]; then
    echo "upgrade_status=[$upgrade_status]"
    if [[ ! "${upgrade_status}" == "yes" ]]; then
       echo "Upgrading libraries"
-      apt-get update
+      #apt-get update
+      apt-get remove -y libasound2
+      apt-get remove -y libasound2-dev
+      apt-get autoremove -y
+      #apt-get upgrade -y
+      #apt-get remove -y multiarch-support
+      #apt-get remove -y libavformat57
+      #apt-get remove -y git
+      #apt-get remove -y libportaudio2*
+      #apt-get remove -y libflac++6v5*
+      #apt-get remove -y libavahi-common3
+      #apt-get remove -y libavahi-client3
+      #apt-get remove -y alsa-utils
       cat /etc/apt/sources.list
-      echo 'deb http://archive.raspberrypi.org/debian/ stretch main' > /etc/apt/sources.list
-      echo 'deb http://legacy.raspbian.org/raspbian stretch main contrib non-free rpi firmware' >> /etc/apt/sources.list
-      echo 'deb-src http://legacy.raspbian.org/raspbian stretch main contrib non-free rpi firmware' >> /etc/apt/sources.list
+      #echo 'deb http://archive.raspberrypi.org/debian/ stretch main' > /etc/apt/sources.list
+      echo 'deb http://legacy.raspbian.org/raspbian stretch main contrib non-free rpi firmware' > /etc/apt/sources.list
+      #echo 'deb-src http://legacy.raspbian.org/raspbian stretch main contrib non-free rpi firmware' >> /etc/apt/sources.list
       # Add [trusted=yes] to disable the GPG check temporarily for snapshot repositories
       sed -i 's/^deb /deb [trusted=yes] /' /etc/apt/sources.list
       sed -i 's/^deb-src /deb-src [trusted=yes] /' /etc/apt/sources.list
-      apt-get -o Acquire::Check-Valid-Until=false update -y -q
-      apt-get upgrade -y -q --allow-unauthenticated
-      apt install --fix-missing --fix-broken -y -q multiarch-support git  libavformat57 libportaudio2* libflac++6v5* libavahi-common3 libavahi-client3 alsa-utils curl portaudio19-dev neovim zsh
+      apt-get -o Acquire::Check-Valid-Until=false update -y
+      apt-get install --fix-missing --fix-broken -y curl
+      apt-get install --fix-missing --fix-broken -y libasound2-dev
+      apt-get upgrade -y --allow-unauthenticated
+      apt-get install --fix-missing --fix-broken -y multiarch-support libavformat57 libportaudio2* libflac++6v5* libavahi-common3 libavahi-client3 alsa-utils portaudio19-dev neovim zsh
       curl -k -O -L https://snapshot.debian.org/archive/debian-security/20190925T215334Z/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb 
-      apt install -y ./libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb
+      apt-get install -y ./libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb
       rm ./libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb 
       curl -k -O -L https://snapshot.debian.org/archive/debian-security/20190913T112238Z/pool/updates/main/c/curl/libcurl3_7.38.0-4%2Bdeb8u16_armhf.deb
       apt install -y ./libcurl3_7.38.0-4%2Bdeb8u16_armhf.deb --allow-downgrades
