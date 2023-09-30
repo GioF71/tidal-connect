@@ -6,7 +6,7 @@ A simple script used to configure a docker-compose stack for Tidal Connect.
 
 ### Contents
 
-This repository does not contain the Tidal Connect software. There is only a docker-compose.yaml file and a modified entrypoint which is just used for selecting the desired audio output more easily and reliably.   
+This repository does not contain the Tidal Connect software. There is only a docker-compose.yaml file, a configurator script, and a modified entrypoint which is just used for selecting the desired audio output more easily and reliably.   
 
 ### Credit
 
