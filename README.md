@@ -16,7 +16,7 @@ All the hard work has been done by the owner of the repository mentioned in the 
 
 This solution is not and will probably never be supported by Tidal. If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is the ubiquitous Wiim Mini/Pro/Pro+. Or some Google Chromecast/Chromecast Audio.  
 Even your current TV might already be used as an endpoint for Tidal via embedded Chromecast functionality.  
-Alternatively, if you are not scared of some DIY, create an upnp/dlna renderer, maybe with upmpdcli (maybe using [my docker image for upmpdcli](https://github.com/GioF71/upmpdcli-docker)) and mpd (again maybe using [my docker image for mpd](https://github.com/GioF71/mpd-alsa-docker)), and then use some Android app like BubbleUpnp or mConnect Lite (this one is also on iOS/iPadOS), connect those apps to Tidal and then stream to you endpoint.  
+Alternatively, if you are not scared of some DIY, you might want to create an upnp/dlna renderer, maybe with upmpdcli (maybe using [my docker image for upmpdcli](https://github.com/GioF71/upmpdcli-docker)) and mpd (again maybe using [my docker image for mpd](https://github.com/GioF71/mpd-alsa-docker)), and then use some Android app like BubbleUpnp or mConnect Lite (this one is also on iOS/iPadOS), connect those apps to Tidal and then stream to you endpoint.  
 Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF71/upmpdcli-docker/discussions/281) but again, there will be no support from Tidal.
 
 ## References
