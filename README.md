@@ -2,9 +2,22 @@
 
 A simple script used to configure a docker-compose stack for Tidal Connect.
 
-## Disclaimer
+## Disclaimers
+
+### Contents
+
+This repository does not contain Tidal Connect code. There is only a docker-compose.yaml file and a modified entrypoint which is just used for selecting the desired audio output more easily and reliably.   
+
+### Credit
 
 All the hard work has been done by the owner of the repository mentioned in the [References](#References) section and in the other repositories from which this one has been forked. I am just trying to provide a way to run their container more easily in certain environments (where the index of your audio device is not the same on every restart).  
+
+### No support from Tidal
+
+This solution is not and will probably never be supported by Tidal. If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is the ubiquitous Wiim Mini/Pro/Pro+. Or some Google Chromecast/Chromecast Audio.  
+Even your current TV might already be used as an endpoint for Tidal via embedded Chromecast functionality.  
+Alternatively, if you are not scared of some DIY, create an upnp/dlna renderer, maybe with upmpdcli (maybe using [my docker image for upmpdcli](https://github.com/GioF71/upmpdcli-docker)) and mpd (again maybe using [my docker image for mpd](https://github.com/GioF71/mpd-alsa-docker)), and then use some Android app like BubbleUpnp or mConnect Lite (this one is also on iOS/iPadOS), connect those apps to Tidal and then stream to you endpoint.  
+Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF71/upmpdcli-docker/discussions/281) but again, there will be no support from Tidal.
 
 ## References
 
