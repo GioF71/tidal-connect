@@ -223,7 +223,7 @@ Remember that, should you change something to your Moode/Volumio setup, maybe re
 
 #### Volumio integration
 
-Please not that this solution will not be completely equivalent to the built-in premium feature of Volumio. That solution (probably) allows the attached (touch) display to show the currently playing song, while this solution for sure does not allow any that or other related features.
+Please be aware that this solution will not be completely equivalent to the built-in premium feature of Volumio. That solution (probably) allows the attached (touch) display to show the currently playing song, while this solution for sure does not allow any that or other related features.
 
 #### Mandatory IPV6 support
 
