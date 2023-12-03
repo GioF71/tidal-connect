@@ -220,7 +220,7 @@ docker-compose up -d
 
 #### Hardware changes
 
-Remember that, should you change something to your Moode/Volumio setup, maybe replacing the audio-hat with an USB DAC, you will most likely have to reconfigure Tidal Connect accordingly.  
+Remember that, should you change something to your Moode/Volumio setup, maybe replacing the audio-hat with an USB DAC, you will most likely need to reconfigure Tidal Connect accordingly.  
 
 #### Volumio integration
 
