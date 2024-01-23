@@ -88,8 +88,10 @@ PARAM|DESCRIPTION
 :---|:---
 -n|Sound card name (e.g. DAC), if not specified and also card index isn't, `sysdefault` is used.
 -i|Sound card index, not recommended: if not specified and also card name isn't, `sysdefault` is used.
+-d|Sound card device, optional
 -f|Friendly name, defaults to `TIDAL connect`
 -m|Model name, defaults to `Audio Streamer`
+-s|Card format, optional (`S32_LE`, `S16_LE`, etc)
 -c|MQA Codec, defaults to `false`
 -p|MQA Passthrough, defaults to `false`
 -t|Sleep time in seconds be, defaults to `3`
@@ -124,6 +126,8 @@ VARIABLE|DESCRIPTION
 :---|:---
 CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC` while e.g. it is `D10` for a Topping D10
 CARD_INDEX|Alsa index of the audio card
+CARD_DEVICE|Audio device, optional
+CARD_FORMAT|Audio format, optional (`S32_LE`, `S16_LE`, etc)
 FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`.
 MODEL_NAME|Model name of the device. Defaults to `Audio Streamer`.
 MQA_CODEC|Can't comment a lot on this, defaults to `false`.
@@ -252,6 +256,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-01-23|Add support for optional card device (`CARD_DEVICE`) and format (`CARD_FORMAT`), see [#72](https://github.com/GioF71/tidal-connect/issues/72)
 2023-09-12|Clarify how to install on Volumio, see issue [#29](https://github.com/GioF71/tidal-connect/issues/29)
 2023-09-04|Allow default audio card selection, see issue [#22](https://github.com/GioF71/tidal-connect/issues/22)
 2023-07-18|Allow user-specified dns server(s), see issue [#13](https://github.com/GioF71/tidal-connect/issues/13)
