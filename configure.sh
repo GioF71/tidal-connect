@@ -8,11 +8,13 @@ set -e
 ENV_FILE=.env
 chmod 755 bin/entrypoint.sh
 
-while getopts n:i:f:m:c:p:t:d: flag
+while getopts n:i:d:s:f:m:c:p:t:d: flag
 do
     case "${flag}" in
         n) card_name=${OPTARG};;
         i) card_index=${OPTARG};;
+        d) card_device=${OPTARG};;
+        s) card_format=${OPTARG};;
         f) friendly_name=${OPTARG};;
         m) model_name=${OPTARG};;
         c) mqa_codec=${OPTARG};;
@@ -30,6 +32,8 @@ fi
 
 echo "card_index=[$card_index]"
 echo "card_name=[$card_name]"
+echo "card_device=[$card_device]"
+echo "card_format=[$card_format]"
 
 if test -f $ENV_FILE; then
     truncate -s 0 $ENV_FILE
@@ -88,6 +92,16 @@ elif [[ -n "${card_index}" ]]; then
     echo "Setting CARD_INDEX to [$card_index]"
     echo "CARD_INDEX=${card_index}" >> $ENV_FILE
     echo "CARD_NAME=NOT_SET" >> $ENV_FILE
+fi
+
+if [[ -n "${card_device}" ]]; then
+    echo "Setting CARD_DEVICE to [$card_device]"
+    echo "CARD_DEVICE=${card_device}" >> $ENV_FILE
+fi
+
+if [[ -n "${card_format}" ]]; then
+    echo "Setting CARD_FORMAT to [$card_format]"
+    echo "CARD_FORMAT=${card_format}" >> $ENV_FILE
 fi
 
 echo -e "\nFinal .env file:\n"

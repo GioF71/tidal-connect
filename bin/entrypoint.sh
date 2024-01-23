@@ -1,16 +1,28 @@
 #!/bin/bash
 
 write_audio_config() {
-   card_index=$1
+   #card_index=$1
    if test -f /etc/asound.conf; then
       truncate -s 0 /etc/asound.conf
    fi
-   echo "Creating sound configuration file (card_index=$card_index)..."
-   echo "defaults.pcm.card $card_index" >> /etc/asound.conf
+   echo "Creating sound configuration file (card_index=$CARD_INDEX)..."
    echo "pcm.!default {" >> /etc/asound.conf
    echo "  type plug" >> /etc/asound.conf
-   echo "  slave.pcm hw" >> /etc/asound.conf
+   echo "  slave.pcm {" >> /etc/asound.conf
+   echo "    type hw" >> /etc/asound.conf
+   echo "    card ${CARD_INDEX}" >> /etc/asound.conf
+   if [[ -n "${CARD_DEVICE}" ]]; then
+      echo "    device $CARD_DEVICE" >> /etc/asound.conf
+   fi
+   if [[ -n "${CARD_FORMAT}" ]]; then
+      echo "    format $CARD_FORMAT" >> /etc/asound.conf
+   fi
+   echo "  }" >> /etc/asound.conf
    echo "}" >> /etc/asound.conf
+   #echo "defaults.pcm.card $CARD_INDEX" >> /etc/asound.conf
+   #if [[ -n "${CARD_DEVICE}" ]]; then
+   #   echo "defaults.ctl.card $CARD_DEVICE" >> /etc/asound.conf
+   #fi
    echo "Sound configuration file created."
 }
 
@@ -61,10 +73,11 @@ if [[ -z "${card_index}" || "${card_index}" == "-1" ]] && [[ -n "${card_name}" ]
       if [[ "${first_word}" == "card" ]]; then
          second_word=`echo $i | cut -d ":" -f 1`
          third_word=`echo $i | cut -d " " -f 3`
-         card_number=`echo $second_word | cut -d " " -f 2`
+         curr_ndx=`echo $second_word | cut -d " " -f 2`
          if [[ "${third_word}" == "${CARD_NAME}" ]]; then
-            echo "Found audio device [${CARD_NAME}] as index [$card_number]"
-            write_audio_config $card_number
+            echo "Found audio device [${CARD_NAME}] as index [$curr_ndx]"
+            CARD_INDEX=$curr_ndx
+            write_audio_config
             break
          fi
       fi
@@ -73,7 +86,7 @@ elif [[ -n "${card_index}" && ! "${card_index}" == "-1" ]]; then
    # card index is set
    echo "Specified CARD_INDEX=[$card_index]"
    echo "Set card_index=[$card_index]"
-   write_audio_config $card_index
+   write_audio_config
 else
    # leave default, so I delete asound.conf if found, as it is not needed
    echo "Using default audio ..."

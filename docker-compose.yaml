@@ -12,6 +12,8 @@ services:
     environment:
      - CARD_NAME=${CARD_NAME:-}
      - CARD_INDEX=${CARD_INDEX:-}
+     - CARD_DEVICE=${CARD_DEVICE:-}
+     - CARD_FORMAT=${CARD_FORMAT:-}
      - FRIENDLY_NAME=${FRIENDLY_NAME:-TIDAL connect}
      - MODEL_NAME=${MODEL_NAME:-Audio Streamer}
      - MQA_CODEC=${MQA_CODEC:-false}
