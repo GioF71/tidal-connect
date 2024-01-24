@@ -233,7 +233,7 @@ Please be aware that this solution will not be completely equivalent to the buil
 #### Mandatory IPV6 support
 
 Tidal connect won't work if your system does not support ipv6. See [this](https://github.com/GioF71/tidal-connect/issues/21) issue.  
-Afaik, there is no solution or workaround available other then, somehow, enabling ipv6.
+Afaik, there is no solution or workaround available other than, somehow, enabling ipv6.
 
 #### DietPi
 
