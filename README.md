@@ -151,7 +151,7 @@ RESTART_ON_FAIL|Enables auto restart (see issue [#16](https://github.com/GioF71/
 RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL), defaults to 30.
 DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers).
 
-Please not that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
+Please note that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
 Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the system default audio device) will be used.  
 
 ## Volumes
