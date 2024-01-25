@@ -1,35 +1,40 @@
 #!/bin/bash
 
-write_audio_config() {
-   #card_index=$1
-   if test -f /etc/asound.conf; then
-      truncate -s 0 /etc/asound.conf
-   fi
-   echo "Creating sound configuration file (card_index=$CARD_INDEX)..."
-   echo "pcm.!default {" >> /etc/asound.conf
-   echo "  type plug" >> /etc/asound.conf
-   echo "  slave.pcm {" >> /etc/asound.conf
-   echo "    type hw" >> /etc/asound.conf
-   echo "    card ${CARD_INDEX}" >> /etc/asound.conf
-   if [[ -n "${CARD_DEVICE}" ]]; then
-      echo "    device $CARD_DEVICE" >> /etc/asound.conf
-   fi
-   if [[ -n "${CARD_FORMAT}" ]]; then
-      echo "    format $CARD_FORMAT" >> /etc/asound.conf
-   fi
-   echo "  }" >> /etc/asound.conf
-   echo "}" >> /etc/asound.conf
-   #echo "defaults.pcm.card $CARD_INDEX" >> /etc/asound.conf
-   #if [[ -n "${CARD_DEVICE}" ]]; then
-   #   echo "defaults.ctl.card $CARD_DEVICE" >> /etc/asound.conf
-   #fi
-   echo "Sound configuration file created."
-}
+ASOUND_CONF_SIMPLE_FILE=asound.conf
+ASOUND_CONF_FILE=/etc/$ASOUND_CONF_SIMPLE_FILE
+
+ASOUND_CONF_EXISTS=0
+ASOUND_CONF_WRITABLE=1
 
 DEFAULT_FRIENDLY_NAME="Tidal connect"
 DEFAULT_MODE_NAME="Audio Streamer"
 DEFAULT_MQA_CODEC="false"
 DEFAULT_MQA_PASSTHROUGH="false"
+
+write_audio_config() {
+   if [[ $ASOUND_CONF_EXISTS -eq 0 ]] || [[ $ASOUND_CONF_WRITABLE -eq 1 ]]; then
+      if test -f "$ASOUND_CONF_FILE"; then
+         truncate -s 0 "$ASOUND_CONF_FILE"
+      fi
+      echo "Creating sound configuration file (card_index=$CARD_INDEX)..."
+      echo "pcm.!default {" >> /etc/asound.conf
+      echo "  type plug" >> /etc/asound.conf
+      echo "  slave.pcm {" >> /etc/asound.conf
+      echo "    type hw" >> /etc/asound.conf
+      echo "    card ${CARD_INDEX}" >> /etc/asound.conf
+      if [[ -n "${CARD_DEVICE}" ]]; then
+         echo "    device $CARD_DEVICE" >> /etc/asound.conf
+      fi
+      if [[ -n "${CARD_FORMAT}" ]]; then
+         echo "    format $CARD_FORMAT" >> /etc/asound.conf
+      fi
+      echo "  }" >> /etc/asound.conf
+      echo "}" >> /etc/asound.conf
+      echo "Sound configuration file created."
+   else
+      echo "Cannot create file [$ASOUND_CONF_FILE]: Exists [$ASOUND_CONF_EXISTS] Writable [$ASOUND_CONF_WRITABLE]"
+   fi
+}
 
 if [[ -z "${FRIENDLY_NAME}" ]]; then
    FRIENDLY_NAME="${DEFAULT_FRIENDLY_NAME}"
@@ -53,56 +58,91 @@ echo "MQA_CODEC=$MQA_CODEC"
 echo "MQA_PASSTHROUGH=$MQA_PASSTHROUGH"
 echo "CARD_NAME=$CARD_NAME"
 echo "CARD_INDEX=$CARD_INDEX"
+echo "CARD_DEVICE=$CARD_DEVICE"
+
+## see if there is a user-provided asound.conf file
+USER_CONFIG_DIR=/userconfig
+if [ -f "$USER_CONFIG_DIR/$ASOUND_CONF_SIMPLE_FILE" ]; then
+   echo "File [$ASOUND_CONF_SIMPLE_FILE] has been provided, copying to [$ASOUND_CONF_FILE] ..."
+   cp $USER_CONFIG_DIR/$ASOUND_CONF_SIMPLE_FILE /etc/asound.conf
+   # make it read-only
+   chmod -w $ASOUND_CONF_FILE
+   ASOUND_CONF_EXISTS=1
+   ASOUND_CONF_WRITABLE=0
+else
+   echo "File [$ASOUND_CONF_SIMPLE_FILE] has not been provided"
+   if [ -f "$ASOUND_CONF_FILE" ]; then
+      echo "File $ASOUND_CONF_FILE exists."
+      ASOUND_CONF_EXISTS=1
+   else
+      echo "File $ASOUND_CONF_FILE does not exists."
+   fi
+   if [ $ASOUND_CONF_EXISTS -eq 1 ]; then
+      # check if file is writable
+      if [ -w "$ASOUND_CONF_FILE" ]; then
+         echo "File $ASOUND_CONF_FILE is writable"
+         ASOUND_CONF_WRITABLE=1 
+      else
+         echo "File $ASOUND_CONF_FILE is NOT writable"
+         ASOUND_CONF_WRITABLE=0
+      fi
+   fi
+fi
 
 card_index=$CARD_INDEX
 card_name=$CARD_NAME
 
-if test -f /etc/asound.conf; then
-   echo "BEFORE"
-   cat /etc/asound.conf
+# dump current asound.conf if it exists
+if [ $ASOUND_CONF_EXISTS -eq 1 ]; then
+   echo "Current $ASOUND_CONF_FILE:"
+   cat $ASOUND_CONF_FILE
 fi
 
 PLAYBACK_DEVICE=default
-if [[ -z "${card_index}" || "${card_index}" == "-1" ]] && [[ -n "${card_name}" ]]; then
-   # card name is set
-   echo "Specified CARD_NAME=[$card_name]"
-   aplay -l | sed 1d | \
-   while read i
-   do
-      first_word=`echo $i | cut -d " " -f 1`
-      if [[ "${first_word}" == "card" ]]; then
-         second_word=`echo $i | cut -d ":" -f 1`
-         third_word=`echo $i | cut -d " " -f 3`
-         curr_ndx=`echo $second_word | cut -d " " -f 2`
-         if [[ "${third_word}" == "${CARD_NAME}" ]]; then
-            echo "Found audio device [${CARD_NAME}] as index [$curr_ndx]"
-            CARD_INDEX=$curr_ndx
-            write_audio_config
-            break
+
+if [[ $ASOUND_CONF_EXISTS -eq 0 ]] || [[ $ASOUND_CONF_WRITABLE -eq 1 ]]; then
+   if [[ -z "${card_index}" || "${card_index}" == "-1" ]] && [[ -n "${card_name}" ]]; then
+      # card name is set
+      echo "Specified CARD_NAME=[$card_name]"
+      aplay -l | sed 1d | \
+      while read i
+      do
+         first_word=`echo $i | cut -d " " -f 1`
+         if [[ "${first_word}" == "card" ]]; then
+            second_word=`echo $i | cut -d ":" -f 1`
+            third_word=`echo $i | cut -d " " -f 3`
+            curr_ndx=`echo $second_word | cut -d " " -f 2`
+            if [[ "${third_word}" == "${CARD_NAME}" ]]; then
+               echo "Found audio device [${CARD_NAME}] as index [$curr_ndx]"
+               CARD_INDEX=$curr_ndx
+               write_audio_config
+               #break
+            else
+               echo "Skipping audio device [${third_word}] at index [$curr_ndx]"
+            fi
          fi
-      fi
-   done
-elif [[ -n "${card_index}" && ! "${card_index}" == "-1" ]]; then
-   # card index is set
-   echo "Specified CARD_INDEX=[$card_index]"
-   echo "Set card_index=[$card_index]"
-   write_audio_config
-else
-   # leave default, so I delete asound.conf if found, as it is not needed
-   echo "Using default audio ..."
-   if [[ -f /etc/asound.conf ]]; then
-      echo "Removing asound.conf ..."
-      rm /etc/asound.conf
+      done
+   elif [[ -n "${card_index}" && ! "${card_index}" == "-1" ]]; then
+      # card index is set
+      echo "Specified CARD_INDEX=[$card_index]"
+      echo "Set card_index=[$card_index]"
+      write_audio_config
+   else
+      echo "using sysdefault ..."
+      PLAYBACK_DEVICE=sysdefault
    fi
-   echo "using sysdefault ..."
-   PLAYBACK_DEVICE=sysdefault
-   echo ". done."
+else
+   echo "File [$ASOUND_CONF_FILE] cannot be modified."
+   if [[ -n "${FORCE_PLAYBACK_DEVICE}" ]]; then
+      echo "Setting playback device to [$FORCE_PLAYBACK_DEVICE] ..."
+      PLAYBACK_DEVICE=$FORCE_PLAYBACK_DEVICE
+   fi
 fi
 
-if [[ -f /etc/asound.conf ]]; then
-   cat /etc/asound.conf
+if [[ -f "$ASOUND_CONF_FILE" ]]; then
+   cat $ASOUND_CONF_FILE
 else
-   echo "asound.conf not found, using default audio"
+   echo "File [$ASOUND_CONF_FILE] not found, will use default audio"
 fi
 
 echo "PLAYBACK_DEVICE=[${PLAYBACK_DEVICE}]"
