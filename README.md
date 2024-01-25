@@ -128,7 +128,7 @@ CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC` while
 CARD_INDEX|Alsa index of the audio card
 CARD_DEVICE|Audio device, optional
 CARD_FORMAT|Audio format, optional (`S32_LE`, `S16_LE`, etc)
-FORCE_PLAYBACK_DEVICE|If set and if the file `/etc/asound.conf` is provided and is read-only, this will be the playback device
+FORCE_PLAYBACK_DEVICE|If set and if the file `asound.conf` is provided in `/userconfig`, this will be the playback device
 FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`.
 MODEL_NAME|Model name of the device. Defaults to `Audio Streamer`.
 MQA_CODEC|Can't comment a lot on this, defaults to `false`.
