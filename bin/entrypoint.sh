@@ -6,7 +6,7 @@ write_audio_config() {
       truncate -s 0 /etc/asound.conf
    fi
    echo "Creating sound configuration file (card_index=$CARD_INDEX)..."
-   echo "pcm.!sysdefault {" >> /etc/asound.conf
+   echo "pcm.!default {" >> /etc/asound.conf
    echo "  type plug" >> /etc/asound.conf
    echo "  slave.pcm {" >> /etc/asound.conf
    echo "    type hw" >> /etc/asound.conf
@@ -62,10 +62,10 @@ if test -f /etc/asound.conf; then
    cat /etc/asound.conf
 fi
 
+PLAYBACK_DEVICE=default
 if [[ -z "${card_index}" || "${card_index}" == "-1" ]] && [[ -n "${card_name}" ]]; then
    # card name is set
    echo "Specified CARD_NAME=[$card_name]"
-   found=0
    aplay -l | sed 1d | \
    while read i
    do
@@ -78,16 +78,10 @@ if [[ -z "${card_index}" || "${card_index}" == "-1" ]] && [[ -n "${card_name}" ]
             echo "Found audio device [${CARD_NAME}] as index [$curr_ndx]"
             CARD_INDEX=$curr_ndx
             write_audio_config
-            found=1
             break
-         else
-            echo "Skipping audio device [${third_word}] as index [$curr_ndx]"
          fi
       fi
    done
-   if [ $found -eq 0 ]; then
-      echo "Audio device named [${CARD_NAME}] was not found!"
-   fi
 elif [[ -n "${card_index}" && ! "${card_index}" == "-1" ]]; then
    # card index is set
    echo "Specified CARD_INDEX=[$card_index]"
@@ -95,11 +89,13 @@ elif [[ -n "${card_index}" && ! "${card_index}" == "-1" ]]; then
    write_audio_config
 else
    # leave default, so I delete asound.conf if found, as it is not needed
-   echo "No audio device is set, using default audio ..."
+   echo "Using default audio ..."
    if [[ -f /etc/asound.conf ]]; then
       echo "Removing asound.conf ..."
       rm /etc/asound.conf
    fi
+   echo "using sysdefault ..."
+   PLAYBACK_DEVICE=sysdefault
    echo ". done."
 fi
 
@@ -108,6 +104,8 @@ if [[ -f /etc/asound.conf ]]; then
 else
    echo "asound.conf not found, using default audio"
 fi
+
+echo "PLAYBACK_DEVICE=[${PLAYBACK_DEVICE}]"
 
 echo "Starting Speaker Application in Background (TMUX)"
 /usr/bin/tmux new-session -d -s speaker_controller_application '/app/ifi-tidal-release/bin/speaker_controller_application'
@@ -120,7 +118,7 @@ do
    echo "Starting TIDAL Connect ..."
    /app/ifi-tidal-release/bin/tidal_connect_application \
       --tc-certificate-path "/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat" \
-      --playback-device sysdefault \
+      --playback-device ${PLAYBACK_DEVICE} \
       -f "${FRIENDLY_NAME}" \
       --codec-mpegh true \
       --codec-mqa ${MQA_CODEC} \

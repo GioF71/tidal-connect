@@ -256,6 +256,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-01-25|Revert latest change, see ([#78](https://github.com/GioF71/tidal-connect/issues/78))
 2024-01-24|Always create sysdefault in asound.conf and log device names, see [#76](https://github.com/GioF71/tidal-connect/issues/76)
 2024-01-23|Add support for optional card device (`CARD_DEVICE`) and format (`CARD_FORMAT`), see [#72](https://github.com/GioF71/tidal-connect/issues/72)
 2023-09-12|Clarify how to install on Volumio, see issue [#29](https://github.com/GioF71/tidal-connect/issues/29)
