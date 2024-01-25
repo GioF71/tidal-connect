@@ -18,12 +18,14 @@ services:
      - MODEL_NAME=${MODEL_NAME:-Audio Streamer}
      - MQA_CODEC=${MQA_CODEC:-false}
      - MQA_PASSTHROUGH=${MQA_PASSTHROUGH:-false}
+     - FORCE_PLAYBACK_DEVICE=${FORCE_PLAYBACK_DEVICE:-}
      - SLEEP_TIME_SEC=${SLEEP_TIME:-3}
      - RESTART_ON_FAIL=${RESTART_ON_FAIL:-1}
      - RESTART_WAIT_SEC=${RESTART_WAIT_SEC:-30}
     volumes:
-      - ./bin/entrypoint.sh:/entrypoint.sh
-      - /var/run/dbus:/var/run/dbus
+     - ./userconfig:/userconfig:ro
+     - ./bin/entrypoint.sh:/entrypoint.sh
+     - /var/run/dbus:/var/run/dbus
     dns:
       - ${DNS_SERVER_LIST:-8.8.8.8 8.8.4.4}
     restart: unless-stopped

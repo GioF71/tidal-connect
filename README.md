@@ -128,6 +128,7 @@ CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC` while
 CARD_INDEX|Alsa index of the audio card
 CARD_DEVICE|Audio device, optional
 CARD_FORMAT|Audio format, optional (`S32_LE`, `S16_LE`, etc)
+FORCE_PLAYBACK_DEVICE|If set and if the file `/etc/asound.conf` is provided and is read-only, this will be the playback device
 FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`.
 MODEL_NAME|Model name of the device. Defaults to `Audio Streamer`.
 MQA_CODEC|Can't comment a lot on this, defaults to `false`.
@@ -139,6 +140,20 @@ DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google
 
 Please not that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
 Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the system default audio device) will be used.  
+
+## Volumes
+
+Here is the list of volumes:
+
+VOLUME|DESCRIPTION
+:---|:---
+/userconfig|Might contain user-provided configurations.
+
+### User-provided configurations
+
+#### Custom asound.conf
+
+If you put an `asound.conf` file in the userconfig directory of the repository, this file will be copied to `/etc/asound.conf`, so you can implement your custom configuration. You might need to set the variable `FORCE_PLAYBACK_DEVICE` according to the contents of the provided file.
 
 ## Installation on Moode Audio or Volumio
 
@@ -256,6 +271,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-01-25|Support custom asound.conf, support forced PLAYBACK device, see [#80](https://github.com/GioF71/tidal-connect/issues/80)
 2024-01-25|Revert latest change, see ([#78](https://github.com/GioF71/tidal-connect/issues/78))
 2024-01-24|Always create sysdefault in asound.conf and log device names, see [#76](https://github.com/GioF71/tidal-connect/issues/76)
 2024-01-23|Add support for optional card device (`CARD_DEVICE`) and format (`CARD_FORMAT`), see [#72](https://github.com/GioF71/tidal-connect/issues/72)
