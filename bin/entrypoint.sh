@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.0"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.1"
 
 ASOUND_CONF_SIMPLE_FILE=asound.conf
 ASOUND_CONF_FILE=/etc/$ASOUND_CONF_SIMPLE_FILE
@@ -62,6 +62,8 @@ echo "CARD_NAME=$CARD_NAME"
 echo "CARD_INDEX=$CARD_INDEX"
 echo "CARD_DEVICE=$CARD_DEVICE"
 
+PLAYBACK_DEVICE=default
+
 ## see if there is a user-provided asound.conf file
 USER_CONFIG_DIR=/userconfig
 if [ -f "$USER_CONFIG_DIR/$ASOUND_CONF_SIMPLE_FILE" ]; then
@@ -71,6 +73,13 @@ if [ -f "$USER_CONFIG_DIR/$ASOUND_CONF_SIMPLE_FILE" ]; then
    chmod -w $ASOUND_CONF_FILE
    ASOUND_CONF_EXISTS=1
    ASOUND_CONF_WRITABLE=0
+   # set PLAYBACK_DEVICE to [custom] if not set
+   if [[ -z "${FORCE_PLAYBACK_DEVICE}" ]]; then
+      echo "FORCE_PLAYBACK_DEVICE empty, setting to [custom]"
+      FORCE_PLAYBACK_DEVICE=custom
+   else  
+      echo "FORCE_PLAYBACK_DEVICE is already set to [${FORCE_PLAYBACK_DEVICE}], leaving as-is"
+   fi
 else
    echo "File [$ASOUND_CONF_SIMPLE_FILE] has not been provided"
    if [ -f "$ASOUND_CONF_FILE" ]; then
@@ -99,8 +108,6 @@ if [ $ASOUND_CONF_EXISTS -eq 1 ]; then
    echo "Current $ASOUND_CONF_FILE:"
    cat $ASOUND_CONF_FILE
 fi
-
-PLAYBACK_DEVICE=default
 
 if [[ $ASOUND_CONF_EXISTS -eq 0 ]] || [[ $ASOUND_CONF_WRITABLE -eq 1 ]]; then
    if [[ -z "${card_index}" || "${card_index}" == "-1" ]] && [[ -n "${card_name}" ]]; then

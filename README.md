@@ -284,6 +284,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-01-26|Assume `custom` playback device when asound.conf is provided, see [#90](https://github.com/GioF71/tidal-connect/issues/90)
 2024-01-25|Support custom asound.conf, support forced PLAYBACK device, see [#80](https://github.com/GioF71/tidal-connect/issues/80)
 2024-01-25|Revert latest change, see ([#78](https://github.com/GioF71/tidal-connect/issues/78))
 2024-01-24|Always create sysdefault in asound.conf and log device names, see [#76](https://github.com/GioF71/tidal-connect/issues/76)
