@@ -166,7 +166,7 @@ VOLUME|DESCRIPTION
 
 #### Custom asound.conf
 
-If you put an `asound.conf` file in the userconfig directory of the repository, this file will be copied to `/etc/asound.conf`, so you can implement your custom configuration. You might need to set the variable `FORCE_PLAYBACK_DEVICE` according to the contents of the provided file.
+If you put an `asound.conf` file in the userconfig directory of the repository, this file will be copied to `/etc/asound.conf`, so you can implement your custom configuration. You might need to set the variable `FORCE_PLAYBACK_DEVICE` according to the contents of the provided file, unless the device you want to play to is named `custom`.  
 
 ## Installation on Moode Audio or Volumio
 
