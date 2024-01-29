@@ -19,7 +19,13 @@ write_audio_config() {
          truncate -s 0 "$ASOUND_CONF_FILE"
       fi
       echo "Creating sound configuration file (card_index=$CARD_INDEX)..."
-      echo "pcm.!default {" >> /etc/asound.conf
+      if [[ -n "${CREATED_ASOUND_CARD_NAME}" ]]; then
+         echo "pcm.$CREATED_ASOUND_CARD_NAME {" >> /etc/asound.conf
+         PLAYBACK_DEVICE=$CREATED_ASOUND_CARD_NAME
+      else
+         echo "pcm.!default {" >> /etc/asound.conf
+         PLAYBACK_DEVICE=default
+      fi
       echo "  type plug" >> /etc/asound.conf
       echo "  slave.pcm {" >> /etc/asound.conf
       echo "    type hw" >> /etc/asound.conf
@@ -33,6 +39,7 @@ write_audio_config() {
       echo "  }" >> /etc/asound.conf
       echo "}" >> /etc/asound.conf
       echo "Sound configuration file created."
+      
    else
       echo "Cannot create file [$ASOUND_CONF_FILE]: Exists [$ASOUND_CONF_EXISTS] Writable [$ASOUND_CONF_WRITABLE]"
    fi
@@ -142,16 +149,17 @@ if [[ $ASOUND_CONF_EXISTS -eq 0 ]] || [[ $ASOUND_CONF_WRITABLE -eq 1 ]]; then
    fi
 else
    echo "File [$ASOUND_CONF_FILE] cannot be modified."
-   if [[ -n "${FORCE_PLAYBACK_DEVICE}" ]]; then
-      echo "Setting playback device to [$FORCE_PLAYBACK_DEVICE] ..."
-      PLAYBACK_DEVICE=$FORCE_PLAYBACK_DEVICE
-   fi
 fi
 
 if [[ -f "$ASOUND_CONF_FILE" ]]; then
    cat $ASOUND_CONF_FILE
 else
-   echo "File [$ASOUND_CONF_FILE] not found, will use default audio"
+   echo "File [$ASOUND_CONF_FILE] not found."
+fi
+
+if [[ -n "${FORCE_PLAYBACK_DEVICE}" ]]; then
+   echo "Setting playback device to [$FORCE_PLAYBACK_DEVICE] ..."
+   PLAYBACK_DEVICE=$FORCE_PLAYBACK_DEVICE
 fi
 
 echo "PLAYBACK_DEVICE=[${PLAYBACK_DEVICE}]"
