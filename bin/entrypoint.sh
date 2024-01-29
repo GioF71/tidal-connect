@@ -142,16 +142,17 @@ if [[ $ASOUND_CONF_EXISTS -eq 0 ]] || [[ $ASOUND_CONF_WRITABLE -eq 1 ]]; then
    fi
 else
    echo "File [$ASOUND_CONF_FILE] cannot be modified."
-   if [[ -n "${FORCE_PLAYBACK_DEVICE}" ]]; then
-      echo "Setting playback device to [$FORCE_PLAYBACK_DEVICE] ..."
-      PLAYBACK_DEVICE=$FORCE_PLAYBACK_DEVICE
-   fi
 fi
 
 if [[ -f "$ASOUND_CONF_FILE" ]]; then
    cat $ASOUND_CONF_FILE
 else
-   echo "File [$ASOUND_CONF_FILE] not found, will use default audio"
+   echo "File [$ASOUND_CONF_FILE] not found."
+fi
+
+if [[ -n "${FORCE_PLAYBACK_DEVICE}" ]]; then
+   echo "Setting playback device to [$FORCE_PLAYBACK_DEVICE] ..."
+   PLAYBACK_DEVICE=$FORCE_PLAYBACK_DEVICE
 fi
 
 echo "PLAYBACK_DEVICE=[${PLAYBACK_DEVICE}]"
