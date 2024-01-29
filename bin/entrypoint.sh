@@ -26,7 +26,6 @@ write_audio_config() {
          echo "pcm.!default {" >> /etc/asound.conf
          PLAYBACK_DEVICE=default
       fi
-      echo "pcm.$ASOUND_DEVICE_NAME {" >> /etc/asound.conf
       echo "  type plug" >> /etc/asound.conf
       echo "  slave.pcm {" >> /etc/asound.conf
       echo "    type hw" >> /etc/asound.conf
