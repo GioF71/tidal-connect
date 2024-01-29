@@ -19,7 +19,11 @@ write_audio_config() {
          truncate -s 0 "$ASOUND_CONF_FILE"
       fi
       echo "Creating sound configuration file (card_index=$CARD_INDEX)..."
-      echo "pcm.!default {" >> /etc/asound.conf
+      ASOUND_DEVICE_NAME=virtual
+      if [[ -n "${CREATED_ASOUND_CARD_NAME}" ]]; then
+         ASOUND_DEVICE_NAME=$CREATED_ASOUND_CARD_NAME
+      fi
+      echo "pcm.$ASOUND_DEVICE_NAME {" >> /etc/asound.conf
       echo "  type plug" >> /etc/asound.conf
       echo "  slave.pcm {" >> /etc/asound.conf
       echo "    type hw" >> /etc/asound.conf
@@ -33,6 +37,7 @@ write_audio_config() {
       echo "  }" >> /etc/asound.conf
       echo "}" >> /etc/asound.conf
       echo "Sound configuration file created."
+      PLAYBACK_DEVICE=$ASOUND_DEVICE_NAME
    else
       echo "Cannot create file [$ASOUND_CONF_FILE]: Exists [$ASOUND_CONF_EXISTS] Writable [$ASOUND_CONF_WRITABLE]"
    fi
