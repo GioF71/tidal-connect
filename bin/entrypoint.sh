@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.1"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.2"
 
 ASOUND_CONF_SIMPLE_FILE=asound.conf
 ASOUND_CONF_FILE=/etc/$ASOUND_CONF_SIMPLE_FILE
@@ -73,9 +73,14 @@ PLAYBACK_DEVICE=default
 
 ## see if there is a user-provided asound.conf file
 USER_CONFIG_DIR=/userconfig
-if [ -f "$USER_CONFIG_DIR/$ASOUND_CONF_SIMPLE_FILE" ]; then
-   echo "File [$ASOUND_CONF_SIMPLE_FILE] has been provided, copying to [$ASOUND_CONF_FILE] ..."
-   cp $USER_CONFIG_DIR/$ASOUND_CONF_SIMPLE_FILE /etc/asound.conf
+select_asound_file="$USER_CONFIG_DIR/$ASOUND_CONF_SIMPLE_FILE"
+if [[ -n "${ASOUND_FILE_PREFIX}" ]]; then
+   select_asound_file="$USER_CONFIG_DIR/$ASOUND_FILE_PREFIX.$ASOUND_CONF_SIMPLE_FILE"
+fi
+
+if [ -f "$select_asound_file" ]; then
+   echo "File [$select_asound_file] has been provided, copying to [$ASOUND_CONF_FILE] ..."
+   cp $select_asound_file /etc/asound.conf
    # make it read-only
    chmod -w $ASOUND_CONF_FILE
    ASOUND_CONF_EXISTS=1
