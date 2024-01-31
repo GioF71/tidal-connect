@@ -143,6 +143,8 @@ CARD_DEVICE|Audio device, optional
 CARD_FORMAT|Audio format, optional (`S32_LE`, `S16_LE`, etc)
 FORCE_PLAYBACK_DEVICE|If set and if the file `asound.conf` is provided in `/userconfig`, this will be the playback device
 FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`.
+ASOUND_FILE_PREFIX|Search asound.conf with this prefix, a `.` is used as separator
+CREATED_ASOUND_CARD_NAME|When creating asound.conf, use this as the declared device name
 MODEL_NAME|Model name of the device. Defaults to `Audio Streamer`.
 MQA_CODEC|Can't comment a lot on this, defaults to `false`.
 MQA_PASSTHROUGH|Can't comment a lot on this, defaults to `false`.
@@ -284,6 +286,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-01-30|Add support for ASOUND_FILE_PREFIX, see [#101](https://github.com/GioF71/tidal-connect/issues/101)
 2024-01-26|Assume `custom` playback device when asound.conf is provided, see [#90](https://github.com/GioF71/tidal-connect/issues/90)
 2024-01-25|Support custom asound.conf, support forced PLAYBACK device, see [#80](https://github.com/GioF71/tidal-connect/issues/80)
 2024-01-25|Revert latest change, see ([#78](https://github.com/GioF71/tidal-connect/issues/78))
