@@ -7,6 +7,7 @@ A simple script used to configure a docker-compose stack for Tidal Connect.
 Please support me on Ko-Fi.  
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/H2H7UIN5D)  
 Goal for [March 2024](https://ko-fi.com/giof71/goal?g=0)  
+Please not that support is limited to cover running cost for subscriptions to music services.
 
 ## Disclaimers
 
