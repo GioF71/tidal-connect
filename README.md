@@ -2,6 +2,10 @@
 
 A simple script used to configure a docker-compose stack for Tidal Connect.
 
+## Support
+
+<script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'H2H7UIN5D');kofiwidget2.draw();</script>
+
 ## Disclaimers
 
 ### Contents
