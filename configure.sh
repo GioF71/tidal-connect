@@ -8,7 +8,7 @@ set -e
 ENV_FILE=.env
 chmod 755 bin/entrypoint.sh
 
-while getopts n:i:d:s:f:m:c:p:t:d: flag
+while getopts n:i:d:s:f:m:c:p:r:o:a:t:d: flag
 do
     case "${flag}" in
         n) card_name=${OPTARG};;
@@ -19,6 +19,9 @@ do
         m) model_name=${OPTARG};;
         c) mqa_codec=${OPTARG};;
         p) mqa_passthrough=${OPTARG};;
+        r) asound_file_prefix=${OPTARG};;
+        o) force_playback_device=${OPTARG};;
+        a) created_asound_card_name=${OPTARG};;
         t) sleep_time_sec=${OPTARG};;
         d) dns_server_list=${OPTARG};;
 
@@ -34,6 +37,9 @@ echo "card_index=[$card_index]"
 echo "card_name=[$card_name]"
 echo "card_device=[$card_device]"
 echo "card_format=[$card_format]"
+echo "asound_file_prefix=[$asound_file_prefix]"
+echo "force_playback_device=[$force_playback_device]"
+echo "created_asound_card_name=[$created_asound_card_name]"
 
 if test -f $ENV_FILE; then
     truncate -s 0 $ENV_FILE
@@ -102,6 +108,21 @@ fi
 if [[ -n "${card_format}" ]]; then
     echo "Setting CARD_FORMAT to [$card_format]"
     echo "CARD_FORMAT=${card_format}" >> $ENV_FILE
+fi
+
+if [[ -n "${asound_file_prefix}" ]]; then
+    echo "Setting ASOUND_FILE_PREFIX to [$asound_file_prefix]"
+    echo "ASOUND_FILE_PREFIX=${asound_file_prefix}" >> $ENV_FILE
+fi
+
+if [[ -n "${force_playback_device}" ]]; then
+    echo "Setting FORCE_PLAYBACK_DEVICE to [$force_playback_device]"
+    echo "FORCE_PLAYBACK_DEVICE=${force_playback_device}" >> $ENV_FILE
+fi
+
+if [[ -n "${created_asound_card_name}" ]]; then
+    echo "Setting CREATED_ASOUND_CARD_NAME to [$created_asound_card_name]"
+    echo "CREATED_ASOUND_CARD_NAME=${created_asound_card_name}" >> $ENV_FILE
 fi
 
 echo -e "\nFinal .env file:\n"
