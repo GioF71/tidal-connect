@@ -113,6 +113,9 @@ PARAM|DESCRIPTION
 -s|Card format, optional (`S32_LE`, `S16_LE`, etc)
 -c|MQA Codec, defaults to `false`
 -p|MQA Passthrough, defaults to `false`
+-r|Asound file prefix
+-o|Force playback device
+-a|Name of the virtual sound card in the generated asound.conf file
 -t|Sleep time in seconds be, defaults to `3`
 -d|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)
 
@@ -292,6 +295,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-02-17|Add support for newer variables in configure.sh, see [#108](https://github.com/GioF71/tidal-connect/issues/108)
 2024-01-30|Add support for ASOUND_FILE_PREFIX, see [#101](https://github.com/GioF71/tidal-connect/issues/101)
 2024-01-26|Assume `custom` playback device when asound.conf is provided, see [#90](https://github.com/GioF71/tidal-connect/issues/90)
 2024-01-25|Support custom asound.conf, support forced PLAYBACK device, see [#80](https://github.com/GioF71/tidal-connect/issues/80)
