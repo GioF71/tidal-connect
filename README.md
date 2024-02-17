@@ -12,11 +12,11 @@ Please note that support goal is limited to cover running costs for subscription
 
 ### Contents
 
-This repository does not contain the Tidal Connect software. There is only a docker-compose.yaml file, a configurator script, and a modified entrypoint which is just used for selecting the desired audio output more easily and reliably.   
+This repository does not contain the Tidal Connect software. There is only a docker-compose.yaml file, a configurator script, and a modified entrypoint which is just used for selecting the desired audio output more easily and reliably.  
 
 ### Credit
 
-All the hard work has been done by the owner of the repository mentioned in the [References](#References) section and in the other repositories from which this one has been forked. I am just trying to provide a way to run their container more easily in certain environments (where the index of your audio device is not the same on every restart).  
+All the hard work has been done by the owner of the repository mentioned in the [References](#references) section and in the other repositories from which this one has been forked. I am just trying to provide a way to run their container more easily in certain environments (where the index of your audio device is not the same on every restart).  
 
 ### No support from Tidal
 
@@ -24,7 +24,7 @@ This solution is not and will probably never be supported by Tidal. It might sto
 
 #### Alternatives
 
-If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is the ubiquitous Wiim Mini/Pro/Pro+/Amp. Another option are Google Chromecast/Chromecast Audio devices. Also, if you use Apple devices, you can already stream to AirPlay-enabled devices.   
+If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is the ubiquitous Wiim Mini/Pro/Pro+/Amp. Another option are Google Chromecast/Chromecast Audio devices. Also, if you use Apple devices, you can already stream to AirPlay-enabled devices.  
 Even your current TV might already be used as an endpoint for Tidal via the embedded Chromecast functionality, or via AirPlay.  
 
 ##### UPnP
@@ -47,7 +47,7 @@ It will also use [his docker image](https://hub.docker.com/r/edgecrush3r/tidal-c
 
 ## Why
 
-I created this repository because it was very inconvenient for me to figure out the string to put for the PLAYBACK_DEVICE variable. I even failed for one of my DAC, I don't know honestly why, but as far as I understand, the `ifi-pa-devs-get` for some reason refuses to see the device. The most relevant issue I found about this issue is [this](https://github.com/TonyTromp/tidal-connect-docker/issues/23), but it does not seems to have an easy solution.   
+I created this repository because it was very inconvenient for me to figure out the string to put for the PLAYBACK_DEVICE variable. I even failed for one of my DAC, I don't know honestly why, but as far as I understand, the `ifi-pa-devs-get` for some reason refuses to see the device. The most relevant issue I found about this issue is [this](https://github.com/TonyTromp/tidal-connect-docker/issues/23), but it does not seems to have an easy solution.  
 Additionally, even if you can specify the correct string for your DAC, I found that the resulting configuration would be error-prone as the string reports both the device name and the device index. AFAIK the index can change across restarts, so outside of a known and controlled setup (which is probably represented by the Ifi devices) this situation can an will lead to errors or unwanted configurations.  
 Keep in mind that the audio device index can also be changed because one time the (usb) device is powered on during boot, and another time it isn't.  
 This is my experience, unless I am missing something obvious. If so, I will be glad to be corrected.  
@@ -56,7 +56,7 @@ The work in this repository consists in slightly altering the container startup 
 ## Requirements
 
 You will need a single-board computer (or anyway, a computer) with an armhf architecture (arm64 should work as well), running `docker` and `docker-compose`.  
-A Raspberry Pi 3/4 will work. If you plan to use a usb dac and hi-res audio, consider at least using a Pi 3b+ or, even better, a Pi 4b.   
+A Raspberry Pi 3/4 will work. If you plan to use a usb dac and hi-res audio, consider at least using a Pi 3b+ or, even better, a Pi 4b.  
 I am also running this on as Asus Tinkerboard. With this hardware, my suggestion is to not allow it to scale down the cpu frequency too much, or you might experience every kind of crackling noises along with what will remain of your music. In my experience, I am having good result if I set the minimum frequency at least about 600MHz, but, of course, YMMV.  
 
 ## Usage
@@ -77,14 +77,14 @@ The last command adds the current user to the docker group. This is not mandator
 
 You need to clone the repository. Make sure that `git` is installed using the following command on debian and derived distributions (again, this includes Raspberry Pi OS, DietPi, Moode Audio, Volumio):
 
-```
+```code
 sudo apt-get update
 sudo apt-get install -y git
 ```
 
 Move to the your home directory and clone the repository using the commands:
 
-```
+```code
 cd
 git clone https://github.com/GioF71/tidal-connect.git
 ```
@@ -94,7 +94,7 @@ git clone https://github.com/GioF71/tidal-connect.git
 If you just downloaded the repository, you can skip this step.  
 If you previously cloned the repository, it might have been updated in the meantime. Move to the directory and pull the changes:
 
-```
+```code
 cd $HOME/tidal-connect
 git pull
 ```
@@ -306,5 +306,5 @@ Date|Comment
 2023-06-02|Some effort to avoid resampling
 2023-06-02|MQA passthrough defaults to `false`
 2023-06-01|Using hardware mode
-2023-06-01|Resolve device name at container startup 
+2023-06-01|Resolve device name at container startup
 2023-05-29|First working version
