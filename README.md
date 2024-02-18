@@ -104,7 +104,7 @@ git pull
 
 From the repository directory, just run the `configure.sh` bash script, specifying the following parameters:
 
-PARAM|DESCRIPTION|Variable
+PARAM|DESCRIPTION|VARIABLE
 :---|:---|:---
 -n|Sound card name (e.g. DAC), if not specified and also card index isn't, `sysdefault` is used|CARD_NAME
 -i|Sound card index, not recommended: if not specified and also card name isn't, `sysdefault` is used|CARD_INDEX
