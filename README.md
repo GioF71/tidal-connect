@@ -262,6 +262,29 @@ docker-compose up -d
 
 ### Caveat
 
+#### Audio device locking
+
+Tidal Connect will access exclusively your audio device if you select it in your desktop/mobile Tidal App.  
+If you want to play to the selected audio device from other sources, you will need to disconnect from the Tidal app you are using.  
+Similarly, you won't be able to play to a device if this device is already playing something from another source.  
+In order to check if a device is playing, follow the instructions in the next paragraphs.  
+
+##### Check Audio device is playing, by index
+
+Say you have selected your card by its index (not recommended), and that the index is `1`, you can execute the following command:
+
+watch cat /proc/asound/card1/pcm0p/sub0/hw_params
+
+If this does not say "closed", it means that the audio device is being currently used.  
+
+##### Check Audio device is playing, by name
+
+Say you have selected your card by its name, and that the name is `D10`, you can execute the following command:
+
+watch cat /proc/asound/D10/pcm0p/sub0/hw_params
+
+If this does not say "closed", it means that the audio device is being currently used.  
+
 #### Hardware changes
 
 Remember that, should you change something to your Moode/Volumio setup, maybe replacing the audio-hat with an USB DAC, you will most likely need to reconfigure Tidal Connect accordingly.  
