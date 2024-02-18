@@ -104,21 +104,21 @@ git pull
 
 From the repository directory, just run the `configure.sh` bash script, specifying the following parameters:
 
-PARAM|DESCRIPTION
-:---|:---
--n|Sound card name (e.g. DAC), if not specified and also card index isn't, `sysdefault` is used.
--i|Sound card index, not recommended: if not specified and also card name isn't, `sysdefault` is used.
--d|Sound card device, optional
--f|Friendly name, defaults to `TIDAL connect`
--m|Model name, defaults to `Audio Streamer`
--s|Card format, optional (`S32_LE`, `S16_LE`, etc)
--c|MQA Codec, defaults to `false`
--p|MQA Passthrough, defaults to `false`
--r|Asound file prefix
--o|Force playback device
--a|Name of the virtual sound card in the generated asound.conf file
--t|Sleep time in seconds be, defaults to `3`
--d|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)
+PARAM|DESCRIPTION|VARIABLE
+:---|:---|:---
+-n|Sound card name (e.g. DAC), if not specified and also card index isn't, `sysdefault` is used|CARD_NAME
+-i|Sound card index, not recommended: if not specified and also card name isn't, `sysdefault` is used|CARD_INDEX
+-d|Sound card device, optional|CARD_DEVICE
+-s|Card format, optional (`S32_LE`, `S16_LE`, etc)|CARD_FORMAT
+-f|Friendly name, defaults to `TIDAL connect`|FRIENDLY_NAME
+-m|Model name, defaults to `Audio Streamer`|MODEL_NAME
+-c|MQA Codec, defaults to `false`|MQA_CODEC
+-p|MQA Passthrough, defaults to `false`|MQA_PASSTHROUGH
+-r|Asound file prefix|ASOUND_FILE_PREFIX
+-o|Force playback device|FORCE_PLAYBACK_DEVICE
+-a|Name of the virtual sound card in the generated asound.conf file|CREATED_ASOUND_CARD_NAME
+-t|Sleep time in seconds be, defaults to `3`|SLEEP_TIME_SEC
+-d|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)|DNS_SERVER_LIST
 
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
 If you already used the `configure.sh` command and you are experiencing issues (because of the card has changed its index), you can run the command again. In the latest version, the card index is calculated during the container startup phase and hopefully there will not be any need to use `configure.sh` again unless you change the audio device you want to use.
@@ -151,7 +151,7 @@ CARD_NAME|Alsa name of the audio card. Example for xmos dac might be `DAC` while
 CARD_INDEX|Alsa index of the audio card
 CARD_DEVICE|Audio device, optional
 CARD_FORMAT|Audio format, optional (`S32_LE`, `S16_LE`, etc)
-FORCE_PLAYBACK_DEVICE|If set and if the file `asound.conf` is provided in `/userconfig`, this will be the playback device
+FORCE_PLAYBACK_DEVICE|If set and if there is an `asound.conf` provided or selected via a prefix in `userconfig`, this will be the playback device
 FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`.
 ASOUND_FILE_PREFIX|Search asound.conf with this prefix, a `.` is used as separator
 CREATED_ASOUND_CARD_NAME|When creating asound.conf, use this as the declared device name
@@ -261,6 +261,29 @@ docker-compose up -d
 ```
 
 ### Caveat
+
+#### Audio device locking
+
+Tidal Connect will access exclusively your audio device if you select it in your desktop/mobile Tidal App.  
+If you want to play to the selected audio device from other sources, you will need to disconnect from the Tidal app you are using.  
+Similarly, you won't be able to play to a device if this device is already playing something from another source.  
+In order to check if a device is playing, follow the instructions in the next paragraphs.  
+
+##### Check Audio device is playing, by index
+
+Say you have selected your card by its index (not recommended), and that the index is `1`, you can execute the following command:
+
+watch cat /proc/asound/card1/pcm0p/sub0/hw_params
+
+If this does not say "closed", it means that the audio device is being currently used.  
+
+##### Check Audio device is playing, by name
+
+Say you have selected your card by its name, and that the name is `D10`, you can execute the following command:
+
+watch cat /proc/asound/D10/pcm0p/sub0/hw_params
+
+If this does not say "closed", it means that the audio device is being currently used.  
 
 #### Hardware changes
 
