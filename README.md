@@ -96,6 +96,7 @@ If you previously cloned the repository, it might have been updated in the meant
 
 ```code
 cd $HOME/tidal-connect
+git config pull.rebase false
 git pull
 ```
 
