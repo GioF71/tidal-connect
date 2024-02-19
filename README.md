@@ -273,7 +273,7 @@ In order to check if a device is playing, follow the instructions in the next pa
 
 Say you have selected your card by its index (not recommended), and that the index is `1`, you can execute the following command:
 
-watch cat /proc/asound/card1/pcm0p/sub0/hw_params
+`watch cat /proc/asound/card1/pcm0p/sub0/hw_params`
 
 If this does not say "closed", it means that the audio device is being currently used.  
 
@@ -281,7 +281,7 @@ If this does not say "closed", it means that the audio device is being currently
 
 Say you have selected your card by its name, and that the name is `D10`, you can execute the following command:
 
-watch cat /proc/asound/D10/pcm0p/sub0/hw_params
+`watch cat /proc/asound/D10/pcm0p/sub0/hw_params`
 
 If this does not say "closed", it means that the audio device is being currently used.  
 
