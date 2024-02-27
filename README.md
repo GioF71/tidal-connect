@@ -39,7 +39,7 @@ Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF
 ##### Logitech Media Server
 
 Another alternative, if you have a HiFi subscription and/or are ok with being limited to 16bit/44.1kHz, is using [Logitech Media Server](https://www.mysqueezebox.com/) and Squeezelite (you might use my [docker image for squeezelite](https://github.com/GioF71/squeezelite-docker)).  
-Even considering that after February 2024 the `mysqueezebox` online services will be [shut down](https://forums.slimdevices.com/forum/user-forums/mysqueezebox-com/1668754-squeezebox-display-please-follow-the-qr-code-logitech-migration-announcement), there is a new, very promising, and I'd say already very usable plugin [here](https://github.com/michaelherger/lms-plugin-tidal) by users [michaelherger](https://github.com/michaelherger) and [philippe44](https://github.com/philippe44). This solution does not currently support Tidal HiRes while it supports MQA encoded streams (assuming they are still relevant).  
+Even considering that after February 2024 the `mysqueezebox` online services will be [shut down](https://forums.slimdevices.com/forum/user-forums/mysqueezebox-com/1668754-squeezebox-display-please-follow-the-qr-code-logitech-migration-announcement), there is a new, very promising, and I'd say already very usable plugin [here](https://github.com/michaelherger/lms-plugin-tidal) by community heroes [michaelherger](https://github.com/michaelherger) and [philippe44](https://github.com/philippe44). This solution does not currently support Tidal HiRes while it supports MQA encoded streams (assuming they are still relevant).  
 
 ## References
 
