@@ -34,7 +34,8 @@ Starting late November 2023, BubbleUPnP supports hires flac, see [this post on R
 
 ##### Tidal Plugin for upmpdcli
 
-Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF71/upmpdcli-docker/discussions/281) but again, there will be no support from Tidal. This solution works well with Tidal HiFi or with HiFi+ with MQA DACs, but currently does not support native HiRes flac.  
+Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF71/upmpdcli-docker/discussions/281) but again, there will be no support from Tidal. This solution works well with Tidal HiFi or with HiFi+ with MQA DACs.  
+The current upstream version does not  currently support native HiRes flac, but there is a [preview version](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-hires) which does.    
 
 ##### Logitech Media Server
 
