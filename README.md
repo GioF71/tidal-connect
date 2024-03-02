@@ -10,7 +10,7 @@ Please note that support goal is limited to cover running costs for subscription
 
 ## News
 
-Consider the new [mopidy-tidal](https://github.com/tehkillerbee/mopidy-tidal) alternative. Visit [this page](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal) for an example configuration. You will also find the reference to the underlying projects.  
+Consider the new [mopidy-tidal](https://github.com/tehkillerbee/mopidy-tidal) alternative. Visit [this page](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal) for an example configuration. You will also find the references to the underlying projects.  
 
 ## Disclaimers
 
