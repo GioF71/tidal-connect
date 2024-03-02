@@ -8,6 +8,10 @@ A simple script used to configure a docker-compose stack for Tidal Connect.
 Goal for [March 2024](https://ko-fi.com/giof71/goal?g=0)  
 Please note that support goal is limited to cover running costs for subscriptions to music services.
 
+## News
+
+Consider the new [mopidy-tidal](https://github.com/tehkillerbee/mopidy-tidal) alternative. Visit [this page](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal) for an example configuration. You will also find the reference to the underlying projects.  
+
 ## Disclaimers
 
 ### Contents
