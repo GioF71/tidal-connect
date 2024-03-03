@@ -329,6 +329,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-03-03|Fix software volume, avoid device which only contain Master (see #136)
 2024-02-22|Add support for software volume
 2024-02-22|Add support for configuration self-test using a generated tone
 2024-02-17|Add support for newer variables in configure.sh, see [#108](https://github.com/GioF71/tidal-connect/issues/108)

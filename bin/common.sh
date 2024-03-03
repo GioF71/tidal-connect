@@ -124,12 +124,13 @@ write_audio_config() {
         enable_soft_volume=0
         if [[ "${ENABLE_SOFTVOLUME^^}" == "YES" || "${ENABLE_SOFTVOLUME^^}" != "Y" ]]; then
             # check there is no Master already
-            check_master=`amixer -c $card_index controls | grep Master`
+            check_master=`amixer -c $card_index controls | grep \'Master\'`
             if [[ -z "${check_master}" ]]; then
+                echo "Ok to enable softvolume, as no \'Master\' control exists for the device at index [$card_index]"
                 enable_soft_volume=1
             else
                 echo "check_master=[${check_master}]"
-                echo "Cannot enable softvolume, a Master control already exists for the device at index [$card_index]"
+                echo "Cannot enable softvolume, a \'Master\' control already exists for the device at index [$card_index]"
             fi
         elif [[ -n "${ENABLE_SOFTVOLUME}" ]] && [[ "${ENABLE_SOFTVOLUME^^}" != "NO" && "${ENABLE_SOFTVOLUME^^}" != "N" ]]; then
             echo "Invalid ENABLE_SOFTVOLUME=[${ENABLE_SOFTVOLUME}]"
