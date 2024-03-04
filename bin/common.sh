@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - common.sh version 0.1.0"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - common.sh version 0.1.1"
 
 # some constants
 ASOUND_CONF_SIMPLE_FILE=asound.conf
@@ -79,6 +79,15 @@ display_variables() {
     echo "CARD_NAME=$CARD_NAME"
     echo "CARD_INDEX=$CARD_INDEX"
     echo "CARD_DEVICE=$CARD_DEVICE"
+    echo "CARD_FORMAT=$CARD_FORMAT"
+    echo "CREATED_ASOUND_CARD_NAME=$CREATED_ASOUND_CARD_NAME"
+    echo "ENABLE_SOFTVOLUME=$ENABLE_SOFTVOLUME"
+    echo "ENABLE_GENERATED_TONE=$ENABLE_GENERATED_TONE"
+    echo "ASOUND_FILE_PREFIX=$ASOUND_FILE_PREFIX"
+    echo "FORCE_PLAYBACK_DEVICE=$FORCE_PLAYBACK_DEVICE"
+    echo "SLEEP_TIME_SEC=$SLEEP_TIME_SEC"
+    echo "RESTART_ON_FAIL=$RESTART_ON_FAIL"
+    echo "RESTART_WAIT_SEC=$RESTART_WAIT_SEC"
 }
 
 set_defaults() {

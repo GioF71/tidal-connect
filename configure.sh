@@ -8,7 +8,7 @@ set -e
 ENV_FILE=.env
 chmod 755 bin/entrypoint.sh
 
-while getopts n:i:d:s:l:f:m:c:p:r:o:a:t:g:d: flag
+while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:v: flag
 do
     case "${flag}" in
         n) card_name=${OPTARG};;
@@ -16,17 +16,17 @@ do
         d) card_device=${OPTARG};;
         s) card_format=${OPTARG};;
         l) enable_soft_volume=${OPTARG};;
+        r) asound_file_prefix=${OPTARG};;
         f) friendly_name=${OPTARG};;
         m) model_name=${OPTARG};;
         c) mqa_codec=${OPTARG};;
         p) mqa_passthrough=${OPTARG};;
-        r) asound_file_prefix=${OPTARG};;
         o) force_playback_device=${OPTARG};;
         a) created_asound_card_name=${OPTARG};;
         g) enable_generated_tone=${OPTARG};;
+        w) restart_wait_sec=${OPTARG};;
         t) sleep_time_sec=${OPTARG};;
-        d) dns_server_list=${OPTARG};;
-
+        v) dns_server_list=${OPTARG};;
     esac
 done
 
@@ -40,14 +40,15 @@ echo "card_index=[$card_index]"
 echo "card_device=[$card_device]"
 echo "card_format=[$card_format]"
 echo "enable_soft_volume=[$enable_soft_volume]"
+echo "asound_file_prefix=[$asound_file_prefix]"
 echo "friendly_name=[$friendly_name]"
 echo "model_name=[$model_name]"
 echo "mqa_codec=[$mqa_codec]"
 echo "mqa_passthrough=[$mqa_passthrough]"
-echo "asound_file_prefix=[$asound_file_prefix]"
 echo "force_playback_device=[$force_playback_device]"
 echo "created_asound_card_name=[$created_asound_card_name]"
 echo "enable_generated_tone=[$enable_generated_tone]"
+echo "restart_wait_sec=[$restart_wait_sec]"
 echo "sleep_time_sec=[$sleep_time_sec]"
 echo "dns_server_list=[$dns_server_list]"
 
@@ -85,6 +86,13 @@ if [[ -n ${mqa_passthrough} ]]; then
     echo "MQA_PASSTHROUGH=${mqa_passthrough}" >> $ENV_FILE
 else
     echo "MQA_PASSTHROUGH not specified"
+fi
+
+if [[ -n ${restart_wait_sec} ]]; then
+    echo "Setting RESTART_ON_FAIL to [$restart_wait_sec]"
+    echo "RESTART_ON_FAIL=${restart_wait_sec}" >> $ENV_FILE
+else
+    echo "RESTART_ON_FAIL not specified"
 fi
 
 if [[ -n ${sleep_time_sec} ]]; then
