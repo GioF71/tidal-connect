@@ -25,7 +25,7 @@ services:
      - FORCE_PLAYBACK_DEVICE=${FORCE_PLAYBACK_DEVICE:-}
      - SLEEP_TIME_SEC=${SLEEP_TIME:-3}
      - RESTART_ON_FAIL=${RESTART_ON_FAIL:-1}
-     - RESTART_WAIT_SEC=${RESTART_WAIT_SEC:-30}
+     - RESTART_WAIT_SEC=${RESTART_WAIT_SEC:-10}
     volumes:
      - ./assets:/assets:ro
      - ./userconfig:/userconfig:ro
