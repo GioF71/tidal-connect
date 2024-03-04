@@ -126,7 +126,8 @@ PARAM|DESCRIPTION|VARIABLE
 -o|Force playback device|FORCE_PLAYBACK_DEVICE
 -a|Name of the virtual sound card in the generated asound.conf file|CREATED_ASOUND_CARD_NAME
 -t|Sleep time in seconds be, defaults to `3`|SLEEP_TIME_SEC
--d|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)|DNS_SERVER_LIST
+-w|Restart wait time in seconds, defaults to `30`
+-v|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)|DNS_SERVER_LIST
 
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
 If you already used the `configure.sh` command and you are experiencing issues (because of the card has changed its index), you can run the command again. In the latest version, the card index is calculated during the container startup phase and hopefully there will not be any need to use `configure.sh` again unless you change the audio device you want to use.
@@ -329,6 +330,10 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-03-04|Add logs.sh, restart.sh and restart-watch.sh scripts
+2024-03-04|Add -w for RESTART_WAIT_SEC to configure.sh
+2024-03-04|Corrected configure.sh (sequence of opts)
+2024-03-04|Add aune-s6 dac configuration with softvolume
 2024-03-03|Fix software volume, avoid device which only contains Master (see #136)
 2024-02-22|Add support for software volume
 2024-02-22|Add support for configuration self-test using a generated tone
