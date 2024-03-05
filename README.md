@@ -48,7 +48,7 @@ Even considering that after February 2024 the `mysqueezebox` online services wil
 
 ## References
 
-Tje contents of this repository entirely rely on [this](https://github.com/TonyTromp/tidal-connect-docker) repository from [GitHub user TonyTrump](https://github.com/TonyTromp). A big thank you to the author for the great work.  
+The contents of this repository entirely rely on [this](https://github.com/TonyTromp/tidal-connect-docker) repository from [GitHub user TonyTrump](https://github.com/TonyTromp). A big thank you to the author for the great work.  
 It will also use [his docker image](https://hub.docker.com/r/edgecrush3r/tidal-connect).  
 
 ## Why
