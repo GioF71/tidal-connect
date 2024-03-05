@@ -335,7 +335,7 @@ Date|Comment
 2024-03-04|Add -w for RESTART_WAIT_SEC to configure.sh
 2024-03-04|Corrected configure.sh (sequence of opts)
 2024-03-04|Add aune-s6 dac configuration with softvolume
-2024-03-03|Fix software volume, avoid device which only contains Master (see #136)
+2024-03-03|Fix software volume, avoid to give up for a device which only contains Master (see #136)
 2024-02-22|Add support for software volume
 2024-02-22|Add support for configuration self-test using a generated tone
 2024-02-17|Add support for newer variables in configure.sh, see [#108](https://github.com/GioF71/tidal-connect/issues/108)
