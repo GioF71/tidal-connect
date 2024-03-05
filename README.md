@@ -20,7 +20,7 @@ This repository does not contain the Tidal Connect software. There is only a doc
 
 ### Credit
 
-All the hard work has been done by the owner of the repository mentioned in the [References](#references) section and in the other repositories from which this one has been forked. I am just trying to provide a way to run their container more easily in certain environments (where the index of your audio device is not the same on every restart).  
+All the hard work has been done by the owner of the repository mentioned in the [References](#references) section and in the other repositories from which his one has been forked. I am just trying to provide a way to run their container more easily in certain environments (where the index of your audio device is not the same on every restart).  
 
 ### No support from Tidal
 
