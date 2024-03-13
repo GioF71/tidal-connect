@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - common.sh version 0.1.1"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - common.sh version 0.1.2"
 
 # some constants
 ASOUND_CONF_SIMPLE_FILE=asound.conf
@@ -88,6 +88,7 @@ display_variables() {
     echo "SLEEP_TIME_SEC=$SLEEP_TIME_SEC"
     echo "RESTART_ON_FAIL=$RESTART_ON_FAIL"
     echo "RESTART_WAIT_SEC=$RESTART_WAIT_SEC"
+    echo "CLIENT_ID=$CLIENT_ID"
 }
 
 set_defaults() {

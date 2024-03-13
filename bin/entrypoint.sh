@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.3"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.4"
 
 mkdir -p /config
 
@@ -34,6 +34,28 @@ else
    echo "Generated tone is enabled"
 fi
 
+application_path=/app/ifi-tidal-release/bin/tidal_connect_application
+certificate_path=/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat
+
+COMMAND_LINE="${application_path} \
+         --tc-certificate-path \"${certificate_path}\" \
+         --playback-device ${PLAYBACK_DEVICE} \
+         -f \"${friendly_name}\" \
+         --model-name \"${model_name}\" \
+         --codec-mpegh true \
+         --codec-mqa ${mqa_codec} \
+         --disable-app-security false \
+         --disable-web-security false \
+         --enable-mqa-passthrough ${mqa_passthrough} \
+         --log-level 3 \
+         --enable-websocket-log \"0\""
+
+if [[ -n "${CLIENT_ID}" ]]; then
+   COMMAND_LINE="${COMMAND_LINE} --clientid \"${CLIENT_ID}\""
+fi
+
+echo "COMMAND_LINE=${COMMAND_LINE}"
+
 while true
 do
    tone_skipped=0
@@ -50,18 +72,7 @@ do
    fi
    if [[ $tone_played -eq 1 || $tone_skipped -eq 1 ]]; then
       echo "Starting TIDAL Connect ..."
-      /app/ifi-tidal-release/bin/tidal_connect_application \
-         --tc-certificate-path "/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat" \
-         --playback-device ${PLAYBACK_DEVICE} \
-         -f "${friendly_name}" \
-         --model-name "${model_name}" \
-         --codec-mpegh true \
-         --codec-mqa ${mqa_codec} \
-         --disable-app-security false \
-         --disable-web-security false \
-         --enable-mqa-passthrough ${mqa_passthrough} \
-         --log-level 3 \
-         --enable-websocket-log "0"
+      eval "${COMMAND_LINE}"
       echo "TIDAL Connect Container Stopped."
    else
       echo "Device locked/invalid, won't start the application ..."
