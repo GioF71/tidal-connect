@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.6"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.7"
 
 mkdir -p /config
 
@@ -17,11 +17,13 @@ model_name=`load_key_value $KEY_MODEL_NAME`
 mqa_codec=`load_key_value $KEY_MQA_CODEC`
 mqa_passthrough=`load_key_value $KEY_MQA_PASSTHROUGH`
 
-echo "Starting Speaker Application in Background (TMUX)"
-/usr/bin/tmux new-session -d -s speaker_controller_application '/app/ifi-tidal-release/bin/speaker_controller_application'
+if [[ -z "${DISABLE_CONTROL_APP}" ]] || [[ $DISABLE_CONTROL_APP -eq 0 ]]; then
+   echo "Starting Speaker Application in Background (TMUX)"
+   /usr/bin/tmux new-session -d -s speaker_controller_application '/app/ifi-tidal-release/bin/speaker_controller_application'
 
-echo "Sleeping for a while ($SLEEP_TIME_SEC seconds)..."
-sleep $SLEEP_TIME_SEC
+   echo "Sleeping for a while ($SLEEP_TIME_SEC seconds)..."
+   sleep $SLEEP_TIME_SEC
+fi
 
 echo "ENABLE_GENERATED_TONE=[${ENABLE_GENERATED_TONE}]"
 tone_enabled=1

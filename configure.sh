@@ -8,7 +8,7 @@ set -e
 ENV_FILE=.env
 chmod 755 bin/entrypoint.sh
 
-while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:e:b:h:v: flag
+while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:e:b:h:j:v: flag
 do
     case "${flag}" in
         n) card_name=${OPTARG};;
@@ -29,6 +29,7 @@ do
         e) client_id=${OPTARG};;
         b) log_level=${OPTARG};;
         h) certificate_path=${OPTARG};;
+        j) disable_control_app=${OPTARG};;
         v) dns_server_list=${OPTARG};;
     esac
 done
@@ -56,6 +57,7 @@ echo "sleep_time_sec=[$sleep_time_sec]"
 echo "client_id=[$client_id]"
 echo "log_level=[$log_level]"
 echo "certificate_path=[$certificate_path]"
+echo "disable_control_app=[$disable_control_app]"
 echo "dns_server_list=[$dns_server_list]"
 
 if test -f $ENV_FILE; then
@@ -167,6 +169,11 @@ fi
 if [[ -n "${certificate_path}" ]]; then
     echo "Setting CERTIFICATE_PATH to [$certificate_path]"
     echo "CERTIFICATE_PATH=${certificate_path}" >> $ENV_FILE
+fi
+
+if [[ -n "${disable_control_app}" ]]; then
+    echo "Setting DISABLE_CONTROL_APP to [$disable_control_app]"
+    echo "DISABLE_CONTROL_APP=${disable_control_app}" >> $ENV_FILE
 fi
 
 if [[ -n "${enable_generated_tone}" ]]; then
