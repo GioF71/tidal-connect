@@ -129,6 +129,7 @@ PARAM|DESCRIPTION|VARIABLE
 -w|Restart wait time in seconds, defaults to `10`|RESTART_WAIT_SEC
 -e|Custom client id, defaults to empty string|CLIENT_ID
 -v|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)|DNS_SERVER_LIST
+-b|log level, defaults to `3`|LOG_LEVEL
 
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
 If you already used the `configure.sh` command and you are experiencing issues (because of the card has changed its index), you can run the command again. In the latest version, the card index is calculated during the container startup phase and hopefully there will not be any need to use `configure.sh` again unless you change the audio device you want to use.
@@ -174,6 +175,7 @@ SLEEP_TIME_SEC|Sleep time before starting the real app, after starting tmux. Def
 RESTART_ON_FAIL|Enables auto restart (see issue [#16](https://github.com/GioF71/tidal-connect/issues/16)), defaults to `1` (which means restart is enabled).
 RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL), defaults to 10.
 CLIENT_ID|Set custom client id, defaults to an empty string
+LOG_LEVEL|Application log level, defaults to `3`
 DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers).
 
 Please note that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
@@ -332,6 +334,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-03-13|Support for log level
 2024-03-13|Support for custom clientid
 2024-03-04|Lowered default for RESTART_WAIT_SEC to 10
 2024-03-04|Add logs.sh, restart.sh and restart-watch.sh scripts
