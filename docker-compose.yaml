@@ -29,6 +29,7 @@ services:
      - RESTART_ON_FAIL=${RESTART_ON_FAIL:-1}
      - RESTART_WAIT_SEC=${RESTART_WAIT_SEC:-10}
      - LOG_LEVEL=${LOG_LEVEL:-3}
+     - DISABLE_CONTROL_APP=${DISABLE_CONTROL_APP:-0}
     volumes:
      - ./assets:/assets:ro
      - ./userconfig:/userconfig:ro

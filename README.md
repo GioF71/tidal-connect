@@ -130,6 +130,7 @@ PARAM|DESCRIPTION|VARIABLE
 -e|Custom client id, defaults to empty string|CLIENT_ID
 -b|log level, defaults to `3`|LOG_LEVEL
 -h|override default certificate path|CERTIFICATE_PATH
+-j|Disable control app if set to `1`, defaults to `0`|DISABLE_CONTROL_APP
 -v|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)|DNS_SERVER_LIST
 
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
@@ -178,6 +179,7 @@ RESTART_WAIT_SEC|Wait time in seconds before trying restart (see RESTART_ON_FAIL
 CLIENT_ID|Set custom client id, defaults to an empty string
 LOG_LEVEL|Application log level, defaults to `3`
 CERTIFICATE_PATH|Override default certificate path
+DISABLE_CONTROL_APP|Disable control app if set to `1`, defaults to `0`
 DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers).
 
 Please note that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
@@ -336,6 +338,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-03-13|Support for disabline control app
 2024-03-13|Support for overriding certificate path
 2024-03-13|Support for log level
 2024-03-13|Support for custom clientid
