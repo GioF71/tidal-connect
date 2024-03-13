@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.5"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.6"
 
 mkdir -p /config
 
@@ -34,11 +34,16 @@ else
    echo "Generated tone is enabled"
 fi
 
-application_path=/app/ifi-tidal-release/bin/tidal_connect_application
+executable_path=/app/ifi-tidal-release/bin/tidal_connect_application
 certificate_path=/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat
 
-COMMAND_LINE="${application_path} \
-         --tc-certificate-path \"${certificate_path}\" \
+if [[ -n "${CERTIFICATE_PATH}" ]]; then
+   certificate_path=${CERTIFICATE_PATH}
+fi
+echo "certificate_path=[${certificate_path}]"
+
+COMMAND_LINE="${executable_path} \
+         --tc-certificate-path ${certificate_path} \
          --playback-device ${PLAYBACK_DEVICE} \
          -f \"${friendly_name}\" \
          --model-name \"${model_name}\" \

@@ -8,7 +8,7 @@ set -e
 ENV_FILE=.env
 chmod 755 bin/entrypoint.sh
 
-while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:e:b:v: flag
+while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:e:b:h:v: flag
 do
     case "${flag}" in
         n) card_name=${OPTARG};;
@@ -28,6 +28,7 @@ do
         t) sleep_time_sec=${OPTARG};;
         e) client_id=${OPTARG};;
         b) log_level=${OPTARG};;
+        h) certificate_path=${OPTARG};;
         v) dns_server_list=${OPTARG};;
     esac
 done
@@ -54,6 +55,7 @@ echo "restart_wait_sec=[$restart_wait_sec]"
 echo "sleep_time_sec=[$sleep_time_sec]"
 echo "client_id=[$client_id]"
 echo "log_level=[$log_level]"
+echo "certificate_path=[$certificate_path]"
 echo "dns_server_list=[$dns_server_list]"
 
 if test -f $ENV_FILE; then
@@ -160,6 +162,11 @@ fi
 if [[ -n "${log_level}" ]]; then
     echo "Setting LOG_LEVEL to [$log_level]"
     echo "LOG_LEVEL=${log_level}" >> $ENV_FILE
+fi
+
+if [[ -n "${certificate_path}" ]]; then
+    echo "Setting CERTIFICATE_PATH to [$certificate_path]"
+    echo "CERTIFICATE_PATH=${certificate_path}" >> $ENV_FILE
 fi
 
 if [[ -n "${enable_generated_tone}" ]]; then
