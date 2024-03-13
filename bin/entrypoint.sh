@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.4"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.5"
 
 mkdir -p /config
 
@@ -47,7 +47,7 @@ COMMAND_LINE="${application_path} \
          --disable-app-security false \
          --disable-web-security false \
          --enable-mqa-passthrough ${mqa_passthrough} \
-         --log-level 3 \
+         --log-level ${LOG_LEVEL} \
          --enable-websocket-log \"0\""
 
 if [[ -n "${CLIENT_ID}" ]]; then
