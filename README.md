@@ -338,6 +338,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-03-27|Add presets for hifiberry digi+ pro
 2024-03-13|Support for disabline control app
 2024-03-13|Support for overriding certificate path
 2024-03-13|Support for log level
