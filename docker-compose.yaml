@@ -35,5 +35,5 @@ services:
      - ./bin/entrypoint.sh:/entrypoint.sh
      - /var/run/dbus:/var/run/dbus
     dns:
-      - ${DNS_SERVER_LIST:-8.8.8.8 8.8.4.4}
+      - ${DNS_SERVER_LIST:-8.8.8.8}
     restart: unless-stopped
