@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   tidal-connect:
     image: edgecrush3r/tidal-connect:latest
