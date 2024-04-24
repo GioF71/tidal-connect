@@ -345,7 +345,7 @@ Date|Comment
 2024-04-02|Remove optional `version` property in docker-compose file
 2024-04-02|Add sample config file for Yulong D200 USB DAC
 2024-03-27|Add sample config file for hifiberry digi+ pro
-2024-03-13|Support for disabline control app
+2024-03-13|Support for disabling control app
 2024-03-13|Support for overriding certificate path
 2024-03-13|Support for log level
 2024-03-13|Support for custom clientid
