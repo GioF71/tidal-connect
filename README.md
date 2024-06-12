@@ -11,7 +11,7 @@ Please note that support goal is limited to cover running costs for subscription
 ## News
 
 I am trying to document all the configurations I have encountered with my own dacs and through your tickets. Look [here](https://github.com/GioF71/tidal-connect/blob/main/userconfig/README.md) and [here](https://github.com/GioF71/tidal-connect/blob/main/samples/README.md).  
-Look in the [samples](https://github.com/GioF71/tidal-connect/tree/main/samples) and [userconfig](https://github.com/GioF71/tidal-connect/tree/main/userconfig) directories. They might contain a good file for your dac. It something for you isn't already there, open an issue, and we will create a sample file for your dac, which will also help other users.   
+Look in the [samples](https://github.com/GioF71/tidal-connect/tree/main/samples) and [userconfig](https://github.com/GioF71/tidal-connect/tree/main/userconfig) directories. They might contain a good file for your dac. It something for you isn't already there, open an issue, and we will create a sample file for your dac, which will also help other users.  
 Also, consider the new [mopidy-tidal](https://github.com/tehkillerbee/mopidy-tidal) alternative. Visit [this page](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal) for an example configuration. You will also find the references to the underlying projects.  
 
 ## Disclaimers
