@@ -41,7 +41,8 @@ Starting late November 2023, BubbleUPnP supports hires flac, see [this post on R
 ##### Tidal Plugin for upmpdcli
 
 Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF71/upmpdcli-docker/discussions/281) but again, there will be no support from Tidal. This solution works well with Tidal HiFi or with HiFi+ with MQA DACs.  
-The current upstream version does not  currently support native HiRes flac, but there is a [preview version](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-hires) which does.    
+This solution supports native HiRes flac playback (HI_RES_LOSSLESS so up to 24/192) to and mpd/upmpdcli player. If you configure it to play only up to HI_RES (so up to 24/48 and unfolding on a DAC), it will work on pretty much any UPnP renderer.  
+See [here](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-hires) for a configuration for the HI_RES_LOSSLESS enabled media server.  
 
 ##### Logitech Media Server
 
