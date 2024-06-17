@@ -341,6 +341,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-06-17|Add presets for hdmi on raspberry pi
 2024-04-08|Add sample config file for hifiberry dac plus
 2024-04-06|Reverted removal of optional `version` property in docker-compose file (#160)
 2024-04-02|Remove optional `version` property in docker-compose file
