@@ -8,6 +8,22 @@ A simple script used to configure a docker-compose stack for Tidal Connect.
 Please see the [Goal](https://ko-fi.com/giof71/goal?g=0)  
 Please note that support goal is limited to cover running costs for subscriptions to music services.
 
+## Issue on the Raspberry Pi 5
+
+If you use a Raspberry Pi 5, you might encounter an issue that shows with the following content in the container logs:
+
+`/app/ifi-tidal-release/bin/tidal_connect_application: error while loading shared libraries: libsystemd.so.0: ELF load command alignment not page-aligned`
+
+This issue can be solved by editing the file `/boot/firmware/config.txt` using the following command:
+
+`sudo nano /boot/firmware/config.txt`
+
+Add the following line in the `all` section:
+
+`kernel=kernel8.img`
+
+You will need to reboot, then restart the container.
+
 ## News
 
 I am trying to document all the configurations I have encountered with my own dacs and through your tickets. Look [here](https://github.com/GioF71/tidal-connect/blob/main/userconfig/README.md) and [here](https://github.com/GioF71/tidal-connect/blob/main/samples/README.md).  
