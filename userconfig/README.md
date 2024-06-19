@@ -13,3 +13,4 @@ Enable one of these presets by setting (e.g. for the 44.1kHz variant):
 `ASOUND_FILE_PREFIX=hdmi-rpi-44`
 
 to your `.env` file. Do not set `CARD_NAME` or `CARD_INDEX` when specifying an asound file.
+There is also another set of presets, named `hdmi0-rpi`, `hdmi0-rpi-44` and `hdmi0-rpi-48` which should work with Raspberry Pi 4, which has two hdmi outputs, thus different card names (vc4hdmi0 and vc4hdmi1 instead of only vc4hdmi).
