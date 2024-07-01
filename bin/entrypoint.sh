@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.7"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.8"
 
 mkdir -p /config
 
@@ -67,10 +67,17 @@ while true
 do
    tone_skipped=0
    if [[ $tone_enabled -eq 1 ]]; then
-      echo "Trying a short tone ..."
+      echo "Trying a short tone @ 48kHz ..."
       tone_played=0
-      if aplay -D $PLAYBACK_DEVICE /assets/audio/short-low-tone.wav; then
+      if aplay -D $PLAYBACK_DEVICE /assets/audio/short-low-tone-48k.wav; then
+         echo "Success with 48 kHz tone."
          tone_played=1
+      else
+         echo "Failed with 48 kHz tone, trying 44.1 kHz ..."
+         if aplay -D $PLAYBACK_DEVICE /assets/audio/short-low-tone-44k.wav; then
+            echo "Success with 44.1 kHz tone."
+            tone_played=1
+         fi
       fi
       echo "tone_played=[$tone_played]"
    else
