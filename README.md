@@ -357,6 +357,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-07-01|Add asound.conf for Apple USB dongle, see #187
 2024-07-01|Add support for 48kHz tone, see #187
 2024-06-17|Add presets for hdmi on raspberry pi
 2024-04-08|Add sample config file for hifiberry dac plus
