@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - common.sh version 0.1.5"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - common.sh version 0.1.6"
 
 # some constants
 ASOUND_CONF_SIMPLE_FILE=asound.conf
@@ -135,7 +135,7 @@ write_audio_config() {
         fi
         echo "Creating sound configuration file (card_index=[$card_index], softvol=[$ENABLE_SOFTVOLUME]) ..."
         enable_soft_volume=0
-        if [[ "${ENABLE_SOFTVOLUME^^}" == "YES" || "${ENABLE_SOFTVOLUME^^}" != "Y" ]]; then
+        if [[ "${ENABLE_SOFTVOLUME^^}" == "YES" || "${ENABLE_SOFTVOLUME^^}" == "Y" ]]; then
             # check there is no Master already
             check_master=`amixer -c $card_index controls | grep \'Master\'`
             if [[ -z "${check_master}" ]]; then
