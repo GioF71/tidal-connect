@@ -357,6 +357,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-07-08|Add sample env files for Fosi Audio DS1 headphone amp
 2024-07-08|Fixed bug which would cause ENABLE_SOFTVOLUME to not be honored when set to e.g. "no"
 2024-07-08|Add pi-headphones.asound.conf for RPI Headphone jack
 2024-07-01|Add asound.conf for Apple USB dongle, see #187
