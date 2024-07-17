@@ -323,6 +323,27 @@ Say you have selected your card by its name, and that the name is `D10`, you can
 
 If this does not say "closed", it means that the audio device is being currently used.  
 
+#### Software volume
+
+This solution will try to configure a software volume for your Tidal Connect device, so that you should be able to control the software volume from the Tidal App on any platform, without touching the hardware volume, which is something you might find useful if you have other players running on the same audio device, e.g. mpd, librespot, squeezelite, etc.  
+However, software volume will be enabled only if your audio device does not already have a control named `Master`. You can verify if your device already has such control using the following command, for the audio device at index 0:
+
+```text
+amixer -c 0 | grep \'Master\'
+```
+
+The desired output is no output, as this would mean that there is no `Master` control already.  
+If, instead, you get a line like this one, you are (almost) out of luck:
+
+```text
+Simple mixer control 'Master',0
+```
+
+Even under this condition, the solution will create the SoftVolume control naming it `SoftVolume`. This will allow the Tidal Apps (at least the current Android version) to control the *hardware* volume using its slider. This means that changing the volume from the Tidal App will affect all the other players running on the same audio card.  
+If you are in this situation (so if you already have a `Master` control defined in your audio device) and you don't want to use hardware volume, consider disabling software volume by setting `ENABLE_SOFTVOLUME` to `no` in your `.env` file, or acting on the correspondent switch of the `configure.sh` script.  
+See [this issue](https://github.com/GioF71/tidal-connect/issues/187) for some context information.  
+Special "Thank You" to [zamiere](https://github.com/zamiere) for providing useful information.  
+
 #### Hardware changes
 
 Remember that, should you change something to your Moode/Volumio setup, maybe replacing the audio-hat with an USB DAC, you will most likely need to reconfigure Tidal Connect accordingly.  
@@ -357,6 +378,8 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-07-17|Add documentation about software volume
+2024-07-17|Create SoftMaster control when a Master control already exists
 2024-07-08|Add sample env files for Fosi Audio DS1 headphone amp
 2024-07-08|Fixed bug which would cause ENABLE_SOFTVOLUME to not be honored when set to e.g. "no"
 2024-07-08|Add pi-headphones.asound.conf for RPI Headphone jack
