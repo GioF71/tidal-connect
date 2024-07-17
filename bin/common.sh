@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - common.sh version 0.1.6"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - common.sh version 0.1.7"
 
 # some constants
 ASOUND_CONF_SIMPLE_FILE=asound.conf
@@ -135,15 +135,23 @@ write_audio_config() {
         fi
         echo "Creating sound configuration file (card_index=[$card_index], softvol=[$ENABLE_SOFTVOLUME]) ..."
         enable_soft_volume=0
+        softvolume_card_name=Master
         if [[ "${ENABLE_SOFTVOLUME^^}" == "YES" || "${ENABLE_SOFTVOLUME^^}" == "Y" ]]; then
             # check there is no Master already
-            check_master=`amixer -c $card_index controls | grep \'Master\'`
+            check_master=`amixer -c $card_index controls | grep \'${softvolume_card_name}\'`
             if [[ -z "${check_master}" ]]; then
-                echo "Ok to enable softvolume, as no 'Master' control exists for the device at index [$card_index]"
+                echo "Ok to enable softvolume, as no '${softvolume_card_name}' control exists for the device at index [$card_index]"
                 enable_soft_volume=1
             else
                 echo "check_master=[${check_master}]"
-                echo "Cannot enable softvolume, a 'Master' control already exists for the device at index [$card_index]"
+                echo "A control named [${softvolume_card_name}] already exists for the device at index [$card_index]"
+                softvolume_card_name="SoftMaster"
+                enable_soft_volume=1
+                if [ $enable_soft_volume -eq 1 ]; then
+                    echo "A softvolume control will be created for the device at index [$card_index] using name [${softvolume_card_name}]"
+                    echo "*WARNING* Tidal volume slider might act on the hardware volume control"
+                    echo "*WARNING* If you don't want this, consider disabling software volume"
+                fi
             fi
         elif [[ -n "${ENABLE_SOFTVOLUME}" ]] && [[ "${ENABLE_SOFTVOLUME^^}" != "NO" && "${ENABLE_SOFTVOLUME^^}" != "N" ]]; then
             echo "Invalid ENABLE_SOFTVOLUME=[${ENABLE_SOFTVOLUME}]"
@@ -193,7 +201,7 @@ write_audio_config() {
             echo "    pcm \"tidal-audio-device\"" >> /etc/asound.conf
             echo "  }" >> /etc/asound.conf
             echo "  control {" >> /etc/asound.conf
-            echo "    name \"Master\"" >> /etc/asound.conf
+            echo "    name \"${softvolume_card_name}\"" >> /etc/asound.conf
             echo "    card 0" >> /etc/asound.conf
             echo "  }" >> /etc/asound.conf
             echo "}" >> /etc/asound.conf
