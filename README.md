@@ -65,6 +65,17 @@ See [here](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-h
 Another alternative, if you have a HiFi subscription and/or are ok with being limited to standard resolution or mqa-encoded tracks, is using [Logitech Media Server](https://support.logi.com/hc/en-us/articles/360023227314-Installing-Logitech-Media-Server-software) and Squeezelite, for which you might use my [docker image for squeezelite](https://github.com/GioF71/squeezelite-docker).  
 Even considering that after February 2024 the `mysqueezebox` online services will be [shut down](https://forums.slimdevices.com/forum/user-forums/mysqueezebox-com/1668754-squeezebox-display-please-follow-the-qr-code-logitech-migration-announcement), there is a new, very promising, and I'd say already very usable plugin [here](https://github.com/michaelherger/lms-plugin-tidal) by community heroes [michaelherger](https://github.com/michaelherger) and [philippe44](https://github.com/philippe44). This solution does not currently support Tidal HiRes while it supports MQA encoded streams: there will be no software-based unfolding, but a MQA enabled DAC should do that instead.  
 
+##### Mopidy-Tidal
+
+There is a new plugin for [Mopidy](https://mopidy.com/) called [Mopidy-Tidal](https://github.com/tehkillerbee/mopidy-tidal), which enabled Mopidy to stream for Tidal with full support for HiRes streams.  
+I have prepared a simple docker container image for this solution [here](https://github.com/GioF71/mopidy-docker) with a strong focus on this plugin especially.  
+A sample configuration can be found [here](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal).  
+
+##### Audirvana
+
+A commercial solution, [Audirvana Studio](https://audirvana.com/), allows you to stream from Tidal to UPnP renderers.  
+I maintain docker images for [Audirvana Studio](https://github.com/GioF71/audirvana-docker) and [here](https://github.com/GioF71/audio-tools/tree/main/players/audirvana-upnp) you can find a simple configuration for using mpd and upmpdcli as a player for Audirvana.  
+
 ## References
 
 The contents of this repository entirely rely on [this](https://github.com/TonyTromp/tidal-connect-docker) repository from [GitHub user TonyTrump](https://github.com/TonyTromp). A big thank you to the author for the great work.  
