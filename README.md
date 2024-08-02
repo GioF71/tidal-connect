@@ -68,8 +68,8 @@ Even considering that after February 2024 the `mysqueezebox` online services wil
 ##### Mopidy-Tidal
 
 There is a new plugin for [Mopidy](https://mopidy.com/) called [Mopidy-Tidal](https://github.com/tehkillerbee/mopidy-tidal), which enabled Mopidy to stream for Tidal with full support for HiRes streams.  
-I have prepared a simple docker container image for this solution [here](https://github.com/GioF71/mopidy-docker) with a strong focus on this plugin especially.  
-A sample configuration can be found [here](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal).  
+I have prepared a  docker container image for this solution [here](https://github.com/GioF71/mopidy-docker) with a strong focus on this plugin especially.  
+A simple configuration can be found [here](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal).  
 
 ##### Audirvana
 
