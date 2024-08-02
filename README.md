@@ -76,6 +76,11 @@ A sample configuration can be found [here](https://github.com/GioF71/audio-tools
 A commercial solution, [Audirvana Studio](https://audirvana.com/), allows you to stream from Tidal to UPnP renderers.  
 I maintain docker images for [Audirvana Studio](https://github.com/GioF71/audirvana-docker) and [here](https://github.com/GioF71/audio-tools/tree/main/players/audirvana-upnp) you can find a simple configuration for using mpd and upmpdcli as a player for Audirvana.  
 
+##### Roon
+
+[Roon](https://roon.app/) is another commercial solution which can allow you to stream to Tidal.  
+You can build an endpoint using [Roon Bridge](https://help.roonlabs.com/portal/en/kb/articles/roonbridge). A dockerized solution is [here](https://github.com/GioF71/roon-bridge-docker).  
+
 ## References
 
 The contents of this repository entirely rely on [this](https://github.com/TonyTromp/tidal-connect-docker) repository from [GitHub user TonyTrump](https://github.com/TonyTromp). A big thank you to the author for the great work.  
