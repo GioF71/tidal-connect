@@ -394,6 +394,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-08-06|Add sample for Chord Qutest (see issue [#186](https://github.com/GioF71/tidal-connect/issues/186))
 2024-07-17|Add documentation about software volume
 2024-07-17|Create SoftMaster control when a Master control already exists
 2024-07-08|Add sample env files for Fosi Audio DS1 headphone amp
