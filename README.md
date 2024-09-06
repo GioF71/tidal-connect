@@ -26,9 +26,22 @@ You will need to reboot, then restart the container.
 
 ## News
 
+### MQA content is gone
+
+At the end of July 2024, Tidal has removed all the MQA content. This particular implementation of Tidal Connect could play hi-res files only up to 24/48 and for MQA content: in the latter case, an unfolding to 24/88 or 24/96 was implemented by the application itself, while the further processing was delegated to a MQA capable DAC.  
+As far as I know, content above 16/44 available as HI_RES at 24/44 or 24/48 is currently inexistent on Tidal, so I guess we are now stuck to standard redbook resolution (16/44).  
+I don't consider this limitation a show-stopper. Some people might miss MQA, and that is totally fine for me. On the bright side, at least from now on, we don't have to worry about this controversial format to be detrimental to the audio quality, as some people said.  
+All the hires content from Tidal is now available only via MPEG-DASH. Some of the [alternatives mentioned below](#alternatives) support this streaming schema and will be able to play hi-res content up to 24/192.  
+
+### Presets
+
 I am trying to document all the configurations I have encountered with my own dacs and through your tickets. Look [here](https://github.com/GioF71/tidal-connect/blob/main/userconfig/README.md) and [here](https://github.com/GioF71/tidal-connect/blob/main/samples/README.md).  
-Look in the [samples](https://github.com/GioF71/tidal-connect/tree/main/samples) and [userconfig](https://github.com/GioF71/tidal-connect/tree/main/userconfig) directories. They might contain a good file for your dac. It something for you isn't already there, open an issue, and we will create a sample file for your dac, which will also help other users.  
-Also, consider the new [mopidy-tidal](https://github.com/tehkillerbee/mopidy-tidal) alternative. Visit [this page](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal) for an example configuration. You will also find the references to the underlying projects.  
+Look at the [samples](https://github.com/GioF71/tidal-connect/tree/main/samples) and [userconfig](https://github.com/GioF71/tidal-connect/tree/main/userconfig) directories. They might contain a good file for your dac. It something for you isn't already there, open an issue, and we will create a sample file for your dac, which will also help other users.  
+
+### A nice alternative
+
+Also, consider the new [mopidy-tidal](https://github.com/tehkillerbee/mopidy-tidal) alternative. Some things are not on par with the full-fledged web player or mobile app, but the developer is excellent, and I believe things are going to improve.  
+Visit [this page](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal) for an example configuration using [my docker image for mopidy](https://github.com/GioF71/mopidy-docker). You will also find the references to the underlying projects.  
 
 ## Disclaimers
 
