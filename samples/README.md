@@ -13,7 +13,7 @@ hifiberry-digi-plus-pro.env|Hifiberry Digi+ Pro|yes|OK. One of my pi hats
 ifi-zen-dac-v2|Ifi Zen DAC V2|yes|OK. See [this issue](https://github.com/GioF71/tidal-connect/issues/136)
 minix-neo-u1.armbian.env|Minix Neo U1 optical output with Armbian OS|yes|Owned device. Performance issues, see file
 minix-neo-u1.coreelec.env|Minix Neo U1 optical output with CoreElec|yes|Owned device. OK with CoreElec
-peachtree-dac-it.env|Peachtree DAC*It|yes|OK|OK. One of my DACs
+peachtree-dac-it.env|Peachtree DAC*It|yes|OK. One of my DACs
 smsl-a8.env|SMSL A8|Yes|OK. See [this issue](https://github.com/GioF71/tidal-connect/issues/103)
 topping-d10.env|Topping D10|Yes|OK. One of my DACs
 yulong-d200.env|Yulong D200|yes|OK. One of my DACs
