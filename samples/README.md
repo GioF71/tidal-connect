@@ -6,7 +6,7 @@ Use these to complete your `.env` file.
 ## The files
 
 FILE|DAC|SOFTVOL|NOTES
-:---|:---|:---
+:---|:---|:---|:---
 aune-s6.env|Aune S6|yes|OK. One of my DACs
 hifiberry-dac-plus.env|Hifiberry DAC Plus|yes|OK. One of my pi hats
 hifiberry-digi-plus-pro.env|Hifiberry Digi+ Pro|yes|OK. One of my pi hats
