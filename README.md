@@ -407,6 +407,8 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-09-23|Add sample for FiiO K11 (see issue [#202](https://github.com/GioF71/tidal-connect/issues/202))
+2024-09-23|Corrected markdown table in `userconfig/README.md`
 2024-08-06|Add sample for Chord Qutest (see issue [#186](https://github.com/GioF71/tidal-connect/issues/186))
 2024-08-02|Add alternatives: Mopidy-Tidal, Audirvana (paid) and Roon (paid)
 2024-07-17|Add documentation about software volume
