@@ -123,9 +123,11 @@ Docker is a prerequisite. On debian and derived distributions (this includes Ras
 sudo apt-get update
 sudo apt-get install docker.io docker-compose
 sudo usermod -a -G docker $USER
+newgrp docker
 ```
 
-The last command adds the current user to the docker group. This is not mandatory; if you choose to skip this step, you might need to execute docker-compose commands by prepending `sudo`.  
+The third line command adds the current user to the docker group. This is not mandatory; if you choose to skip this step, you might need to execute docker-compose commands by prepending `sudo`.  
+The last line will login to the group named `docker`. The previous command (`usermod`) is of course required in order for the `newgrp` instruction to be successful.  
 
 ### Clone the repository
 
@@ -407,6 +409,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-10-15|Add `newgrp` instruction so a logoff/logon is not strictly required.
 2024-09-23|Add sample for FiiO K11 (see issue [#202](https://github.com/GioF71/tidal-connect/issues/202))
 2024-09-23|Corrected markdown table in `userconfig/README.md`
 2024-08-06|Add sample for Chord Qutest (see issue [#186](https://github.com/GioF71/tidal-connect/issues/186))
