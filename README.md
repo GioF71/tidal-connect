@@ -59,7 +59,7 @@ This solution is not and will probably never be supported by Tidal. It might sto
 
 #### Alternatives
 
-If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is the ubiquitous Wiim Mini/Pro/Pro+/Amp. Another option is represented by Google Chromecast/Chromecast Audio devices. Also, if you use Apple devices, you can already stream to AirPlay-enabled devices.  
+If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is the ubiquitous Wiim Mini/Pro/Pro+/Amp/AmpPro/Ultra. Another option is represented by Google Chromecast/Chromecast Audio devices. Also, if you use Apple devices, you can already stream to AirPlay-enabled devices.  
 Even your current TV might already be used as an endpoint for Tidal via the embedded Chromecast functionality, or via AirPlay.  
 
 ##### UPnP
