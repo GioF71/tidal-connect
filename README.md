@@ -26,6 +26,23 @@ You will need to reboot, then restart the container.
 
 ## News
 
+### Support for building your own image
+
+You can now build a custom image, which will be based on [debian:bookmark-slim](https://hub.docker.com/_/debian/tags?name=bookworm-slim).  
+In order to build the image, change the current directory to `build`, then execute:
+
+```text
+docker build . -t my/tidal-connect
+```
+
+or execute the provided `local-build.sh` using
+
+```text
+./local-build.sh
+```
+
+Note that the image will not contain the tidal binaries. Refer to the following readme files in the [bin](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/bin/README.md), [certificate](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/certificate/README.md), [lib](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib/README.md) and [lib-arm-linux-gnueabihf](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib-arm-linux-gnueabihf/README.md).  
+
 ### MQA content is gone
 
 At the end of July 2024, Tidal has removed all the MQA content. This particular implementation of Tidal Connect could play hi-res files only up to 24/48 and for MQA content: in the latter case, an unfolding to 24/88 or 24/96 was implemented by the application itself, while the further processing was delegated to a MQA capable DAC.  
@@ -182,6 +199,8 @@ PARAM|DESCRIPTION|VARIABLE
 -h|override default certificate path|CERTIFICATE_PATH
 -j|Disable control app if set to `1`, defaults to `0`|DISABLE_CONTROL_APP
 -v|DNS Server list, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers)|DNS_SERVER_LIST
+-k|Disable app security, defaults for false|DISABLE_APP_SECURITY
+-q|Disable web security, defaults to true|DISABLE_WEB_SECURITY
 
 I recommend to use the `-n` parameter instead of `-i`, because the index of the devices might change across restarts.  
 If you already used the `configure.sh` command and you are experiencing issues (because of the card has changed its index), you can run the command again. In the latest version, the card index is calculated during the container startup phase and hopefully there will not be any need to use `configure.sh` again unless you change the audio device you want to use.
@@ -230,6 +249,8 @@ CLIENT_ID|Set custom client id, defaults to an empty string
 LOG_LEVEL|Application log level, defaults to `3`
 CERTIFICATE_PATH|Override default certificate path
 DISABLE_CONTROL_APP|Disable control app if set to `1`, defaults to `0`
+DISABLE_APP_SECURITY|Defaults to false
+DISABLE_WEB_SECURITY|Defaults to true
 DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers).
 
 Please note that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  

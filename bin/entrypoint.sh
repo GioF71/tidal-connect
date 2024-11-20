@@ -18,11 +18,29 @@ mqa_codec=`load_key_value $KEY_MQA_CODEC`
 mqa_passthrough=`load_key_value $KEY_MQA_PASSTHROUGH`
 
 if [[ -z "${DISABLE_CONTROL_APP}" ]] || [[ $DISABLE_CONTROL_APP -eq 0 ]]; then
-   echo "Starting Speaker Application in Background (TMUX)"
-   /usr/bin/tmux new-session -d -s speaker_controller_application '/app/ifi-tidal-release/bin/speaker_controller_application'
+    tmux_available=0
+    control_app_available=0
+    if [ -f /usr/bin/tmux ]; then
+        tmux_available=1
+    fi
+    if [ -f /app/ifi-tidal-release/bin/speaker_controller_application ]; then
+        control_app_available=1
+    fi
 
-   echo "Sleeping for a while ($SLEEP_TIME_SEC seconds)..."
-   sleep $SLEEP_TIME_SEC
+    if [ $tmux_available -eq 1 ] && [ $control_app_available -eq 1 ]; then
+        echo "Starting Speaker Application in Background (TMUX)"
+        /usr/bin/tmux new-session -d -s speaker_controller_application '/app/ifi-tidal-release/bin/speaker_controller_application'
+        echo "Sleeping for a while ($SLEEP_TIME_SEC seconds) ..."
+        sleep $SLEEP_TIME_SEC
+    else
+        if [ $tmux_available -eq 0 ]; then
+            echo "The tmux binary is not available."
+        fi
+        if [ $control_app_available -eq 0 ]; then
+            echo "The Control application is not available."
+        fi
+        echo "The Control application or the tmux binary are not available, so we cannot start the control application."
+    fi
 fi
 
 echo "ENABLE_GENERATED_TONE=[${ENABLE_GENERATED_TONE}]"
@@ -39,10 +57,81 @@ fi
 executable_path=/app/ifi-tidal-release/bin/tidal_connect_application
 certificate_path=/app/ifi-tidal-release/id_certificate/IfiAudio_ZenStream.dat
 
+if [ -f "/assets/custom/bin/tidal_connect" ]; then
+    echo "User provided tidal_connect app found."
+    # copy
+    mkdir -p /app/bin
+    cp /assets/custom/bin/tidal_connect /app/bin
+    # change permissions
+    chmod +x /app/bin/tidal_connect
+    # adopt this version
+    executable_path=/app/bin/tidal_connect
+    if [ -f "/assets/custom/bin/tidal_connect.dat" ]; then
+        echo "User provided tidal_connect.dat file found."
+        mkdir -p /app/bin
+        cp /assets/custom/bin/tidal_connect.dat /app/bin
+        certificate_path=/app/bin/tidal_connect.dat
+    else
+        echo "An user provided tidal_connect.dat file was not found."
+    fi
+else
+    echo "An user provided tidal_connect app was not found."
+    # is there the fallback application in the image?
+    if [ ! -f "$executable_path" ]; then
+        echo "Cannot find fallback executable [$executable_path], this is a fatal error!"
+        exit 1
+    fi
+fi
+
+# is there a custom certificate?
+if [ -f "/assets/custom/certificate/tcon.crt" ]; then
+    echo "User provided tcon.crt found."
+    mkdir -p /app/cert
+    cp /assets/custom/certificate/tcon.crt /app/cert
+    chown root:root /app/cert/tcon.crt
+    certificate_path=/app/cert/tcon.crt
+else
+    echo "An user provided tcon.crt was not found."
+fi
+
+# has the certificate path been explicitly set? if so, we use that value
 if [[ -n "${CERTIFICATE_PATH}" ]]; then
    certificate_path=${CERTIFICATE_PATH}
 fi
 echo "certificate_path=[${certificate_path}]"
+
+for lib_name in /assets/custom/lib/*; do
+    echo "Found library [$lib_name], injecting to /usr/lib/ ..."
+    cp $lib_name /usr/lib/
+done
+
+for lib_name in /assets/custom/lib-arm-linux-gnueabihf/*; do
+    echo "Found library [$lib_name], injecting to /lib/arm-linux-gnueabihf/..."
+    cp $lib_name /lib/arm-linux-gnueabihf/
+done
+
+disable_app_security=false
+disable_web_security=true
+
+if [[ -n "${DISABLE_APP_SECURITY}" ]]; then
+    if [[ "${DISABLE_APP_SECURITY}" == "false" ]] || [[ "${DISABLE_APP_SECURITY}" == "true" ]]; then
+        disable_app_security=${DISABLE_APP_SECURITY}
+        echo "DISABLE_APP_SECURITY=[${DISABLE_APP_SECURITY}]"
+    else
+        echo "Invalid value for DISABLE_APP_SECURITY=[${DISABLE_APP_SECURITY}]"
+        exit 1
+    fi
+fi
+
+if [[ -n "${DISABLE_WEB_SECURITY}" ]]; then
+    if [[ "${DISABLE_WEB_SECURITY}" == "false" ]] || [[ "${DISABLE_WEB_SECURITY}" == "true" ]]; then
+        disable_web_security=${DISABLE_WEB_SECURITY}
+        echo "DISABLE_WEB_SECURITY=[${DISABLE_WEB_SECURITY}]"
+    else
+        echo "Invalid value for DISABLE_WEB_SECURITY=[${DISABLE_WEB_SECURITY}]"
+        exit 1
+    fi
+fi
 
 COMMAND_LINE="${executable_path} \
          --tc-certificate-path ${certificate_path} \
@@ -51,14 +140,17 @@ COMMAND_LINE="${executable_path} \
          --model-name \"${model_name}\" \
          --codec-mpegh true \
          --codec-mqa ${mqa_codec} \
-         --disable-app-security false \
-         --disable-web-security false \
+         --disable-app-security ${disable_app_security} \
+         --disable-web-security ${disable_web_security} \
          --enable-mqa-passthrough ${mqa_passthrough} \
          --log-level ${LOG_LEVEL} \
          --enable-websocket-log \"0\""
 
 if [[ -n "${CLIENT_ID}" ]]; then
-   COMMAND_LINE="${COMMAND_LINE} --clientid \"${CLIENT_ID}\""
+    echo "Using user provided CLIENT_ID [${CLIENT_ID}]"
+    COMMAND_LINE="${COMMAND_LINE} --clientid \"${CLIENT_ID}\""
+else
+    echo "User did not provide a CLIENT_ID."
 fi
 
 echo "COMMAND_LINE=${COMMAND_LINE}"

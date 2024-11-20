@@ -8,7 +8,7 @@ set -e
 ENV_FILE=.env
 chmod 755 bin/entrypoint.sh
 
-while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:e:b:h:j:v: flag
+while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:e:b:h:j:v:k:q: flag
 do
     case "${flag}" in
         n) card_name=${OPTARG};;
@@ -31,6 +31,8 @@ do
         h) certificate_path=${OPTARG};;
         j) disable_control_app=${OPTARG};;
         v) dns_server_list=${OPTARG};;
+        k) disable_app_security=${OPTARG};;
+        q) disable_web_security=${OPTARG};;
     esac
 done
 
@@ -59,6 +61,8 @@ echo "log_level=[$log_level]"
 echo "certificate_path=[$certificate_path]"
 echo "disable_control_app=[$disable_control_app]"
 echo "dns_server_list=[$dns_server_list]"
+echo "disable_app_security=[$disable_app_security]"
+echo "disable_web_security=[$disable_web_security]"
 
 if test -f $ENV_FILE; then
     truncate -s 0 $ENV_FILE
@@ -179,6 +183,24 @@ fi
 if [[ -n "${enable_generated_tone}" ]]; then
     echo "Setting ENABLE_GENERATED_TONE to [$enable_generated_tone]"
     echo "ENABLE_GENERATED_TONE=${enable_generated_tone}" >> $ENV_FILE
+fi
+
+if [[ -n "${disable_app_security}" ]]; then
+    if [[ "${disable_app_security}" == "false" ]] || [[ "${disable_app_security}" == "true" ]]; then
+        echo "Setting DISABLE_APP_SECURITY to [$disable_app_security]"
+        echo "DISABLE_APP_SECURITY=${disable_app_security}" >> $ENV_FILE
+    else
+        echo "Invalid value for DISABLE_APP_SECURITY=[${disable_app_security}]"
+    fi
+fi
+
+if [[ -n "${disable_web_security}" ]]; then
+    if [[ "${disable_web_security}" == "false" ]] || [[ "${disable_web_security}" == "true" ]]; then
+        echo "Setting DISABLE_WEB_SECURITY to [$disable_web_security]"
+        echo "DISABLE_WEB_SECURITY=${disable_web_security}" >> $ENV_FILE
+    else
+        echo "Invalid value for DISABLE_WEB_SECURITY=[${DISABLE_WEB_SECURITY}]"
+    fi
 fi
 
 echo -e "\nFinal .env file:\n"
