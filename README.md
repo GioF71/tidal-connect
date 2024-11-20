@@ -41,7 +41,9 @@ or execute the provided `local-build.sh` using
 ./local-build.sh
 ```
 
+The resulting image will be tagged as `my/tidal-connect`. You will have to set the variable `TIDAL_CONNECT_IMAGE` to this image name if you want to use it instead of the default docker image.  
 Note that the image you build this way will not contain the tidal binaries. Refer to the following readme files in the [bin](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/bin/README.md), [certificate](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/certificate/README.md), [lib](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib/README.md) and [lib-arm-linux-gnueabihf](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib-arm-linux-gnueabihf/README.md).  
+
 
 ### MQA content is gone
 
@@ -252,6 +254,7 @@ DISABLE_CONTROL_APP|Disable control app if set to `1`, defaults to `0`
 DISABLE_APP_SECURITY|Defaults to false
 DISABLE_WEB_SECURITY|Defaults to true
 DNS_SERVER_LIST|The DNS serves to be used, defaults to `8.8.8.8 8.8.4.4` (Google's DNS servers).
+TIDAL_CONNECT_IMAGE|Alternative image
 
 Please note that if both CARD_NAME and CARD_INDEX are specified, only CARD_NAME will be considered.  
 Also, if both CARD_NAME and CARD_INDEX are not specified, `sysdefault` (the system default audio device) will be used.  
@@ -430,6 +433,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2024-11-20|Add support for own docker image
 2024-10-15|Add `newgrp` instruction so a logoff/logon is not strictly required.
 2024-09-23|Add sample for FiiO K11 (see issue [#202](https://github.com/GioF71/tidal-connect/issues/202))
 2024-09-23|Corrected markdown table in `userconfig/README.md`

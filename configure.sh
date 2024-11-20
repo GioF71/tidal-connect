@@ -8,7 +8,7 @@ set -e
 ENV_FILE=.env
 chmod 755 bin/entrypoint.sh
 
-while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:e:b:h:j:v:k:q: flag
+while getopts n:i:d:s:l:r:f:m:c:p:o:a:g:w:t:e:b:h:j:v:k:q:u: flag
 do
     case "${flag}" in
         n) card_name=${OPTARG};;
@@ -33,6 +33,7 @@ do
         v) dns_server_list=${OPTARG};;
         k) disable_app_security=${OPTARG};;
         q) disable_web_security=${OPTARG};;
+        u) docker_image=${OPTARG};;
     esac
 done
 
@@ -63,6 +64,7 @@ echo "disable_control_app=[$disable_control_app]"
 echo "dns_server_list=[$dns_server_list]"
 echo "disable_app_security=[$disable_app_security]"
 echo "disable_web_security=[$disable_web_security]"
+echo "docker_image=[$docker_image]"
 
 if test -f $ENV_FILE; then
     truncate -s 0 $ENV_FILE
@@ -201,6 +203,11 @@ if [[ -n "${disable_web_security}" ]]; then
     else
         echo "Invalid value for DISABLE_WEB_SECURITY=[${DISABLE_WEB_SECURITY}]"
     fi
+fi
+
+if [[ -n "${docker_image}" ]]; then
+    echo "Setting TIDAL_CONNECT_IMAGE to [$docker_image]"
+    echo "TIDAL_CONNECT_IMAGE=${docker_image}" >> $ENV_FILE
 fi
 
 echo -e "\nFinal .env file:\n"
