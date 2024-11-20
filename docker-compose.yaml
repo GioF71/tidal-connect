@@ -3,9 +3,8 @@ version: "3"
 
 services:
   tidal-connect:
-    image: edgecrush3r/tidal-connect:latest
+    image: ${TIDAL_CONNECT_IMAGE:-edgecrush3r/tidal-connect:latest}
     container_name: tidal-connect
-    tty: true
     network_mode: host
     devices:
      - /dev/snd
@@ -30,6 +29,8 @@ services:
      - RESTART_WAIT_SEC=${RESTART_WAIT_SEC:-10}
      - LOG_LEVEL=${LOG_LEVEL:-3}
      - DISABLE_CONTROL_APP=${DISABLE_CONTROL_APP:-0}
+     - DISABLE_APP_SECURITY=${DISABLE_APP_SECURITY:-}
+     - DISABLE_WEB_SECURITY=${DISABLE_WEB_SECURITY:-}
     volumes:
      - ./assets:/assets:ro
      - ./userconfig:/userconfig:ro
