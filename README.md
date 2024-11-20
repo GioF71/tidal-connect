@@ -41,7 +41,7 @@ or execute the provided `local-build.sh` using
 ./local-build.sh
 ```
 
-Note that the image will not contain the tidal binaries. Refer to the following readme files in the [bin](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/bin/README.md), [certificate](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/certificate/README.md), [lib](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib/README.md) and [lib-arm-linux-gnueabihf](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib-arm-linux-gnueabihf/README.md).  
+Note that the image you build this way will not contain the tidal binaries. Refer to the following readme files in the [bin](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/bin/README.md), [certificate](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/certificate/README.md), [lib](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib/README.md) and [lib-arm-linux-gnueabihf](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib-arm-linux-gnueabihf/README.md).  
 
 ### MQA content is gone
 
