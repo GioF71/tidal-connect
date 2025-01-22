@@ -116,9 +116,9 @@ else
     echo "Custom lib directory not found."
 fi
 
-if test -d /lib/arm-linux-gnueabihf; then
-    lib_cnt=`find /lib/arm-linux-gnueabihf -type f | grep -v ".placeholder" | wc -l`
-    echo "Lib count in /lib/arm-linux-gnueabihf: $lib_cnt"
+if test -d /assets/custom/lib-arm-linux-gnueabihf; then
+    lib_cnt=`find /assets/custom/lib-arm-linux-gnueabihf -type f | grep -v ".placeholder" | wc -l`
+    echo "Lib count in /assets/custom/lib-arm-linux-gnueabihf: $lib_cnt"
     if [ $lib_cnt -eq 0 ]; then
         echo "No custom libraries to inject to /lib/arm-linux-gnueabihf/ ..."
     else
