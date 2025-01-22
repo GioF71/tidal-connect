@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.8"
+echo "Tidal Connect - https://github.com/GioF71/tidal-connect.git - entrypoint.sh version 0.1.9"
 
 mkdir -p /config
 
@@ -100,15 +100,37 @@ if [[ -n "${CERTIFICATE_PATH}" ]]; then
 fi
 echo "certificate_path=[${certificate_path}]"
 
-for lib_name in /assets/custom/lib/*; do
-    echo "Found library [$lib_name], injecting to /usr/lib/ ..."
-    cp $lib_name /usr/lib/
-done
+if test -d /assets/custom/lib; then
+    lib_cnt=`find /assets/custom/lib -type f | grep -v ".placeholder" | wc -l`
+    echo "Lib count in /assets/custom/lib: $lib_cnt"
+    if [ $lib_cnt -eq 0 ]; then
+        echo "No custom libraries to inject to /usr/lib/ ..."
+    else
+        echo "Some custom libraries to inject to /usr/lib/ ..."
+        for lib_name in /assets/custom/lib/*; do
+            echo "Found library path [$lib_name], injecting to /usr/lib/ ..."
+            cp $lib_name /usr/lib/
+        done
+    fi
+else
+    echo "Custom lib directory not found."
+fi
 
-for lib_name in /assets/custom/lib-arm-linux-gnueabihf/*; do
-    echo "Found library [$lib_name], injecting to /lib/arm-linux-gnueabihf/..."
-    cp $lib_name /lib/arm-linux-gnueabihf/
-done
+if test -d /lib/arm-linux-gnueabihf; then
+    lib_cnt=`find /lib/arm-linux-gnueabihf -type f | grep -v ".placeholder" | wc -l`
+    echo "Lib count in /lib/arm-linux-gnueabihf: $lib_cnt"
+    if [ $lib_cnt -eq 0 ]; then
+        echo "No custom libraries to inject to /lib/arm-linux-gnueabihf/ ..."
+    else
+        echo "Some custom libraries to inject to /lib/arm-linux-gnueabihf/ ..."
+        for lib_name in /assets/custom/lib-arm-linux-gnueabihf/*; do
+            echo "Found library [$lib_name], injecting to /lib/arm-linux-gnueabihf/..."
+            cp $lib_name /lib/arm-linux-gnueabihf/
+        done
+    fi
+else
+    echo "Custom arm-linux-gnueabihf directory not found."
+fi
 
 disable_app_security=false
 disable_web_security=true
