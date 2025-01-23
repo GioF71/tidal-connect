@@ -28,7 +28,7 @@ You will need to reboot, then restart the container.
 
 ### Support for building your own image
 
-You can now build a custom image, which will be based on [debian:bookmark-slim](https://hub.docker.com/_/debian/tags?name=bookworm-slim).  
+You can now build a custom image, which will be based on [debian:bookworm-slim](https://hub.docker.com/_/debian/tags?name=bookworm-slim).  
 In order to build the image, change the current directory to `build`, then execute:
 
 ```text
