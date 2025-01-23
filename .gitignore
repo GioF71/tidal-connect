@@ -1,4 +1,4 @@
 .env
-my.env
+**.env
 userconfig/asound.conf
-
+.vscode/settings.json
