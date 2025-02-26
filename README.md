@@ -8,6 +8,11 @@ A simple script used to configure a docker-compose stack for Tidal Connect.
 Please see the [Goal](https://ko-fi.com/giof71/goal?g=0)  
 Please note that support goal is limited to cover running costs for subscriptions to music services.
 
+## Avahi and friendly names
+
+Some users experienced issues using a friendly name which is composed of multiple words. See [this post](https://github.com/GioF71/tidal-connect/issues/216#issuecomment-2684176691).  
+I have changed the default for `FRIENDLY_NAME` accordingly. You might want to avoid using friendly names with multiple words if you experience similar issues.  
+
 ## Issue on the Raspberry Pi 5
 
 If you use a Raspberry Pi 5, you might encounter an issue that shows with the following content in the container logs:
@@ -187,7 +192,7 @@ PARAM|DESCRIPTION|VARIABLE
 -s|Card format, optional (`S32_LE`, `S16_LE`, etc)|CARD_FORMAT
 -l|Enables softvolume, defaults to `yes`|ENABLE_SOFTVOLUME
 -g|Enables generated tone, defaults to `yes`|ENABLE_GENERATED_TONE
--f|Friendly name, defaults to `TIDAL connect`|FRIENDLY_NAME
+-f|Friendly name, defaults to `TidalConnect`|FRIENDLY_NAME
 -m|Model name, defaults to `Audio Streamer`|MODEL_NAME
 -c|MQA Codec, defaults to `false`|MQA_CODEC
 -p|MQA Passthrough, defaults to `false`|MQA_PASSTHROUGH
@@ -236,7 +241,7 @@ CARD_INDEX|Alsa index of the audio card
 CARD_DEVICE|Audio device, optional
 CARD_FORMAT|Audio format, optional (`S32_LE`, `S16_LE`, etc)
 FORCE_PLAYBACK_DEVICE|If set and if there is an `asound.conf` provided or selected via a prefix in `userconfig`, this will be the playback device
-FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TIDAL connect`.
+FRIENDLY_NAME|Friendly name of the device, will be shown on Tidal Apps. Defaults to `TidalConnect`. You might [prefer to use a single word](https://github.com/GioF71/tidal-connect/issues/216#issuecomment-2684176691).
 ASOUND_FILE_PREFIX|Search asound.conf with this prefix, a `.` is used as separator
 CREATED_ASOUND_CARD_NAME|When creating asound.conf, use this as the declared device name
 ENABLE_SOFTVOLUME|Generate a configuration with softvolume if set to `yes`, defaults to `no`
