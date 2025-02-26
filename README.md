@@ -49,7 +49,6 @@ or execute the provided `local-build.sh` using
 The resulting image will be tagged as `my/tidal-connect`. You will have to set the variable `TIDAL_CONNECT_IMAGE` to this image name if you want to use it instead of the default docker image.  
 Note that the image you build this way will not contain the tidal binaries. Refer to the following readme files in the [bin](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/bin/README.md), [certificate](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/certificate/README.md), [lib](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib/README.md) and [lib-arm-linux-gnueabihf](https://github.com/GioF71/tidal-connect/blob/main/assets/custom/lib-arm-linux-gnueabihf/README.md).  
 
-
 ### MQA content is gone
 
 At the end of July 2024, Tidal has removed all the MQA content. This particular implementation of Tidal Connect could play hi-res files only up to 24/48 and for MQA content: in the latter case, an unfolding to 24/88 or 24/96 was implemented by the application itself, while the further processing was delegated to a MQA capable DAC.  
