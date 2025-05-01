@@ -85,7 +85,7 @@ This solution is not and will probably never be supported by Tidal. It might sto
 If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is represented by the ubiquitous Wiim Mini/Pro/Pro+/Amp/AmpPro/Ultra devices. Another option is represented by Google Chromecast/Chromecast Audio devices. Also, if you use Apple devices, you can already stream to AirPlay-enabled devices.  
 Even your current TV might already be used as an endpoint for Tidal via the embedded Chromecast functionality, or via AirPlay.  
 
-##### UPnP
+##### UPnP control points with Tidal support
 
 Alternatively, if you are not scared of some DIY, you might want to create an upnp/dlna renderer, maybe with upmpdcli (you might use my [docker image for upmpdcli](https://github.com/GioF71/upmpdcli-docker)) and mpd (you might use my [docker image for mpd](https://github.com/GioF71/mpd-alsa-docker)), and then use some Android app like BubbleUPnP or mConnect Lite (this one is also on iOS/iPadOS), connect those apps to Tidal and then stream to your UPnP/DLNA renderer.  
 Starting late November 2023, BubbleUPnP supports hires flac, see [this post on Reddit](https://www.reddit.com/r/TIdaL/comments/184gcsq/bubbleupnp_android_app_now_supports_hires_flac/). This is something that, from what I know, is not supported by this Tidal Connect application, and will probably never be.  
