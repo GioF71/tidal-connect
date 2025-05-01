@@ -87,7 +87,7 @@ Even your current TV might already be used as an endpoint for Tidal via the embe
 
 ##### UPnP control points with Tidal support
 
-Alternatively, if you are not scared of some DIY, you might want to create an upnp/dlna renderer, maybe with upmpdcli (you might use my [docker image for upmpdcli](https://github.com/GioF71/upmpdcli-docker)) and mpd (you might use my [docker image for mpd](https://github.com/GioF71/mpd-alsa-docker)), and then use some Android app like BubbleUPnP or mConnect Lite (this one is also on iOS/iPadOS), connect those apps to Tidal and then stream to your UPnP/DLNA renderer.  
+Alternatively, if you are not scared of some DIY, you might want to create an UPnP/DLNA renderer, maybe with upmpdcli (you might use my [docker image for upmpdcli](https://github.com/GioF71/upmpdcli-docker)) and mpd (you might use my [docker image for mpd](https://github.com/GioF71/mpd-alsa-docker)), and then use some Android app like BubbleUPnP or mConnect Lite (this one is also on iOS/iPadOS), connect those apps to Tidal and then stream to your UPnP/DLNA renderer.  
 Starting late November 2023, BubbleUPnP supports hires flac, see [this post on Reddit](https://www.reddit.com/r/TIdaL/comments/184gcsq/bubbleupnp_android_app_now_supports_hires_flac/). This is something that, from what I know, is not supported by this Tidal Connect application, and will probably never be.  
 
 ##### Tidal Plugin for upmpdcli
