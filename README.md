@@ -101,8 +101,11 @@ When using HI_RES_LOSSLESS audio quality, only a few (whitelisted) players will 
 - some WiiM devices, for sure the WiiM Pro (which I own), most likely the WiiM Pro plus, possibly others.
 
 Other players will be server 16/44 streams for compatibility.  
-But more streamers might work properly in HI_RES_LOSSLESS mode, as well. If you owners are willing to test the solution with whitelisting disabled, we might extend the whitelist.  
+But more UPnP/DLNA streamers might work properly in HI_RES_LOSSLESS mode, as well. If you owners are willing to test the solution with whitelisting disabled, we might extend the whitelist.  
+Eversolo maybe? Cambridge Audio? Lumin? Owners of any streamer are welcome to try and report their experience.  
 See [here](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-hires) for a configuration for the HI_RES_LOSSLESS enabled media server, as well as details for running the server without the whitelist.  
+As a final note: why a Tidal Plugin for upmpdcli? Isn't BubbleUPnP and mConnect available already, and don't they support Tidal? Yes they do, but this solution covers a niche use-case, the desktop user with a streamer on its working desk.  
+With this plugin, you will be able to play Tidal to your streamer using [upplay](https://www.lesbonscomptes.com/upplay/), a control point which runs on Windows, MacOS and Linux, without having to use the phone or tablet in order to stream from Tidal.  
 
 ##### Logitech Media Server
 
