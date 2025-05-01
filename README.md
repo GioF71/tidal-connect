@@ -82,7 +82,7 @@ This solution is not and will probably never be supported by Tidal. It might sto
 
 #### Alternatives
 
-If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is the ubiquitous Wiim Mini/Pro/Pro+/Amp/AmpPro/Ultra. Another option is represented by Google Chromecast/Chromecast Audio devices. Also, if you use Apple devices, you can already stream to AirPlay-enabled devices.  
+If you need to have a supported solution, look at Tidal Connect enabled products. A cheap one is represented by the ubiquitous Wiim Mini/Pro/Pro+/Amp/AmpPro/Ultra devices. Another option is represented by Google Chromecast/Chromecast Audio devices. Also, if you use Apple devices, you can already stream to AirPlay-enabled devices.  
 Even your current TV might already be used as an endpoint for Tidal via the embedded Chromecast functionality, or via AirPlay.  
 
 ##### UPnP
@@ -92,14 +92,23 @@ Starting late November 2023, BubbleUPnP supports hires flac, see [this post on R
 
 ##### Tidal Plugin for upmpdcli
 
-Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF71/upmpdcli-docker/discussions/281) but again, there will be no support from Tidal. This solution works well with Tidal HiFi or with HiFi+ with MQA DACs.  
-This solution supports native HiRes flac playback (HI_RES_LOSSLESS so up to 24/192) to and mpd/upmpdcli player. If you configure it to play only up to HI_RES (so up to 24/48 and unfolding on a DAC), it will work on pretty much any UPnP renderer.  
-See [here](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-hires) for a configuration for the HI_RES_LOSSLESS enabled media server.  
+Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF71/upmpdcli-docker/discussions/281) but again, there will be no support from Tidal. This solution works very well with Tidal LOSSLESS and HI_RES_LOSSLESS.  
+This solution supports native HiRes flac playback (HI_RES_LOSSLESS so up to 24/192) to a few well-known player types. However, it will work on pretty much any UPnP renderer.  
+When using HI_RES_LOSSLESS audio quality, only a few (whitelisted) players will work with files with quality > 16/44:
+
+- Music Player Daemon + upmpdcli
+- gmrenderer-resurrect
+- some WiiM devices, for sure the WiiM Pro (which I own), most likely the WiiM Pro plus, possibly others.
+
+Other players will be server 16/44 streams for compatibility.  
+But more streamers might work properly in HI_RES_LOSSLESS mode, as well. If you owners are willing to test the solution with whitelisting disabled, we might extend the whitelist.  
+See [here](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-hires) for a configuration for the HI_RES_LOSSLESS enabled media server, as well as details for running the server without the whitelist.  
 
 ##### Logitech Media Server
 
-Another alternative, if you have a HiFi subscription and/or are ok with being limited to standard resolution or mqa-encoded tracks, is using [Logitech Media Server](https://support.logi.com/hc/en-us/articles/360023227314-Installing-Logitech-Media-Server-software) and Squeezelite, for which you might use my [docker image for squeezelite](https://github.com/GioF71/squeezelite-docker).  
-Even considering that after February 2024 the `mysqueezebox` online services will be [shut down](https://forums.slimdevices.com/forum/user-forums/mysqueezebox-com/1668754-squeezebox-display-please-follow-the-qr-code-logitech-migration-announcement), there is a new, very promising, and I'd say already very usable plugin [here](https://github.com/michaelherger/lms-plugin-tidal) by community heroes [michaelherger](https://github.com/michaelherger) and [philippe44](https://github.com/philippe44). This solution does not currently support Tidal HiRes while it supports MQA encoded streams: there will be no software-based unfolding, but a MQA enabled DAC should do that instead.  
+Another alternative is using [Lyrion Music Server](https://lyrion.org/) and Squeezelite players, for which you might use my [docker image for squeezelite](https://github.com/GioF71/squeezelite-docker).  
+In February 2024 the `mysqueezebox` online services have been [shut down](https://forums.lyrion.org/forum/user-forums/mysqueezebox-com/1668754-squeezebox-display-please-follow-the-qr-code-logitech-migration-announcement), there is a new, very nice plugin [here](https://github.com/michaelherger/lms-plugin-tidal) by community heroes [michaelherger](https://github.com/michaelherger) and [philippe44](https://github.com/philippe44). This solution does not currently support Tidal HiRes while it supports standard LOSSLESS streams (so, again, up to 16/44).  
+The solution used to support MQA encoded streams (hence you might find a setting to enable HI_RES), but that kind content is now gone, so (I believe) that the setting is currently not too relevant anymore. YMMV.  
 
 ##### Mopidy-Tidal
 
