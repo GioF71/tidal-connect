@@ -93,15 +93,15 @@ Starting late November 2023, BubbleUPnP supports hires flac, see [this post on R
 ##### Tidal Plugin for upmpdcli
 
 Another solution might be my [Tidal Plugin for Upmpdcli](https://github.com/GioF71/upmpdcli-docker/discussions/281) but again, there will be no support from Tidal. This solution works very well with Tidal LOSSLESS and HI_RES_LOSSLESS.  
-This solution supports native HiRes flac playback (HI_RES_LOSSLESS so up to 24/192) to a few well-known player types. However, it will work on pretty much any UPnP renderer.  
-When using HI_RES_LOSSLESS audio quality, only a few (whitelisted) players will work with files with quality > 16/44:
+This solution supports native HiRes flac playback (HI_RES_LOSSLESS so up to 24/192) to a few well-known player types. However, it will work in LOSSLESS quality (16/44) on pretty much any UPnP renderer.  
+When configured for HI_RES_LOSSLESS audio quality, only a few (whitelisted) players will be able to actally play HI_RES_LOSSLESS streams (so, better than 16/44, up to 24/192):
 
 - Music Player Daemon + upmpdcli
 - gmrenderer-resurrect
-- some WiiM devices, for sure the WiiM Pro (which I own), most likely the WiiM Pro plus, possibly others.
+- some WiiM devices, for sure the WiiM Pro (which I own), most likely the WiiM Pro Plus, possibly others.
 
-Other players will be server 16/44 streams for compatibility.  
-But more UPnP/DLNA streamers might work properly in HI_RES_LOSSLESS mode, as well. If you owners are willing to test the solution with whitelisting disabled, we might extend the whitelist.  
+Other players will be served with 16/44 streams for compatibility.  
+But more UPnP/DLNA streamers might work properly in HI_RES_LOSSLESS mode, as well. If owners of commercial streamer with DLNA support are willing to test the solution with whitelisting disabled, we might extend the whitelist.  
 Eversolo maybe? Cambridge Audio? Lumin? Owners of any streamer are welcome to try and report their experience.  
 See [here](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-hires) for a configuration for the HI_RES_LOSSLESS enabled media server, as well as details for running the server without the whitelist.  
 As a final note: why a Tidal Plugin for upmpdcli? Aren't BubbleUPnP and mConnect available already, and don't they support Tidal? Yes they do, but this solution covers a niche use-case, the desktop user with a streamer on its working desk.  
