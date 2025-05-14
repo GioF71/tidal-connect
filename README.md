@@ -126,8 +126,9 @@ I maintain docker images for [Audirvana Studio](https://github.com/GioF71/audirv
 
 ##### Roon
 
-[Roon](https://roon.app/) is another commercial solution which can allow you to stream to Tidal.  
-You can build an endpoint using [Roon Bridge](https://help.roonlabs.com/portal/en/kb/articles/roonbridge). A dockerized solution is [here](https://github.com/GioF71/roon-bridge-docker).  
+[Roon](https://roon.app/) is another commercial solution which can allow you to stream from Tidal.  
+You can build an endpoint using [Roon Bridge](https://help.roonlabs.com/portal/en/kb/articles/roonbridge).  
+A dockerized solution is [here](https://github.com/GioF71/roon-bridge-docker).  
 
 ## References
 
