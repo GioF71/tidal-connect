@@ -1,6 +1,7 @@
 # tidal-connect
 
-A simple script used to configure a docker-compose stack for Tidal Connect.
+A simple script used to configure a docker-compose stack for Tidal Connect, using an existing docker image.  
+This repository does not contain any tidal-connect binary.  
 
 ## Support
 
