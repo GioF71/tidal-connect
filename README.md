@@ -124,6 +124,13 @@ There is a new plugin for [Mopidy](https://mopidy.com/) called [Mopidy-Tidal](ht
 I have prepared a  docker container image for this solution [here](https://github.com/GioF71/mopidy-docker) with a strong focus on this plugin especially.  
 A simple configuration can be found [here](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal).  
 
+##### Music Assistant
+
+[Music Assistant](https://www.music-assistant.io/) is an open source solution which support playback from Tidal, even in HiRes mode, to a variety of devices, notably Squeezelite, AirPlay, Chromecast, UPnP, see the [Player Providers](https://www.music-assistant.io/player-support/) section.  
+Of course it can manage your local library as well. See the [Music Providers](https://www.music-assistant.io/music-providers/) section.  
+You can run it as a standalone application or within [Home Assistant](https://www.home-assistant.io/).  
+I am starting using this solution, and I must say, I am impressed.  
+
 ##### Audirvana
 
 A commercial solution, [Audirvana Studio](https://audirvana.com/), allows you to stream from Tidal to UPnP renderers.  
