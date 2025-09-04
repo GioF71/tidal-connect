@@ -11,7 +11,7 @@ Please note that support goal is limited to cover running costs for subscription
 
 ## Known devices
 
-See the new document document [known devices](assets/known-devices.md) for a list of known working devices.  
+See the new document [known devices](assets/known-devices.md) for a list of known working devices.  
 
 ## Avahi and friendly names
 
