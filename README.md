@@ -9,6 +9,10 @@ This repository does not contain any tidal-connect binary.
 Please see the [Goal](https://ko-fi.com/giof71/goal?g=0)  
 Please note that support goal is limited to cover running costs for subscriptions to music services.
 
+## Known devices
+
+See the new document document [known devices](assets/known-devices.md) for a list of known working devices.  
+
 ## Avahi and friendly names
 
 Some users experienced issues using a friendly name which is composed of multiple words. See [this post](https://github.com/GioF71/tidal-connect/issues/216#issuecomment-2684176691).  
