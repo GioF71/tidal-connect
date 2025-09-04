@@ -451,6 +451,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2025-09-01|Add sample and asound.conf for IQAudio Board (see issue [#237](https://github.com/GioF71/tidal-connect/issues/237))
 2024-11-20|Add support for own docker image
 2024-10-15|Add `newgrp` instruction so a logoff/logon is not strictly required.
 2024-09-23|Add sample for FiiO K11 (see issue [#202](https://github.com/GioF71/tidal-connect/issues/202))
