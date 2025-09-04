@@ -98,7 +98,7 @@ This solution supports native HiRes flac playback (HI_RES_LOSSLESS so up to 24/1
 When configured for HI_RES_LOSSLESS audio quality, only a few (whitelisted) players will be able to actally play HI_RES_LOSSLESS streams (so, better than 16/44, up to 24/192):
 
 - Music Player Daemon + upmpdcli
-- gmrenderer-resurrect
+- gmrender-resurrect
 - some WiiM devices, for sure the WiiM Pro (which I own), most likely the WiiM Pro Plus, possibly others.
 
 Other players will be served with 16/44 streams for compatibility.  
