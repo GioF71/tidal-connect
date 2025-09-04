@@ -243,6 +243,10 @@ cd $HOME/tidal-connect
 docker-compose up -d
 ```
 
+#### Some known devices
+
+Please refer to the [known devices](assets/known-devices.md) document for a list of known working devices.  
+
 ## Environment Variables
 
 The container can be entirely configured using the environment variables listed on the following table:
@@ -451,6 +455,7 @@ An already started tidal-connect container should start working immediately, at 
 
 Date|Comment
 :---|:---
+2025-09-01|Add [known devices document](assets/known-devices.md)
 2025-09-01|Add sample and asound.conf for IQAudio Board (see issue [#237](https://github.com/GioF71/tidal-connect/issues/237))
 2024-11-20|Add support for own docker image
 2024-10-15|Add `newgrp` instruction so a logoff/logon is not strictly required.
