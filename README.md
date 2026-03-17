@@ -120,7 +120,7 @@ The solution used to support MQA encoded streams (hence you might find a setting
 
 ##### Mopidy-Tidal
 
-There is a new plugin for [Mopidy](https://mopidy.com/) called [Mopidy-Tidal](https://github.com/tehkillerbee/mopidy-tidal), which enabled Mopidy to stream for Tidal with full support for HiRes streams.  
+There is a new plugin for [Mopidy](https://mopidy.com/) called [Mopidy-Tidal](https://github.com/tehkillerbee/mopidy-tidal), which enables Mopidy to stream for Tidal with full support for HiRes streams.  
 I have prepared a  docker container image for this solution [here](https://github.com/GioF71/mopidy-docker) with a strong focus on this plugin especially.  
 A simple configuration can be found [here](https://github.com/GioF71/audio-tools/tree/main/players/mopidy-tidal).  
 
