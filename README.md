@@ -112,7 +112,7 @@ See [here](https://github.com/GioF71/audio-tools/tree/main/media-servers/tidal-h
 As a final note: why a Tidal Plugin for upmpdcli? Aren't BubbleUPnP and mConnect available already, and don't they support Tidal? Yes they do, but this solution covers a niche use-case, the desktop user with a streamer on its working desk.  
 With this plugin, you will be able to play Tidal to your streamer using [upplay](https://www.lesbonscomptes.com/upplay/), a control point which runs on Windows, MacOS and Linux, without having to use the phone or tablet in order to stream from Tidal.  
 
-##### Logitech Media Server
+##### Lyrion Music Server (formerly know as Logitech Media Server or LMS)
 
 Another alternative is using [Lyrion Music Server](https://lyrion.org/) and Squeezelite players, for which you might use my [docker image for squeezelite](https://github.com/GioF71/squeezelite-docker).  
 In February 2024 the `mysqueezebox` online services have been [shut down](https://forums.lyrion.org/forum/user-forums/mysqueezebox-com/1668754-squeezebox-display-please-follow-the-qr-code-logitech-migration-announcement), there is a new, very nice plugin [here](https://github.com/michaelherger/lms-plugin-tidal) by community heroes [michaelherger](https://github.com/michaelherger) and [philippe44](https://github.com/philippe44). This solution does not currently support Tidal HiRes while it supports standard LOSSLESS streams (so, again, up to 16/44).  
@@ -131,12 +131,12 @@ Of course it can manage your local library as well. See the [Music Providers](ht
 You can run it as a standalone application or within [Home Assistant](https://www.home-assistant.io/).  
 I am starting using this solution, and I must say, I am impressed.  
 
-##### Audirvana
+##### Audirvana ($$$)
 
 A commercial solution, [Audirvana Studio](https://audirvana.com/), allows you to stream from Tidal to UPnP renderers.  
 I maintain docker images for [Audirvana Studio](https://github.com/GioF71/audirvana-docker) and [here](https://github.com/GioF71/audio-tools/tree/main/players/audirvana-upnp) you can find a simple configuration for using mpd and upmpdcli as a player for Audirvana.  
 
-##### Roon
+##### Roon ($$$)
 
 [Roon](https://roon.app/) is another commercial solution which can allow you to stream from Tidal.  
 You can build an endpoint using [Roon Bridge](https://help.roonlabs.com/portal/en/kb/articles/roonbridge).  
